@@ -1,0 +1,167 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 680" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0B0F19" />
+      <stop offset="100%" stop-color="#111827" />
+    </linearGradient>
+    <linearGradient id="cardGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1E293B" />
+      <stop offset="100%" stop-color="#0F172A" />
+    </linearGradient>
+    <linearGradient id="accentGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38BDF8" />
+      <stop offset="100%" stop-color="#2563EB" />
+    </linearGradient>
+  </defs>
+
+  <!-- Background Canvas -->
+  <rect width="1200" height="680" fill="url(#bgGrad)" />
+
+  <!-- Grid Border Lines for Architectural Feel -->
+  <line x1="50" y1="90" x2="1150" y2="90" stroke="#1E293B" stroke-width="1.5" />
+  <line x1="50" y1="610" x2="1150" y2="610" stroke="#1E293B" stroke-width="1.5" />
+
+  <!-- Header Section -->
+  <g transform="translate(60, 45)">
+    <text x="0" y="24" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="28" font-weight="800" fill="#FFFFFF" letter-spacing="-0.5">Everything SEO Taxonomy Architecture</text>
+    <text x="560" y="24" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="16" font-weight="600" fill="#38BDF8">11 Core Disciplines • 55 Operational Skills • DevCenterPoint</text>
+  </g>
+
+  <!-- Row 1: 4 Cards -->
+  <!-- Card 1: Keyword Research (5 Skills) -->
+  <g transform="translate(60, 115)">
+    <rect width="255" height="150" rx="10" fill="url(#cardGrad)" stroke="#334155" stroke-width="1.2"/>
+    <rect x="0" y="0" width="6" height="150" rx="3" fill="#38BDF8"/>
+    <text x="20" y="32" font-family="sans-serif" font-size="16" font-weight="700" fill="#FFFFFF">1. Keyword Research</text>
+    <text x="210" y="32" font-family="monospace" font-size="13" font-weight="700" fill="#38BDF8">5 Skills</text>
+    <text x="20" y="58" font-family="sans-serif" font-size="12" fill="#94A3B8">• Keyword Discovery</text>
+    <text x="20" y="78" font-family="sans-serif" font-size="12" fill="#94A3B8">• Long-tail Keywords</text>
+    <text x="20" y="98" font-family="sans-serif" font-size="12" fill="#94A3B8">• Low-competition Keywords</text>
+    <text x="20" y="118" font-family="sans-serif" font-size="12" fill="#94A3B8">• Search Volume &amp; SERP</text>
+  </g>
+
+  <!-- Card 2: On-page SEO (7 Skills) -->
+  <g transform="translate(335, 115)">
+    <rect width="255" height="150" rx="10" fill="url(#cardGrad)" stroke="#334155" stroke-width="1.2"/>
+    <rect x="0" y="0" width="6" height="150" rx="3" fill="#2563EB"/>
+    <text x="20" y="32" font-family="sans-serif" font-size="16" font-weight="700" fill="#FFFFFF">2. On-page SEO</text>
+    <text x="210" y="32" font-family="monospace" font-size="13" font-weight="700" fill="#38BDF8">7 Skills</text>
+    <text x="20" y="58" font-family="sans-serif" font-size="12" fill="#94A3B8">• Title Tag Engineering</text>
+    <text x="20" y="78" font-family="sans-serif" font-size="12" fill="#94A3B8">• Headings &amp; URL Architecture</text>
+    <text x="20" y="98" font-family="sans-serif" font-size="12" fill="#94A3B8">• Image SEO &amp; Internal Linking</text>
+    <text x="20" y="118" font-family="sans-serif" font-size="12" fill="#94A3B8">• Schema Markup &amp; CTR</text>
+  </g>
+
+  <!-- Card 3: Content Optimization (5 Skills) -->
+  <g transform="translate(610, 115)">
+    <rect width="255" height="150" rx="10" fill="url(#cardGrad)" stroke="#334155" stroke-width="1.2"/>
+    <rect x="0" y="0" width="6" height="150" rx="3" fill="#6366F1"/>
+    <text x="20" y="32" font-family="sans-serif" font-size="16" font-weight="700" fill="#FFFFFF">3. Content Optimization</text>
+    <text x="210" y="32" font-family="monospace" font-size="13" font-weight="700" fill="#38BDF8">5 Skills</text>
+    <text x="20" y="58" font-family="sans-serif" font-size="12" fill="#94A3B8">• Semantic Gap Analysis</text>
+    <text x="20" y="78" font-family="sans-serif" font-size="12" fill="#94A3B8">• NLP Salience &amp; BM25</text>
+    <text x="20" y="98" font-family="sans-serif" font-size="12" fill="#94A3B8">• Entity &amp; Wikidata Mapping</text>
+    <text x="20" y="118" font-family="sans-serif" font-size="12" fill="#94A3B8">• Content Refresh &amp; Readability</text>
+  </g>
+
+  <!-- Card 4: Technical SEO (7 Skills) -->
+  <g transform="translate(885, 115)">
+    <rect width="255" height="150" rx="10" fill="url(#cardGrad)" stroke="#334155" stroke-width="1.2"/>
+    <rect x="0" y="0" width="6" height="150" rx="3" fill="#EC4899"/>
+    <text x="20" y="32" font-family="sans-serif" font-size="16" font-weight="700" fill="#FFFFFF">4. Technical SEO</text>
+    <text x="210" y="32" font-family="monospace" font-size="13" font-weight="700" fill="#38BDF8">7 Skills</text>
+    <text x="20" y="58" font-family="sans-serif" font-size="12" fill="#94A3B8">• Crawling &amp; Indexing Mechanics</text>
+    <text x="20" y="78" font-family="sans-serif" font-size="12" fill="#94A3B8">• XML Sitemaps &amp; RobotsTXT</text>
+    <text x="20" y="98" font-family="sans-serif" font-size="12" fill="#94A3B8">• Redirect Chain Compression</text>
+    <text x="20" y="118" font-family="sans-serif" font-size="12" fill="#94A3B8">• Core Web Vitals &amp; Log Forensics</text>
+  </g>
+
+  <!-- Row 2: 4 Cards -->
+  <!-- Card 5: Link Building (6 Skills) -->
+  <g transform="translate(60, 280)">
+    <rect width="255" height="150" rx="10" fill="url(#cardGrad)" stroke="#334155" stroke-width="1.2"/>
+    <rect x="0" y="0" width="6" height="150" rx="3" fill="#F59E0B"/>
+    <text x="20" y="32" font-family="sans-serif" font-size="16" font-weight="700" fill="#FFFFFF">5. Link Building</text>
+    <text x="210" y="32" font-family="monospace" font-size="13" font-weight="700" fill="#38BDF8">6 Skills</text>
+    <text x="20" y="58" font-family="sans-serif" font-size="12" fill="#94A3B8">• Data-Driven Digital PR</text>
+    <text x="20" y="78" font-family="sans-serif" font-size="12" fill="#94A3B8">• Authority Guest Contributions</text>
+    <text x="20" y="98" font-family="sans-serif" font-size="12" fill="#94A3B8">• Broken Link Reclamation</text>
+    <text x="20" y="118" font-family="sans-serif" font-size="12" fill="#94A3B8">• Linkable Assets &amp; HARO</text>
+  </g>
+
+  <!-- Card 6: AI SEO & GEO (5 Skills) -->
+  <g transform="translate(335, 280)">
+    <rect width="255" height="150" rx="10" fill="url(#cardGrad)" stroke="#334155" stroke-width="1.2"/>
+    <rect x="0" y="0" width="6" height="150" rx="3" fill="#8B5CF6"/>
+    <text x="20" y="32" font-family="sans-serif" font-size="16" font-weight="700" fill="#FFFFFF">6. AI SEO &amp; GEO</text>
+    <text x="210" y="32" font-family="monospace" font-size="13" font-weight="700" fill="#38BDF8">5 Skills</text>
+    <text x="20" y="58" font-family="sans-serif" font-size="12" fill="#94A3B8">• AI Search Visibility &amp; GEO</text>
+    <text x="20" y="78" font-family="sans-serif" font-size="12" fill="#94A3B8">• LLM Entity Disambiguation</text>
+    <text x="20" y="98" font-family="sans-serif" font-size="12" fill="#94A3B8">• AI Citations &amp; RAG Sourcing</text>
+    <text x="20" y="118" font-family="sans-serif" font-size="12" fill="#94A3B8">• Reddit &amp; 3rd-Party Presence</text>
+  </g>
+
+  <!-- Card 7: International SEO (3 Skills) -->
+  <g transform="translate(610, 280)">
+    <rect width="255" height="150" rx="10" fill="url(#cardGrad)" stroke="#334155" stroke-width="1.2"/>
+    <rect x="0" y="0" width="6" height="150" rx="3" fill="#10B981"/>
+    <text x="20" y="32" font-family="sans-serif" font-size="16" font-weight="700" fill="#FFFFFF">7. International SEO</text>
+    <text x="210" y="32" font-family="monospace" font-size="13" font-weight="700" fill="#38BDF8">3 Skills</text>
+    <text x="20" y="58" font-family="sans-serif" font-size="12" fill="#94A3B8">• Hreflang Cluster Annotation</text>
+    <text x="20" y="78" font-family="sans-serif" font-size="12" fill="#94A3B8">• ccTLD vs Subdirectory Setup</text>
+    <text x="20" y="98" font-family="sans-serif" font-size="12" fill="#94A3B8">• Translation &amp; Transcreation</text>
+    <text x="20" y="118" font-family="sans-serif" font-size="12" fill="#94A3B8">• ISO 639-1 &amp; ISO 3166-1 QA</text>
+  </g>
+
+  <!-- Card 8: Analytics & Reporting (4 Skills) -->
+  <g transform="translate(885, 280)">
+    <rect width="255" height="150" rx="10" fill="url(#cardGrad)" stroke="#334155" stroke-width="1.2"/>
+    <rect x="0" y="0" width="6" height="150" rx="3" fill="#06B6D4"/>
+    <text x="20" y="32" font-family="sans-serif" font-size="16" font-weight="700" fill="#FFFFFF">8. Analytics</text>
+    <text x="210" y="32" font-family="monospace" font-size="13" font-weight="700" fill="#38BDF8">4 Skills</text>
+    <text x="20" y="58" font-family="sans-serif" font-size="12" fill="#94A3B8">• Search Console API Extraction</text>
+    <text x="20" y="78" font-family="sans-serif" font-size="12" fill="#94A3B8">• Bing Webmaster Tools &amp; IndexNow</text>
+    <text x="20" y="98" font-family="sans-serif" font-size="12" fill="#94A3B8">• GA4 Organic Funnel Analysis</text>
+    <text x="20" y="118" font-family="sans-serif" font-size="12" fill="#94A3B8">• Executive Reporting &amp; Blended ROI</text>
+  </g>
+
+  <!-- Row 3: 3 Cards (Wider) -->
+  <!-- Card 9: SEO Tools (4 Skills) -->
+  <g transform="translate(60, 445)">
+    <rect width="345" height="145" rx="10" fill="url(#cardGrad)" stroke="#334155" stroke-width="1.2"/>
+    <rect x="0" y="0" width="6" height="145" rx="3" fill="#EF4444"/>
+    <text x="20" y="32" font-family="sans-serif" font-size="16" font-weight="700" fill="#FFFFFF">9. SEO Tools</text>
+    <text x="295" y="32" font-family="monospace" font-size="13" font-weight="700" fill="#38BDF8">4 Skills</text>
+    <text x="20" y="60" font-family="sans-serif" font-size="12" fill="#94A3B8">• Ahrefs (Batch Analysis, Content Gap)</text>
+    <text x="20" y="80" font-family="sans-serif" font-size="12" fill="#94A3B8">• SEMrush (Magic Tool, SERP Volatility)</text>
+    <text x="20" y="100" font-family="sans-serif" font-size="12" fill="#94A3B8">• Keywords Everywhere &amp; Screaming Frog CLI</text>
+  </g>
+
+  <!-- Card 10: SEO Wins & Experiments (4 Skills) -->
+  <g transform="translate(425, 445)">
+    <rect width="345" height="145" rx="10" fill="url(#cardGrad)" stroke="#334155" stroke-width="1.2"/>
+    <rect x="0" y="0" width="6" height="145" rx="3" fill="#14B8A6"/>
+    <text x="20" y="32" font-family="sans-serif" font-size="16" font-weight="700" fill="#FFFFFF">10. SEO Wins</text>
+    <text x="295" y="32" font-family="monospace" font-size="13" font-weight="700" fill="#38BDF8">4 Skills</text>
+    <text x="20" y="60" font-family="sans-serif" font-size="12" fill="#94A3B8">• 150+ Evidence-Tiered Quick Wins</text>
+    <text x="20" y="80" font-family="sans-serif" font-size="12" fill="#94A3B8">• AI SEO Hacks &amp; RAG Experiments</text>
+    <text x="20" y="100" font-family="sans-serif" font-size="12" fill="#94A3B8">• Striking Distance &amp; Backlinks Hacks</text>
+  </g>
+
+  <!-- Card 11: Growth & Scaling (5 Skills) -->
+  <g transform="translate(790, 445)">
+    <rect width="350" height="145" rx="10" fill="url(#cardGrad)" stroke="#334155" stroke-width="1.2"/>
+    <rect x="0" y="0" width="6" height="145" rx="3" fill="#84CC16"/>
+    <text x="20" y="32" font-family="sans-serif" font-size="16" font-weight="700" fill="#FFFFFF">11. Growth</text>
+    <text x="300" y="32" font-family="monospace" font-size="13" font-weight="700" fill="#38BDF8">5 Skills</text>
+    <text x="20" y="60" font-family="sans-serif" font-size="12" fill="#94A3B8">• Organic Traffic &amp; Flywheel Scaling</text>
+    <text x="20" y="80" font-family="sans-serif" font-size="12" fill="#94A3B8">• B2B Lead Gen &amp; Organic Search CRO</text>
+    <text x="20" y="100" font-family="sans-serif" font-size="12" fill="#94A3B8">• Revenue Attribution &amp; Enterprise pSEO</text>
+  </g>
+
+  <!-- Footer Brand Line -->
+  <g transform="translate(60, 640)">
+    <text x="0" y="0" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="13" fill="#64748B">Agent Skills Open Specification v1.0 • Built for Deterministic Execution by AI Agents &amp; Human Leads</text>
+    <text x="890" y="0" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="13" font-weight="600" fill="#38BDF8">DevCenterPoint • devcenterpoint.com</text>
+  </g>
+</svg>

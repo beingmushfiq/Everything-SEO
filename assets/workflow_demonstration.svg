@@ -1,0 +1,103 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 320" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0B0F19" />
+      <stop offset="100%" stop-color="#111827" />
+    </linearGradient>
+    <linearGradient id="stepGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1E293B" />
+      <stop offset="100%" stop-color="#0F172A" />
+    </linearGradient>
+    <linearGradient id="blueGlow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38BDF8" />
+      <stop offset="100%" stop-color="#2563EB" />
+    </linearGradient>
+    <marker id="arrow" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#38BDF8" />
+    </marker>
+  </defs>
+
+  <!-- Background Canvas -->
+  <rect width="1100" height="320" rx="12" fill="url(#bgGrad)" stroke="#1F2937" stroke-width="1.5"/>
+
+  <!-- Title & Subtitle -->
+  <g transform="translate(45, 35)">
+    <text x="0" y="20" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="22" font-weight="800" fill="#FFFFFF">5-Phase Deterministic Operational Workflow</text>
+    <text x="510" y="20" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="14" font-weight="500" fill="#94A3B8">Implemented across all 55 Everything SEO Skills • DevCenterPoint</text>
+  </g>
+
+  <!-- Phase 1: Ingestion -->
+  <g transform="translate(45, 80)">
+    <rect width="180" height="180" rx="10" fill="url(#stepGrad)" stroke="#334155" stroke-width="1.2"/>
+    <rect x="0" y="0" width="180" height="6" rx="3" fill="#38BDF8"/>
+    <text x="16" y="32" font-family="monospace" font-size="12" font-weight="700" fill="#38BDF8">PHASE 1</text>
+    <text x="16" y="56" font-family="sans-serif" font-size="16" font-weight="700" fill="#FFFFFF">Ingestion</text>
+    <text x="16" y="80" font-family="sans-serif" font-size="12" fill="#94A3B8">• Seed Entities &amp; URLs</text>
+    <text x="16" y="100" font-family="sans-serif" font-size="12" fill="#94A3B8">• GSC / GA4 Telemetry</text>
+    <text x="16" y="120" font-family="sans-serif" font-size="12" fill="#94A3B8">• Access Log Dumps</text>
+    <text x="16" y="140" font-family="sans-serif" font-size="12" fill="#94A3B8">• Baseline Metrics</text>
+  </g>
+
+  <!-- Arrow 1 -> 2 -->
+  <line x1="230" y1="170" x2="255" y2="170" stroke="#38BDF8" stroke-width="2.5" marker-end="url(#arrow)" />
+
+  <!-- Phase 2: Extraction -->
+  <g transform="translate(260, 80)">
+    <rect width="180" height="180" rx="10" fill="url(#stepGrad)" stroke="#334155" stroke-width="1.2"/>
+    <rect x="0" y="0" width="180" height="6" rx="3" fill="#2563EB"/>
+    <text x="16" y="32" font-family="monospace" font-size="12" font-weight="700" fill="#38BDF8">PHASE 2</text>
+    <text x="16" y="56" font-family="sans-serif" font-size="16" font-weight="700" fill="#FFFFFF">Extraction</text>
+    <text x="16" y="80" font-family="sans-serif" font-size="12" fill="#94A3B8">• curl / HTTP Headers</text>
+    <text x="16" y="100" font-family="sans-serif" font-size="12" fill="#94A3B8">• HTML DOM &amp; Canonicals</text>
+    <text x="16" y="120" font-family="sans-serif" font-size="12" fill="#94A3B8">• Autosuggest Mining</text>
+    <text x="16" y="140" font-family="sans-serif" font-size="12" fill="#94A3B8">• Screaming Frog CLI</text>
+  </g>
+
+  <!-- Arrow 2 -> 3 -->
+  <line x1="445" y1="170" x2="470" y2="170" stroke="#38BDF8" stroke-width="2.5" marker-end="url(#arrow)" />
+
+  <!-- Phase 3: Synthesis -->
+  <g transform="translate(475, 80)">
+    <rect width="180" height="180" rx="10" fill="url(#stepGrad)" stroke="#334155" stroke-width="1.2"/>
+    <rect x="0" y="0" width="180" height="6" rx="3" fill="#6366F1"/>
+    <text x="16" y="32" font-family="monospace" font-size="12" font-weight="700" fill="#38BDF8">PHASE 3</text>
+    <text x="16" y="56" font-family="sans-serif" font-size="16" font-weight="700" fill="#FFFFFF">Synthesis</text>
+    <text x="16" y="80" font-family="sans-serif" font-size="12" fill="#94A3B8">• BM25 Term Weighting</text>
+    <text x="16" y="100" font-family="sans-serif" font-size="12" fill="#94A3B8">• Wikidata Entity QIDs</text>
+    <text x="16" y="120" font-family="sans-serif" font-size="12" fill="#94A3B8">• RCP Click Potential</text>
+    <text x="16" y="140" font-family="sans-serif" font-size="12" fill="#94A3B8">• ICE Prioritization</text>
+  </g>
+
+  <!-- Arrow 3 -> 4 -->
+  <line x1="660" y1="170" x2="685" y2="170" stroke="#38BDF8" stroke-width="2.5" marker-end="url(#arrow)" />
+
+  <!-- Phase 4: Remediation -->
+  <g transform="translate(690, 80)">
+    <rect width="180" height="180" rx="10" fill="url(#stepGrad)" stroke="#334155" stroke-width="1.2"/>
+    <rect x="0" y="0" width="180" height="6" rx="3" fill="#EC4899"/>
+    <text x="16" y="32" font-family="monospace" font-size="12" font-weight="700" fill="#38BDF8">PHASE 4</text>
+    <text x="16" y="56" font-family="sans-serif" font-size="16" font-weight="700" fill="#FFFFFF">Remediation</text>
+    <text x="16" y="80" font-family="sans-serif" font-size="12" fill="#94A3B8">• Nginx / Apache Rules</text>
+    <text x="16" y="100" font-family="sans-serif" font-size="12" fill="#94A3B8">• JSON-LD Injection</text>
+    <text x="16" y="120" font-family="sans-serif" font-size="12" fill="#94A3B8">• Redirect Compressions</text>
+    <text x="16" y="140" font-family="sans-serif" font-size="12" fill="#94A3B8">• Editorial Briefing</text>
+  </g>
+
+  <!-- Arrow 4 -> 5 -->
+  <line x1="875" y1="170" x2="900" y2="170" stroke="#38BDF8" stroke-width="2.5" marker-end="url(#arrow)" />
+
+  <!-- Phase 5: Governance -->
+  <g transform="translate(905, 80)">
+    <rect width="150" height="180" rx="10" fill="url(#stepGrad)" stroke="#334155" stroke-width="1.2"/>
+    <rect x="0" y="0" width="150" height="6" rx="3" fill="#10B981"/>
+    <text x="16" y="32" font-family="monospace" font-size="12" font-weight="700" fill="#10B981">PHASE 5</text>
+    <text x="16" y="56" font-family="sans-serif" font-size="16" font-weight="700" fill="#FFFFFF">Governance</text>
+    <text x="16" y="80" font-family="sans-serif" font-size="12" fill="#94A3B8">• Pre-Flight Checklist</text>
+    <text x="16" y="100" font-family="sans-serif" font-size="12" fill="#94A3B8">• GSC Live Inspect</text>
+    <text x="16" y="120" font-family="sans-serif" font-size="12" fill="#94A3B8">• Rich Results Test</text>
+    <text x="16" y="140" font-family="sans-serif" font-size="12" fill="#94A3B8">• 30-Day KPIs</text>
+  </g>
+
+  <!-- Footer -->
+  <text x="45" y="295" font-family="sans-serif" font-size="12" fill="#64748B">Reproducible by Senior Practitioners &amp; Autonomous AI Agents (Antigravity, Claude Code, Cursor)</text>
+</svg>

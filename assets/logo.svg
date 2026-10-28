@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 240" width="100%" height="100%">
+  <defs>
+    <!-- Background Gradient for dark-theme contrast -->
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0B0F19" />
+      <stop offset="100%" stop-color="#111827" />
+    </linearGradient>
+    <!-- DevCenterPoint Royal Blue Gradient -->
+    <linearGradient id="dcpBlue" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#3B82F6" />
+      <stop offset="100%" stop-color="#1D4ED8" />
+    </linearGradient>
+    <!-- Pupil Radial Gradient -->
+    <radialGradient id="pupilGrad" cx="40%" cy="40%" r="60%">
+      <stop offset="0%" stop-color="#3B82F6" />
+      <stop offset="100%" stop-color="#1E40AF" />
+    </radialGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#000000" flood-opacity="0.5"/>
+    </filter>
+  </defs>
+
+  <!-- Canvas Background -->
+  <rect width="800" height="240" rx="16" fill="url(#bgGrad)" stroke="#1F2937" stroke-width="2"/>
+
+  <!-- Logo Group -->
+  <g transform="translate(40, 20)" filter="url(#shadow)">
+    <!-- Base Letter 'D' in Obsidian Black -->
+    <path d="M 30,20 L 95,20 C 145,20 175,55 175,100 C 175,145 145,180 95,180 L 30,180 Z" fill="#0A0F1D" />
+    <!-- Inner Cutout of 'D' -->
+    <rect x="75" y="65" width="45" height="70" fill="#FFFFFF" />
+
+    <!-- DevCenterPoint Aperture / Disc in Royal Blue -->
+    <path d="M 115,35 A 65,65 0 0,1 175,100 A 65,65 0 0,1 125,160 L 115,130 A 35,35 0 0,0 145,100 A 35,35 0 0,0 115,70 Z" fill="url(#dcpBlue)" />
+
+    <!-- Code Bracket Symbol inside Blue Arc -->
+    <g transform="translate(142, 68) rotate(45) scale(0.65)">
+      <path d="M -6,-10 L 0,-16 L 6,-10 L 0,-4 Z M -6,10 L 0,4 L 6,10 L 0,16 Z" fill="#FFFFFF" />
+      <path d="M -8,-5 L -14,0 L -8,5 M 8,-5 L 14,0 L 8,5" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+    </g>
+
+    <!-- Center White Eye Circle -->
+    <circle cx="115" cy="100" r="42" fill="#FFFFFF" stroke="#0A0F1D" stroke-width="4"/>
+
+    <!-- Pupil Circle in Gradient Blue -->
+    <circle cx="115" cy="100" r="24" fill="url(#pupilGrad)"/>
+
+    <!-- Specular Light Reflection in Pupil -->
+    <circle cx="109" cy="94" r="5" fill="#60A5FA"/>
+  </g>
+
+  <!-- Typography Group -->
+  <g transform="translate(260, 45)">
+    <!-- Main Title: Everything SEO -->
+    <text x="0" y="55" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="46" font-weight="800" fill="#FFFFFF" letter-spacing="-0.5">Everything SEO</text>
+
+    <!-- Subtitle with Brand Link -->
+    <text x="0" y="92" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="20" font-weight="600" fill="#3B82F6" letter-spacing="0.5">by DevCenterPoint</text>
+    <text x="185" y="92" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="16" font-weight="400" fill="#64748B"> •  devcenterpoint.com</text>
+
+    <!-- Operational Tagline -->
+    <text x="0" y="132" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="16" font-weight="500" fill="#94A3B8" letter-spacing="1.5">RESEARCH • AUDIT • OPTIMIZE • MEASURE</text>
+  </g>
+
+  <!-- Status / Pill Badge in Top Right -->
+  <g transform="translate(620, 32)">
+    <rect width="140" height="30" rx="15" fill="#1E293B" stroke="#334155" stroke-width="1"/>
+    <circle cx="18" cy="15" r="4" fill="#10B981"/>
+    <text x="32" y="20" font-family="monospace" font-size="12" font-weight="600" fill="#E2E8F0">55 SKILLS v1.0</text>
+  </g>
+</svg>

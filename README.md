@@ -1,10 +1,20 @@
-# 🌐 Everything SEO: Master Operational Skill Library
+<p align="center">
+  <a href="https://devcenterpoint.com">
+    <img src="assets/logo.svg" alt="Everything SEO by DevCenterPoint" width="100%" />
+  </a>
+</p>
 
-> **Maintained by:** [DevCenterPoint](https://github.com/DevCenterPoint)  
-> **Architectural Standard:** Agent Skills Open Specification v1.0  
-> **License:** [MIT License](LICENSE)  
-> **Target Audiences:** Technical SEO Strategists, Growth Engineers, Autonomous AI Agents (Antigravity, Claude Code, Cursor, LLM runtimes)  
-> **Status:** Production-Ready (55 Operational Skills across 11 Disciplines)
+<p align="center">
+  <strong>A practical, evidence-based SEO skill library for AI agents and SEO professionals.</strong><br>
+  <em>Research. Audit. Optimize. Measure.</em>
+</p>
+
+<p align="center">
+  <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="License: MIT"></a>
+  <a href="docs/PROGRESS.md"><img src="https://img.shields.io/badge/specification-Agent%20Skills%20v1.0-blueviolet.svg" alt="Specification"></a>
+  <a href="SEO/SKILL_INDEX.md"><img src="https://img.shields.io/badge/skills-55%20operational-emerald.svg" alt="55 Operational Skills"></a>
+  <a href="https://devcenterpoint.com"><img src="https://img.shields.io/badge/maintainer-DevCenterPoint-2563EB.svg" alt="Maintainer: DevCenterPoint"></a>
+</p>
 
 ---
 
@@ -13,10 +23,59 @@
 **Everything SEO** is an open-source, deterministic, and evidence-based operational capability library engineered for search professionals and autonomous coding agents.
 
 This repository is **not** an SEO SaaS application, marketing dashboard, or fragile crawler. It is an **actionable, modular knowledge manual**:
-- Every directory contains a self-contained, machine-actionable `SKILL.md`.
-- Every skill implements a standardized **17-section ontology (Sections A through Q)** with valid YAML frontmatter.
-- Every procedure is anchored in a strict **4-tier epistemic hierarchy** (official IETF RFCs, W3C standards, Schema.org schemas, and Google Search Central / Bing Webmaster documentation).
-- Every workflow produces an auditable, schema-validated deliverable with concrete mathematical formulas, CLI commands, and diagnostic decision trees.
+- **55 Leaf Operational Skills**: Every topic contains a machine-readable `SKILL.md`.
+- **Agent Skills v1.0 Standard**: Uniform **17-section ontology (Sections A through Q)** with valid YAML frontmatter.
+- **Strict 4-Tier Epistemic Hierarchy**: Rooted in official IETF RFCs (RFC 3986, RFC 9309, RFC 9110), W3C standards, Schema.org schemas, and Google Search Central / Bing Webmaster documentation.
+- **100% Offline CI & Zero Paid Tool Lock-In**: Runs completely offline without API keys; provides free CLI, curl, and Python alternatives for every workflow.
+
+---
+
+## 🏛️ Taxonomy Architecture
+
+<p align="center">
+  <img src="assets/category_architecture.svg" alt="Everything SEO Taxonomy Architecture" width="100%" />
+</p>
+
+All 55 operational skills reside within the [`SEO/`](SEO/README.md) directory across **11 Core Disciplines**:
+
+```
+📂 Everything-SEO
+┃
+┣ 📂 SEO
+┃ ┣ 📂 Keyword Research (5 Skills)      -> Discovery, Long-tail, Low-comp, Search Volume, SERP
+┃ ┣ 📂 On-page SEO (7 Skills)           -> Title, Headings, URL, Image, Internal Linking, Schema, CTR
+┃ ┣ 📂 Content Optimization (5 Skills)  -> Gap Analysis, NLP Salience, Entity Coverage, Refresh, Readability
+┃ ┣ 📂 Technical SEO (7 Skills)         -> Crawling, Indexing, Sitemaps, RobotsTXT, Redirects, Speed, Logs
+┃ ┣ 📂 Link Building (6 Skills)         -> Digital PR, Guest Posting, Broken Links, Mentions, Assets, HARO
+┃ ┣ 📂 AI SEO (5 Skills)                -> AI Search (GEO), Entity Optimization, Citations, Reddit, 3rd Party
+┃ ┣ 📂 International SEO (3 Skills)     -> Hreflang Clusters, Multilingual Setup, Translation & Transcreation
+┃ ┣ 📂 Analytics (4 Skills)             -> Search Console, Bing Webmaster, GA4 Funnels, SEO Reporting
+┃ ┣ 📂 SEO Tools (4 Skills)             -> Ahrefs, SEMrush, Keywords Everywhere, Screaming Frog CLI
+┃ ┣ 📂 SEO Wins (4 Skills)              -> 150+ Evidence Hacks, AI Hacks, Traffic Growth, Backlinks
+┃ ┗ 📂 Growth (5 Skills)                -> Organic Traffic, Lead Gen, Conversion (CRO), Revenue, Scaling
+┃
+┣ 📂 assets/                            <- Brand Mark, Logo, Architecture & Flowchart Vector Assets
+┣ 📂 docs/                              <- Launch Strategy, Standards, Demonstrations & Progress Ledgers
+┣ 📂 examples/                          <- 3 Complete End-to-End Worked Case Studies
+┣ 📂 templates/                         <- 10 Reusable Deliverable Templates
+┣ 📂 scripts/                           <- Offline Skill Validators & Link Checkers
+┗ 📂 tests/                             <- Automated Test Suites (unittest & pytest)
+```
+
+---
+
+## ⚡ 5-Phase Deterministic Operational Workflow
+
+<p align="center">
+  <img src="assets/workflow_demonstration.svg" alt="5-Phase Operational Workflow" width="100%" />
+</p>
+
+Every skill in the library executes through a deterministic five-phase sequence:
+1. **Phase 1: Ingestion** — Gather seed entities, baseline GSC/GA4 telemetry, and server access log dumps.
+2. **Phase 2: Extraction** — Execute terminal commands (`curl -I`, `grep`, `awk`) and DOM parsers.
+3. **Phase 3: Synthesis** — Compute BM25 term salience, reconcile Wikidata QIDs, and calculate Real Click Potential.
+4. **Phase 4: Remediation** — Deploy Nginx/Apache configuration blocks, JSON-LD schemas, or editorial briefs.
+5. **Phase 5: Governance** — Validate against pre-flight QA checklists, GSC Live Inspection, and 30-day KPIs.
 
 ---
 
@@ -30,106 +89,12 @@ This repository is **not** an SEO SaaS application, marketing dashboard, or frag
 
 ## ⚡ What Makes It Different
 
-| Traditional SEO Content | Everything SEO Library |
+| Traditional SEO Content | Everything SEO Library (DevCenterPoint) |
 | :--- | :--- |
-| **Superficial Advice**: "Write great content and optimize your meta tags." | **Deterministic Protocol**: Exact character and pixel limits (<=580px), title rewrite prevention rules, and GSC CTR anomaly formulas. |
-| **Unsubstantiated Folklore**: Keyword density formulas, artificial LSI claims, doorway pages. | **Epistemic Classification**: Mandatory separation of Tier 1 verified standards from Tier 3 practitioner estimates. |
+| **Superficial Advice**: "Write great content and optimize your meta tags." | **Deterministic Protocol**: Exact pixel limits (<=580px), anti-rewrite rules, and GSC CTR anomaly formulas. |
+| **Unsubstantiated Folklore**: Keyword density percentages, artificial LSI claims, PBNs. | **Epistemic Classification**: Mandatory separation of Tier 1 verified standards from Tier 3 practitioner estimates. |
 | **Fragile SaaS Tools**: Brittle dashboards that break on API changes. | **Permanent Knowledge Infrastructure**: Zero software bloat; runs 100% locally and offline. |
-| **Tool Lock-in**: Demands $500/mo subscriptions to commercial tools. | **Free & Open-Source First**: Every skill provides free CLI/curl, GSC, and Python alternatives alongside commercial tool workflows. |
-
----
-
-## 🗺️ Library Taxonomy (11 Disciplines, 55 Skills)
-
-All operational skills reside within the [`SEO/`](SEO/README.md) directory:
-
-```
-📂 Everything-SEO
-┃
-┣ 📂 SEO
-┃ ┣ 📂 Keyword Research (5 Skills)
-┃ ┃ ┣ 📂 Keyword Discovery              -> Multi-source query discovery & seed expansion
-┃ ┃ ┣ 📂 Long-tail Keywords             -> Conversational query extraction & zero-volume search analysis
-┃ ┃ ┣ 📂 Low-competition Keywords       -> SERP vulnerability analysis & weak-spot auditing
-┃ ┃ ┣ 📂 Search Volume                  -> Seasonality modeling & real click potential formulas
-┃ ┃ ┗ 📂 SERP Analysis                  -> Reverse-engineering live layouts, intent consensus & SERP features
-┃ ┃
-┃ ┣ 📂 On-page SEO (7 Skills)
-┃ ┃ ┣ 📂 Title                          -> HTML title tag engineering & pixel-width compliance (<=580px)
-┃ ┃ ┣ 📂 Headings Optimization          -> Semantic H1-H6 outline hierarchy & Featured Snippet targeting
-┃ ┃ ┣ 📂 URL Optimization               -> RFC 3986 clean slug architecture & parameter hygiene
-┃ ┃ ┣ 📂 Image SEO                      -> WebP/AVIF formatting, responsive srcset & descriptive alt text
-┃ ┃ ┣ 📂 Internal Linking               -> PageRank modeling & topical hub-and-spoke siloing
-┃ ┃ ┣ 📂 Schema Markup                  -> JSON-LD structured data architecture & entity disambiguation
-┃ ┃ ┗ 📂 CTR Optimization               -> Search snippet copywriting & controlled A/B testing
-┃ ┃
-┃ ┣ 📂 Content Optimization (5 Skills)
-┃ ┃ ┣ 📂 Gap Analysis                   -> Competitive semantic intersection & missing subtopic discovery
-┃ ┃ ┣ 📂 NLP Optimization               -> Entity salience, BM25 co-occurrence & syntactic parsing
-┃ ┃ ┣ 📂 Entity Coverage                -> Wikidata reconciliation & Knowledge Graph mapping
-┃ ┃ ┣ 📂 Content Refresh                -> Traffic decay detection, pruning vs. updating triage
-┃ ┃ ┗ 📂 Readability                    -> Flesch-Kincaid calibration & mobile visual scannability
-┃ ┃
-┃ ┣ 📂 Technical SEO (7 Skills)
-┃ ┃ ┣ 📂 Crawling                       -> Bot discovery mechanics & crawl trap elimination
-┃ ┃ ┣ 📂 Indexing                       -> Canonical tag resolution & robots meta directives
-┃ ┃ ┣ 📂 XML Sitemaps                   -> Sitemaps.org protocol, sitemap indexes & hygiene
-┃ ┃ ┣ 📂 RobotsTXT                      -> RFC 9309 compliance & crawler access governance
-┃ ┃ ┣ 📂 Redirects                      -> 301/308 semantics, redirect chain compression & loops
-┃ ┃ ┣ 📂 Page Speed                     -> Core Web Vitals (LCP, INP, CLS) & critical rendering path
-┃ ┃ ┗ 📂 Log File Analysis              -> Server access log forensics & Googlebot rDNS verification
-┃ ┃
-┃ ┣ 📂 Link Building (6 Skills)
-┃ ┃ ┣ 📂 Digital PR                     -> Data-driven journalism, newsjacking & media pitching
-┃ ┃ ┣ 📂 Guest Posting                  -> Authoritative editorial contribution & audience overlap analysis
-┃ ┃ ┣ 📂 Broken Link Building           -> 404 reclamation & resource page substitution
-┃ ┃ ┣ 📂 Unlinked Brand Mentions        -> Entity monitoring & link conversion outreach
-┃ ┃ ┣ 📂 Linkable Assets                -> Original benchmark research & interactive utility tools
-┃ ┃ ┗ 📂 HARO                           -> Source request pitching via Connectively, Featured, and Qwoted
-┃ ┃
-┃ ┣ 📂 AI SEO (5 Skills)
-┃ ┃ ┣ 📂 AI Search Visibility           -> Generative Engine Optimization (GEO) & AI Overviews
-┃ ┃ ┣ 📂 Entity Optimization            -> Disambiguating brand entities in LLM training corpora
-┃ ┃ ┣ 📂 AI Citations                   -> Structuring content for RAG retrieval in ChatGPT, Claude, and Perplexity
-┃ ┃ ┣ 📂 Reddit Mentions                -> Authentic community contribution favored by Google algorithms
-┃ ┃ ┗ 📂 3rd Party Mentions             -> Curated roundups, directories, and third-party validation
-┃ ┃
-┃ ┣ 📂 International SEO (3 Skills)
-┃ ┃ ┣ 📂 Hreflang                       -> ISO 639-1 & ISO 3166-1 cluster annotation and self-referencing rules
-┃ ┃ ┣ 📂 Multilingual SEO               -> ccTLD vs Subdirectory architecture & language negotiation
-┃ ┃ ┗ 📂 Translation SEO                -> Cultural transcreation & localized keyword intent mapping
-┃ ┃
-┃ ┣ 📂 Analytics (4 Skills)
-┃ ┃ ┣ 📂 Search Console                 -> GSC API extraction, cannibalization detection & CTR anomaly discovery
-┃ ┃ ┣ 📂 Bing Webmaster Tools           -> IndexNow implementation & Bing Copilot presence
-┃ ┃ ┣ 📂 Google Analytics               -> GA4 exploration funnels, landing page engagement & attribution
-┃ ┃ ┗ 📂 SEO Reporting                  -> Executive dashboards, revenue attribution & pipeline forecasting
-┃ ┃
-┃ ┣ 📂 SEO Tools (4 Skills)
-┃ ┃ ┣ 📂 Ahrefs                         -> Link intersection, Content Gap, and Site Explorer operations
-┃ ┃ ┣ 📂 SEMrush                        -> Domain Overview, Keyword Magic Tool & Position Tracking
-┃ ┃ ┣ 📂 Keywords Everywhere            -> Browser extension & API bulk keyword metrics
-┃ ┃ ┗ 📂 Screaming Frog                 -> Headless CLI automation, regex extraction & database storage mode
-┃ ┃
-┃ ┣ 📂 SEO Wins (4 Skills)
-┃ ┃ ┣ 📂 150+ SEO Hacks                 -> Curated 40+ evidence-tiered tactical experimentation catalog
-┃ ┃ ┣ 📂 AI SEO Hacks                   -> RAG chunking triggers & generative search experiments
-┃ ┃ ┣ 📂 Traffic Growth                 -> Striking distance velocity & cannibalization resolution sprints
-┃ ┃ ┗ 📂 Backlinks Hacks                -> Reverse image search, vendor testimonials & podcast tours
-┃ ┃
-┃ ┗ 📂 Growth (5 Skills)
-┃   ┣ 📂 Organic Traffic                -> Search TAM sizing & organic flywheel acceleration
-┃   ┣ 📂 Lead Generation                -> High-converting gated content, calculators & demo funnels
-┃   ┣ 📂 Conversion Optimization        -> Above-the-fold engagement, value propositions & micro-commitments
-┃   ┣ 📂 Revenue Growth                 -> Customer acquisition cost (CAC), LTV & organic pipeline attribution
-┃   ┗ 📂 SEO Scaling                    -> Programmatic SEO (pSEO), canary deploys & multi-author quality gates
-┃
-┣ 📂 docs/                               <- Architecture, Progress Ledger, Standards, and Briefs
-┣ 📂 examples/                           <- 3 Complete End-to-End Worked Case Studies
-┣ 📂 templates/                          <- 10 Reusable Deliverable Templates
-┣ 📂 scripts/                            <- Offline Skill Validators & Link Checkers
-┗ 📂 tests/                              <- Automated Test Suites (unittest & pytest)
-```
+| **Tool Lock-in**: Demands $500/mo subscriptions to commercial tools. | **Free & Open-Source First**: Every skill provides free CLI/curl, GSC, and Python alternatives. |
 
 ---
 
@@ -148,28 +113,12 @@ Consult the **[Master Skill Index](SEO/SKILL_INDEX.md)** to find the exact capab
 
 ---
 
-## 📖 Real-World Worked Example: Indexation Triage
+## 🔬 Real-World Operational Demonstrations
 
-Here is how an operator or AI agent uses [`SEO/Technical SEO/Indexing/SKILL.md`](SEO/Technical%20SEO/Indexing/SKILL.md) to diagnose canonical mismatches:
-
-1. **Ingest Inputs (Section D)**:
-   - Target URL: `https://example.com/solutions/enterprise-cloud/`
-   - GSC Status: *Duplicate, Google chose different canonical*.
-2. **Execute Diagnostic CLI (Section G)**:
-   ```bash
-   curl -I -s https://example.com/solutions/enterprise-cloud/ | grep -i -E "x-robots-tag|link"
-   ```
-3. **Apply Interpretation Tree (Section H)**:
-   - *Finding*: The HTML `<head>` declares canonical to self, but HTTP response header delivers `Link: <https://example.com/cloud/>; rel="canonical"`.
-   - *Diagnosis*: Direct HTTP header vs. HTML DOM conflict. Googlebot prefers HTTP header or overrides due to conflicting signals.
-4. **Deploy Deliverable (Section J)**:
-   - Synchronize server configuration (Nginx) to remove duplicate header.
-   - Run GSC URL Inspection Live Test.
-5. **Verify Pre-Flight Checklist (Section K)**:
-   - Canonical tag is absolute URI with matching protocol and trailing slash.
-   - Zero conflicting `noindex` directives on target canonical.
-
-*(For full worked end-to-end examples, explore [`examples/technical_seo_audit_ecommerce.md`](examples/technical_seo_audit_ecommerce.md)).*
+Explore the **[Demonstrations Index](docs/DEMONSTRATION_INDEX.md)** for complete end-to-end walkthroughs:
+- **[E-Commerce Migration Keyword Research](examples/keyword_research_ecommerce_migration.md)**: 5,200 SKU outdoor retailer Shopify Plus migration.
+- **[B2B SaaS Semantic Content Gap Analysis](examples/content_gap_b2b_saas.md)**: Zero Trust architecture semantic intersection and Wikidata entity reconciliation.
+- **[E-Commerce Technical Forensic Audit](examples/technical_seo_audit_ecommerce.md)**: Crawl log forensics, faceted navigation traps, and Core Web Vitals remediation.
 
 ---
 
@@ -180,11 +129,11 @@ When prompting Antigravity, Claude Code, Cursor, or an LLM worker:
 ```markdown
 You are acting as an expert technical SEO engineer.
 Read and follow the operational methodology in:
-SEO/Technical SEO/Page Speed/SKILL.md
+SEO/Technical SEO/Indexing/SKILL.md
 
-Target URL: https://example.com/products/widget
-Audit the Core Web Vitals bottlenecks (LCP, INP, CLS).
-Execute the 5-phase procedure in Section G and produce the standard deliverable table in Section J.
+Target URL: https://example.com/solutions/enterprise/
+Diagnose the canonical mismatch reported by Google Search Console.
+Execute the 5-phase procedure in Section G and produce the deliverable table in Section J.
 Verify all items against Section K before completing the turn.
 ```
 
@@ -208,7 +157,7 @@ python scripts/check_links.py
 python scripts/generate_index.py --check
 
 # 5. Run the full unit test suite
-python -m unittest discover -s tests -p "test_*.py"
+python -m unittest discover -s tests -p "test_*.py" -v
 ```
 
 ---
@@ -221,19 +170,22 @@ python -m unittest discover -s tests -p "test_*.py"
   - [Code of Conduct](CODE_OF_CONDUCT.md)
   - [Security Policy](SECURITY.md)
   - [Support & FAQ](FAQ.md)
-- **Project Governance**:
+- **Project Governance & Release**:
+  - [v1.0.0 Release Notes](docs/RELEASE_NOTES_v1.0.0.md)
   - [MIT License](LICENSE)
   - [Changelog](CHANGELOG.md)
   - [Strategic Roadmap](ROADMAP.md)
   - [Citation File Format (CITATION.cff)](CITATION.cff)
-  - [Phase 1 Progress Ledger](docs/PROGRESS.md)
-- **Reusable Assets**:
+  - [Phase 1 & 2 Progress Ledger](docs/PROGRESS.md)
+- **Reusable Assets & Demonstrations**:
+  - [Demonstrations Index](docs/DEMONSTRATION_INDEX.md)
   - [3 Complete Worked Examples](examples/)
   - [10 Deliverable Templates](templates/)
 
 ---
 
-## ⚖️ License
+## ⚖️ License & Attribution
 
-Maintained with pride by **[DevCenterPoint](https://github.com/DevCenterPoint)** under the **MIT License**.  
+Maintained with pride by **[DevCenterPoint](https://devcenterpoint.com)** under the **[MIT License](LICENSE)**.  
+Repository: **[`beingmushfiq/Everything-SEO`](https://github.com/beingmushfiq/Everything-SEO)**  
 Built for deterministic, repeatable, and verifiable organic search excellence.

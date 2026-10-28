@@ -1,0 +1,11 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 📖 Master Skill Index
+    url: https://github.com/DevCenterPoint/Everything-SEO/blob/main/SEO/SKILL_INDEX.md
+    about: Search the full index of 55 operational skills across 11 disciplines.
+  - name: ❓ Frequently Asked Questions (FAQ)
+    url: https://github.com/DevCenterPoint/Everything-SEO/blob/main/FAQ.md
+    about: Read answers to common questions about usage, agent execution, and tooling.
+  - name: 💬 Support Guide
+    url: https://github.com/DevCenterPoint/Everything-SEO/blob/main/SUPPORT.md
+    about: Learn how to get help and report vulnerabilities.

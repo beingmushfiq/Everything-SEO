@@ -1,0 +1,3 @@
+# Everything SEO - Development & Automated Validation Dependencies
+pytest>=8.0.0
+PyYAML>=6.0.0

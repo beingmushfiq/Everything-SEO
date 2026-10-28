@@ -1,0 +1,54 @@
+name: 🐛 Bug Report
+description: Report a broken instruction, invalid code snippet, outdated citation, or validation error
+title: "[BUG]: <short description>"
+labels: ["bug", "triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for reporting an issue with the **Everything SEO** skill library!
+        Please fill out this form to help us diagnose and fix the defect.
+  - type: input
+    id: skill_path
+    attributes:
+      label: Skill / File Path
+      description: What file contains the issue? (e.g., `SEO/Technical SEO/Indexing/SKILL.md`)
+      placeholder: "e.g., SEO/Technical SEO/Indexing/SKILL.md"
+    validations:
+      required: true
+  - type: textarea
+    id: problem_description
+    attributes:
+      label: Description of the Defect
+      description: What is broken, misleading, or failing?
+      placeholder: "Explain the error, invalid code snippet, or broken instruction..."
+    validations:
+      required: true
+  - type: textarea
+    id: steps_to_reproduce
+    attributes:
+      label: Steps to Reproduce
+      description: How can a maintainer reproduce the error?
+      placeholder: |
+        1. Run `python scripts/validate_skills.py`
+        2. Inspect Section G, Step 2
+        3. Observe error...
+    validations:
+      required: true
+  - type: textarea
+    id: expected_behavior
+    attributes:
+      label: Expected Behavior
+      description: What should happen according to official specifications or RFC standards?
+      placeholder: "Per RFC 9309, the directive should..."
+    validations:
+      required: true
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Contributor Checklist
+      options:
+        - label: I have verified this issue is not already reported in open issues.
+          required: true
+        - label: I have not committed or pasted any private credentials, API keys, or confidential data.
+          required: true

@@ -1,0 +1,51 @@
+name: 💡 Skill Request
+description: Propose a new SEO operational skill or major enhancement to an existing skill
+title: "[SKILL REQUEST]: <Skill Name>"
+labels: ["enhancement", "skill-request"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for proposing a new capability for **Everything SEO**!
+        Every skill in this library must function as an operational instruction manual conforming to the Agent Skills Open Specification v1.0.
+  - type: input
+    id: proposed_name
+    attributes:
+      label: Proposed Skill Name & Parent Discipline
+      description: What discipline and leaf directory should this skill belong to?
+      placeholder: "e.g., SEO/Technical SEO/Video SEO"
+    validations:
+      required: true
+  - type: textarea
+    id: operational_objective
+    attributes:
+      label: Operational Objective
+      description: What concrete problem does this skill solve for human practitioners or AI agents?
+      placeholder: "This skill enables an operator or autonomous agent to..."
+    validations:
+      required: true
+  - type: textarea
+    id: inputs_outputs
+    attributes:
+      label: Required Inputs & Deliverables
+      description: What datasets/tools are needed, and what exact artifact schema is output?
+      placeholder: "Inputs: Video sitemap XML, HTML schema. Output: Video Schema Audit Matrix..."
+    validations:
+      required: true
+  - type: textarea
+    id: authoritative_sources
+    attributes:
+      label: Authoritative References
+      description: Cite official documentation, RFC standards, or Schema.org definitions.
+      placeholder: "Google Search Central: Video Best Practices (https://developers.google.com/...)"
+    validations:
+      required: true
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Contributor Checklist
+      options:
+        - label: This proposed skill does NOT promote black-hat schemes, spam, or deprecated folklore.
+          required: true
+        - label: This capability provides free / open-source alternatives alongside any paid commercial tools.
+          required: true

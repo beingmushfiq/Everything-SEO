@@ -1,0 +1,22 @@
+cff-version: 1.2.0
+message: "If you use or reference the Everything SEO Skill Library in academic research, software documentation, or AI agent toolkits, please cite it as below."
+title: "Everything SEO: A Deterministic Operational Skill Library for Search Intelligence & AI Agents"
+version: 1.0.0
+date-released: 2026-10-29
+url: "https://github.com/DevCenterPoint/Everything-SEO"
+license: MIT
+authors:
+  - name: "DevCenterPoint"
+    website: "https://github.com/DevCenterPoint"
+keywords:
+  - "seo"
+  - "search-engine-optimization"
+  - "technical-seo"
+  - "agent-skills"
+  - "ai-agents"
+  - "search-intelligence"
+  - "schema-markup"
+  - "core-web-vitals"
+  - "generative-engine-optimization"
+  - "digital-pr"
+abstract: "A standardized, interconnected open-source capability library comprising 55 deterministic operational skills across 11 search disciplines, engineered for autonomous AI agents, technical SEO specialists, and software developers."

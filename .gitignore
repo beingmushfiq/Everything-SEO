@@ -1,0 +1,18 @@
+# Root .gitignore
+/api/vendor/
+/api/.env
+/api/database/*.sqlite
+/api/database/*.sqlite-journal
+/api/storage/*.key
+/api/storage/logs/
+/api/storage/framework/cache/
+/api/storage/framework/sessions/
+/api/storage/framework/views/
+
+/frontend/node_modules/
+/frontend/dist/
+/frontend/.env.local
+/frontend/.env.*.local
+
+.DS_Store
+Thumbs.db

@@ -55,3 +55,4 @@
 
 ## 4. Logo Integration
 The official DevCenterPoint brand mark (`assets/devcenterpoint-logo.png` & `assets/logo.svg`) is embedded in the upper-left corner with a height of 56px and paired with the clean DevCenterPoint wordmark.
+

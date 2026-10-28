@@ -90,3 +90,4 @@ knowledge-graph, digital-pr, open-source, devcenterpoint
 - [ ] Unit test suite passes 100% via `python -m unittest discover -s tests`.
 - [ ] DevCenterPoint branding and canonical remote URL (`https://github.com/beingmushfiq/Everything-SEO`) integrated.
 - [ ] Visual launch assets (`assets/*.svg`) verified and rendering cleanly.
+

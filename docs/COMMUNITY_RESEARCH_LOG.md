@@ -31,3 +31,4 @@ This document catalogs the verified submission requirements, moderation rules, a
 2. **Never Evade Moderation**: If a moderator requests changes or removes a post, comply politely without argument.
 3. **Never Disguise Advertising**: Always disclose that you are the author / maintainer of the project at DevCenterPoint.
 4. **Lead with Complete Value**: The post itself must be useful even if the reader never clicks the GitHub link.
+

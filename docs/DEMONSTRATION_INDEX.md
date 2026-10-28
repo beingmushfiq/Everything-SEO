@@ -126,3 +126,4 @@ A high-volume marketplace (`NordicHomeMarket.example.com`, 85,000 SKUs) lost 35%
 - 74,000 unindexed URLs resolved in GSC.
 - Core Web Vitals passed Google Page Experience requirements.
 - Full details: [`examples/technical_seo_audit_ecommerce.md`](../examples/technical_seo_audit_ecommerce.md).
+

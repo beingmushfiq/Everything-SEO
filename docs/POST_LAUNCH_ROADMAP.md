@@ -40,3 +40,4 @@ Contributors looking for starter issues are encouraged to:
 1. Review issues labeled `good first issue` or `help wanted`.
 2. Propose new operational skills using our [Skill Request Template](../.github/ISSUE_TEMPLATE/skill_request.yml).
 3. Ensure all PRs pass `python scripts/validate_skills.py` and `python scripts/check_links.py` before submitting.
+

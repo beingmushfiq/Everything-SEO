@@ -7,6 +7,26 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [1.3.0] - 2026-10-30
+
+### Added
+- **Master SEO Triage & Intent Routing Engine**:
+  - `docs/SEO_TRIAGE_AND_ROUTING_GUIDE.md`: Comprehensive symptom-to-skill and architecture-to-preset forensic mapping guide.
+  - `everything-seo triage <symptom>` CLI command: Automated diagnostic recommendation engine mapping problems to exact skills.
+  - `.cursor/rules/seo-router.mdc`: Auto-generated Master Router rule for Cursor IDE (`alwaysApply: true`) ensuring Cursor knows how to route any general SEO prompt to the specific manual in `.agent/skills/`.
+  - `triage_seo_problem` MCP Tool: Added forensic triage tool to `@devcenterpoint/mcp-server-seo`.
+- **Interactive Terminal Initialization (`everything-seo init`)**:
+  - TTY menu prompting users to select between Complete Library (55 skills), Essential Starter (5 skills), or domain presets (Next.js, E-Commerce, SaaS, Publisher).
+  - Added `templates/presets/all.json` containing all 55 skills for instant `--all` deployment.
+- **Intelligent Synonym & Keyword Alias Resolution**:
+  - Added alias mapping in CLI `add` and `search` commands (`canonical` -> `Indexing`, `schema` -> `Schema Markup`, `inp` -> `Page Speed`, `404` -> `Redirects`, `gsc` -> `Search Console`).
+- **Complete Self-Contained Python Wheel Bundling**:
+  - Configured `[tool.setuptools.package-data]` so that all 55 skills, presets, and templates are bundled inside `everything-seo-cli` wheels on PyPI (~260 kB total).
+- **Official Author Attribution**:
+  - Co-credited Mushfiqur Rahman Aayan (`@beingmushfiq`) as Creator & Lead Architect alongside DevCenterPoint as Maintainer across `package.json`, `pyproject.toml`, `CITATION.cff`, and `README.md`.
+
+---
+
 ## [1.2.1] - 2026-10-30
 
 ### Fixed

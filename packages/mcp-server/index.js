@@ -103,6 +103,17 @@ const TOOLS = [
       },
       required: ['content']
     }
+  },
+  {
+    name: 'triage_seo_problem',
+    description: 'Automated forensic triage: maps an organic search symptom, error message, or optimization goal to the exact Everything SEO skills to execute.',
+    inputSchema: {
+      type: 'object',
+      properties: {
+        symptom: { type: 'string', description: 'Search problem, GSC error, or goal (e.g. "canonical mismatch", "404 redirect loop", "AI Overviews omission", "INP slow")' }
+      },
+      required: ['symptom']
+    }
   }
 ];
 
@@ -262,6 +273,94 @@ function handleToolCall(name, args) {
       };
     }
 
+    case 'triage_seo_problem': {
+      const sym = (args.symptom || '').toLowerCase();
+      const recommendations = [];
+
+      if (sym.includes('canonical') || sym.includes('index') || sym.includes('noindex') || sym.includes('crawled')) {
+        recommendations.push({
+          skill: 'Technical SEO/Indexing',
+          rationale: 'Canonicalization, meta robots directives, header tags, crawl indexing status triage.',
+          file: 'SEO/Technical SEO/Indexing/SKILL.md'
+        });
+      }
+      if (sym.includes('robot') || sym.includes('disallow') || sym.includes('block') || sym.includes('user-agent')) {
+        recommendations.push({
+          skill: 'Technical SEO/RobotsTXT',
+          rationale: 'RFC 9309 directive compliance, crawl-budget protection, searchbot routing.',
+          file: 'SEO/Technical SEO/RobotsTXT/SKILL.md'
+        });
+      }
+      if (sym.includes('schema') || sym.includes('json-ld') || sym.includes('rich result') || sym.includes('structured data')) {
+        recommendations.push({
+          skill: 'On-page SEO/Schema Markup',
+          rationale: 'Valid JSON-LD structured data generation for Articles, Products, and Organizations.',
+          file: 'SEO/On-page SEO/Schema Markup/SKILL.md'
+        });
+      }
+      if (sym.includes('speed') || sym.includes('inp') || sym.includes('lcp') || sym.includes('cls') || sym.includes('core web vitals') || sym.includes('latency')) {
+        recommendations.push({
+          skill: 'Technical SEO/Page Speed',
+          rationale: 'Core Web Vitals optimization, main-thread task breakdown, critical CSS, asset bundling.',
+          file: 'SEO/Technical SEO/Page Speed/SKILL.md'
+        });
+      }
+      if (sym.includes('ai') || sym.includes('geo') || sym.includes('perplexity') || sym.includes('overview') || sym.includes('chatgpt') || sym.includes('llm')) {
+        recommendations.push({
+          skill: 'AI SEO/AI Search Visibility',
+          rationale: 'Generative Engine Optimization (GEO), LLM citation attribution, information gain scoring.',
+          file: 'SEO/AI SEO/AI Search Visibility/SKILL.md'
+        });
+      }
+      if (sym.includes('redirect') || sym.includes('301') || sym.includes('302') || sym.includes('404') || sym.includes('loop')) {
+        recommendations.push({
+          skill: 'Technical SEO/Redirects',
+          rationale: '301/302 redirects, URL migrations, redirect chain elimination.',
+          file: 'SEO/Technical SEO/Redirects/SKILL.md'
+        });
+      }
+      if (sym.includes('hreflang') || sym.includes('multilingual') || sym.includes('international') || sym.includes('region')) {
+        recommendations.push({
+          skill: 'International SEO/Hreflang',
+          rationale: 'Hreflang cluster XML matrix, x-default routing, international target QA.',
+          file: 'SEO/International SEO/Hreflang/SKILL.md'
+        });
+      }
+      if (sym.includes('content') || sym.includes('decay') || sym.includes('refresh') || sym.includes('rank drop')) {
+        recommendations.push({
+          skill: 'Content Optimization/Content Refresh',
+          rationale: 'Content decay detection, factual freshness updates, search intent alignment.',
+          file: 'SEO/Content Optimization/Content Refresh/SKILL.md'
+        });
+      }
+      if (recommendations.length === 0) {
+        const fallback = skills.filter(s => s.name.toLowerCase().includes(sym) || s.discipline.toLowerCase().includes(sym));
+        for (const fb of fallback.slice(0, 3)) {
+          recommendations.push({
+            skill: fb.slug,
+            rationale: `Matched query terms against ${fb.name}.`,
+            file: `SEO/${fb.slug}/SKILL.md`
+          });
+        }
+      }
+
+      return {
+        content: [
+          {
+            type: 'text',
+            text: JSON.stringify({
+              symptom: args.symptom,
+              total_recommended: recommendations.length,
+              recommendations: recommendations.length > 0 ? recommendations : [{
+                skill: 'Technical SEO/Indexing',
+                rationale: 'Baseline technical check recommended when symptoms are non-specific.'
+              }]
+            }, null, 2)
+          }
+        ]
+      };
+    }
+
     default:
       return {
         isError: true,
@@ -307,7 +406,7 @@ rl.on('line', (line) => {
       },
       serverInfo: {
         name: '@devcenterpoint/mcp-server-seo',
-        version: '1.2.1'
+        version: '1.3.0'
       }
     });
   } else if (method === 'notifications/initialized') {

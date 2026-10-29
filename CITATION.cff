@@ -1,13 +1,18 @@
 cff-version: 1.2.0
 message: "If you use or reference the Everything SEO Skill Library in academic research, software documentation, or AI agent toolkits, please cite it as below."
 title: "Everything SEO: A Deterministic Operational Skill Library for Search Intelligence & AI Agents"
-version: 1.0.0
-date-released: 2026-10-29
-url: "https://github.com/DevCenterPoint/Everything-SEO"
+version: 1.3.0
+date-released: 2026-10-30
+url: "https://github.com/beingmushfiq/Everything-SEO"
 license: MIT
 authors:
+  - family-names: "Aayan"
+    given-names: "Mushfiqur Rahman"
+    alias: "beingmushfiq"
+    email: "admin@devcenterpoint.com"
+    website: "https://github.com/beingmushfiq"
   - name: "DevCenterPoint"
-    website: "https://github.com/DevCenterPoint"
+    website: "https://devcenterpoint.com"
 keywords:
   - "seo"
   - "search-engine-optimization"

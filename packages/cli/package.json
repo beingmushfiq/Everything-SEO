@@ -1,7 +1,7 @@
 {
   "name": "@devcenterpoint/everything-seo",
-  "version": "1.2.1",
-  "description": "Universal CLI, agent adapter, and progressive skill manager for Everything SEO by DevCenterPoint",
+  "version": "1.3.0",
+  "description": "Universal CLI, agent adapter, and progressive skill manager for Everything SEO by Mushfiqur Rahman Aayan & DevCenterPoint",
   "main": "bin/everything-seo.js",
   "scripts": {
     "prepack": "node ../../scripts/bundle_packages.js"
@@ -24,7 +24,10 @@
     "agent-skills",
     "technical-seo"
   ],
-  "author": "DevCenterPoint (https://devcenterpoint.com)",
+  "author": "Mushfiqur Rahman Aayan (@beingmushfiq) <admin@devcenterpoint.com>",
+  "contributors": [
+    "DevCenterPoint <maintainers@devcenterpoint.com> (https://devcenterpoint.com)"
+  ],
   "license": "MIT",
   "publishConfig": {
     "access": "public"

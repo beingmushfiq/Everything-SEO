@@ -12,10 +12,11 @@
 <p align="center">
   <a href="https://www.npmjs.com/package/@devcenterpoint/everything-seo"><img src="https://img.shields.io/npm/v/@devcenterpoint/everything-seo.svg?logo=npm&color=CB3837" alt="npm CLI"></a>
   <a href="https://www.npmjs.com/package/@devcenterpoint/mcp-server-seo"><img src="https://img.shields.io/npm/v/@devcenterpoint/mcp-server-seo.svg?logo=npm&label=mcp-server&color=CB3837" alt="npm MCP"></a>
-  <a href="https://pypi.org/project/everything-seo-cli/1.2.1/"><img src="https://img.shields.io/pypi/v/everything-seo-cli.svg?logo=pypi&logoColor=white&color=3775A9" alt="PyPI Package"></a>
-  <a href="https://github.com/beingmushfiq/Everything-SEO/releases/tag/v1.2.1"><img src="https://img.shields.io/badge/release-v1.2.1-10B981.svg?logo=github" alt="Release: v1.2.1"></a>
+  <a href="https://pypi.org/project/everything-seo-cli/"><img src="https://img.shields.io/pypi/v/everything-seo-cli.svg?logo=pypi&logoColor=white&color=3775A9" alt="PyPI Package"></a>
+  <a href="https://github.com/beingmushfiq/Everything-SEO/releases/tag/v1.3.0"><img src="https://img.shields.io/badge/release-v1.3.0-10B981.svg?logo=github" alt="Release: v1.3.0"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="License: MIT"></a>
   <a href="SEO/SKILL_INDEX.md"><img src="https://img.shields.io/badge/skills-55%20operational-emerald.svg" alt="55 Operational Skills"></a>
+  <a href="https://github.com/beingmushfiq"><img src="https://img.shields.io/badge/creator-Mushfiqur%20Rahman%20Aayan-F59E0B.svg" alt="Creator: Mushfiqur Rahman Aayan"></a>
   <a href="https://devcenterpoint.com"><img src="https://img.shields.io/badge/maintainer-DevCenterPoint-2563EB.svg" alt="Maintainer: DevCenterPoint"></a>
 </p>
 
@@ -42,9 +43,9 @@ Whether you are using Cursor, Claude Code, Antigravity, or developing custom web
 
 | Package | Registry | Install / Run Command | Capabilities |
 | :--- | :--- | :--- | :--- |
-| **`@devcenterpoint/everything-seo`** | [npm](https://www.npmjs.com/package/@devcenterpoint/everything-seo) | `npx @devcenterpoint/everything-seo init` | Universal CLI, 55 offline skills, presets, Cursor rule generator |
-| **`@devcenterpoint/mcp-server-seo`** | [npm](https://www.npmjs.com/package/@devcenterpoint/mcp-server-seo) | `npx @devcenterpoint/mcp-server-seo` | Official MCP server (JSON-RPC tools, resources, offline schema validator) |
-| **`everything-seo-cli`** | [PyPI](https://pypi.org/project/everything-seo-cli/1.2.1/) | `pip install everything-seo-cli==1.2.1` | Standalone Python CLI, agent adapters & verification tooling |
+| **`@devcenterpoint/everything-seo`** | [npm](https://www.npmjs.com/package/@devcenterpoint/everything-seo) | `npx @devcenterpoint/everything-seo init` | Universal CLI, interactive installer, 55 offline skills, presets, Cursor rules |
+| **`@devcenterpoint/mcp-server-seo`** | [npm](https://www.npmjs.com/package/@devcenterpoint/mcp-server-seo) | `npx @devcenterpoint/mcp-server-seo` | Official MCP server (JSON-RPC tools, resources, forensic triage, validator) |
+| **`everything-seo-cli`** | [PyPI](https://pypi.org/project/everything-seo-cli/) | `pip install everything-seo-cli` | Standalone Python CLI with full 55-skill offline bundle & triage |
 
 ### 1. Global System Installation (Install Once, Available to All Agents)
 Install skills globally so your AI coding agents discover them automatically across all projects:
@@ -67,8 +68,15 @@ irm https://raw.githubusercontent.com/beingmushfiq/Everything-SEO/main/scripts/i
 Add only the specific SEO skills your application requires directly into your project repository. No token bloat, fully customizable, and version-controlled with your code:
 
 ```bash
-# Initialize SEO capabilities in your active project workspace
+# Initialize SEO capabilities (Interactive selection menu by default)
 everything-seo init
+
+# Or deploy the complete fleet of all 55 skills + 56 Cursor rules immediately
+everything-seo init --all
+
+# Run forensic triage on any search issue or GSC error message
+everything-seo triage "crawled currently not indexed"
+everything-seo triage "INP failing on mobile"
 
 # Initialize with a curated domain preset
 everything-seo init --preset nextjs       # Technical Crawling + SSR Schema + Core Web Vitals
@@ -76,10 +84,10 @@ everything-seo init --preset ecommerce    # Product Schema + Faceted Nav + Categ
 everything-seo init --preset saas         # Competitor Pages + AI Citation + B2B Lead Gen
 everything-seo init --preset publisher    # Google News + Entity Coverage + NLP Optimization
 
-# Progressively add individual skills as requirements expand
-everything-seo add technical-seo/indexing
-everything-seo add on-page-seo/schema-markup
-everything-seo add ai-seo/ai-search-visibility
+# Progressively add individual skills anytime (supports natural aliases)
+everything-seo add canonical              # Resolves to Technical SEO/Indexing
+everything-seo add schema                 # Resolves to On-page SEO/Schema Markup
+everything-seo add "ai-search-visibility"
 
 # Scaffold a custom, compliant SEO skill for your company's proprietary rules
 everything-seo scaffold --name custom-internal-routing --category "Technical SEO"
@@ -224,6 +232,7 @@ python -m unittest discover -s tests -p "test_*.py" -v
 ## 📚 Community, Governance & Links
 
 - **Universal Integration & Guides**:
+  - [Master SEO Triage & Routing Guide](docs/SEO_TRIAGE_AND_ROUTING_GUIDE.md)
   - [Universal Agent Integration Guide](docs/UNIVERSAL_AGENT_INTEGRATION_GUIDE.md)
   - [Strategic Roadmap](ROADMAP.md)
   - [SEO-Eval Benchmark Report](docs/EVAL_BENCHMARK_REPORT.md)
@@ -234,6 +243,7 @@ python -m unittest discover -s tests -p "test_*.py" -v
   - [Security Policy](SECURITY.md)
   - [Support & FAQ](FAQ.md)
 - **Project Governance & Release**:
+  - [v1.3.0 Release Notes](docs/RELEASE_NOTES_v1.3.0.md)
   - [v1.2.1 Release Notes](docs/RELEASE_NOTES_v1.2.1.md)
   - [v1.2.0 Release Notes](docs/RELEASE_NOTES_v1.2.0.md)
   - [v1.1.0 Release Notes](docs/RELEASE_NOTES_v1.1.0.md)
@@ -250,6 +260,7 @@ python -m unittest discover -s tests -p "test_*.py" -v
 
 ## ⚖️ License & Attribution
 
+Created & Led by **[Mushfiqur Rahman Aayan (@beingmushfiq)](https://github.com/beingmushfiq)**  
 Maintained with pride by **[DevCenterPoint](https://devcenterpoint.com)** under the **[MIT License](LICENSE)**.  
 Repository: **[`beingmushfiq/Everything-SEO`](https://github.com/beingmushfiq/Everything-SEO)**  
 Built for deterministic, repeatable, and verifiable organic search excellence.

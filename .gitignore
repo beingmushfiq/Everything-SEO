@@ -77,3 +77,4 @@ docs/internal/
 .cursor/
 packages/cli/data/
 packages/mcp-server/data/
+everything_seo_cli/data/

@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /**
- * Bundle SEO manuals and templates into npm package data directories
- * Maintained by DevCenterPoint (https://devcenterpoint.com)
+ * Bundle SEO manuals, templates, and presets into distribution package directories
+ * Maintained by Mushfiqur Rahman Aayan (@beingmushfiq) & DevCenterPoint (https://devcenterpoint.com)
  */
 
 const fs = require('fs');
@@ -14,7 +14,8 @@ const PRESETS_SRC = path.join(ROOT_DIR, 'templates', 'presets');
 
 const TARGETS = [
   path.join(ROOT_DIR, 'packages', 'cli', 'data'),
-  path.join(ROOT_DIR, 'packages', 'mcp-server', 'data')
+  path.join(ROOT_DIR, 'packages', 'mcp-server', 'data'),
+  path.join(ROOT_DIR, 'everything_seo_cli', 'data')
 ];
 
 function copyFolder(src, dest) {
@@ -31,12 +32,11 @@ function copyFolder(src, dest) {
   }
 }
 
-console.log('[*] Bundling Everything SEO assets for distribution...');
+console.log('[*] Bundling Everything SEO assets for universal distribution...');
 for (const target of TARGETS) {
   console.log(` -> Packaging to: ${path.relative(ROOT_DIR, target)}`);
   copyFolder(SEO_SRC, path.join(target, 'SEO'));
   copyFolder(TEMPLATES_SRC, path.join(target, 'templates'));
   copyFolder(PRESETS_SRC, path.join(target, 'presets'));
 }
-console.log('[PASS] Asset bundling complete.');
-
+console.log('[PASS] Universal asset bundling complete across npm, MCP, and PyPI targets.');

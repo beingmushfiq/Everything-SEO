@@ -73,3 +73,4 @@ npx @devcenterpoint/everything-seo install --global
 ---
 
 *Maintained with pride by **[DevCenterPoint](https://devcenterpoint.com)** under the **[MIT License](../LICENSE)**.*
+

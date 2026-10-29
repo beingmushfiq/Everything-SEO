@@ -10,8 +10,11 @@
 </p>
 
 <p align="center">
+  <a href="https://www.npmjs.com/package/@devcenterpoint/everything-seo"><img src="https://img.shields.io/npm/v/@devcenterpoint/everything-seo.svg?logo=npm&color=CB3837" alt="npm CLI"></a>
+  <a href="https://www.npmjs.com/package/@devcenterpoint/mcp-server-seo"><img src="https://img.shields.io/npm/v/@devcenterpoint/mcp-server-seo.svg?logo=npm&label=mcp-server&color=CB3837" alt="npm MCP"></a>
+  <a href="https://pypi.org/project/everything-seo-cli/1.2.1/"><img src="https://img.shields.io/pypi/v/everything-seo-cli.svg?logo=pypi&logoColor=white&color=3775A9" alt="PyPI Package"></a>
+  <a href="https://github.com/beingmushfiq/Everything-SEO/releases/tag/v1.2.1"><img src="https://img.shields.io/badge/release-v1.2.1-10B981.svg?logo=github" alt="Release: v1.2.1"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="License: MIT"></a>
-  <a href="docs/SKILL_WRITING_STANDARD.md"><img src="https://img.shields.io/badge/specification-Agent%20Skills%20v1.0-blueviolet.svg" alt="Specification"></a>
   <a href="SEO/SKILL_INDEX.md"><img src="https://img.shields.io/badge/skills-55%20operational-emerald.svg" alt="55 Operational Skills"></a>
   <a href="https://devcenterpoint.com"><img src="https://img.shields.io/badge/maintainer-DevCenterPoint-2563EB.svg" alt="Maintainer: DevCenterPoint"></a>
 </p>
@@ -34,6 +37,14 @@ This repository is **not** an SEO SaaS application, marketing dashboard, or frag
 ## 🤖 Universal Agent & Developer Quickstart
 
 Whether you are using Cursor, Claude Code, Antigravity, or developing custom web applications, Everything SEO connects into your workflow in seconds.
+
+### 📦 Published Packages & Quick Install
+
+| Package | Registry | Install / Run Command | Capabilities |
+| :--- | :--- | :--- | :--- |
+| **`@devcenterpoint/everything-seo`** | [npm](https://www.npmjs.com/package/@devcenterpoint/everything-seo) | `npx @devcenterpoint/everything-seo init` | Universal CLI, 55 offline skills, presets, Cursor rule generator |
+| **`@devcenterpoint/mcp-server-seo`** | [npm](https://www.npmjs.com/package/@devcenterpoint/mcp-server-seo) | `npx @devcenterpoint/mcp-server-seo` | Official MCP server (JSON-RPC tools, resources, offline schema validator) |
+| **`everything-seo-cli`** | [PyPI](https://pypi.org/project/everything-seo-cli/1.2.1/) | `pip install everything-seo-cli==1.2.1` | Standalone Python CLI, agent adapters & verification tooling |
 
 ### 1. Global System Installation (Install Once, Available to All Agents)
 Install skills globally so your AI coding agents discover them automatically across all projects:
@@ -223,6 +234,7 @@ python -m unittest discover -s tests -p "test_*.py" -v
   - [Security Policy](SECURITY.md)
   - [Support & FAQ](FAQ.md)
 - **Project Governance & Release**:
+  - [v1.2.1 Release Notes](docs/RELEASE_NOTES_v1.2.1.md)
   - [v1.2.0 Release Notes](docs/RELEASE_NOTES_v1.2.0.md)
   - [v1.1.0 Release Notes](docs/RELEASE_NOTES_v1.1.0.md)
   - [v1.0.0 Release Notes](docs/RELEASE_NOTES_v1.0.0.md)

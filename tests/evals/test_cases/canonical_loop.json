@@ -1,0 +1,22 @@
+{
+  "id": "eval-001-canonical-loop",
+  "title": "Circular Canonical Tag Resolution",
+  "discipline": "Technical SEO",
+  "target_skill": "SEO/Technical SEO/Indexing/SKILL.md",
+  "scenario": "A 3-URL circular canonical loop where Page A points to Page B, Page B points to Page C, and Page C points to Page A, causing Google Search Console to report 'Duplicate without user-selected canonical'.",
+  "input_urls": {
+    "https://example.com/products/shoes": { "canonical": "https://example.com/products/shoes-sale" },
+    "https://example.com/products/shoes-sale": { "canonical": "https://example.com/products/footwear" },
+    "https://example.com/products/footwear": { "canonical": "https://example.com/products/shoes" }
+  },
+  "expected_diagnosis": "Circular canonical loop detected (A -> B -> C -> A)",
+  "expected_remediation": {
+    "canonical_target": "https://example.com/products/shoes",
+    "rule": "Every page must declare a self-referential canonical or consolidate unambiguously to the master SKU."
+  },
+  "verification_checks": [
+    "loop_broken",
+    "self_referential_assigned",
+    "http_200_preserved"
+  ]
+}

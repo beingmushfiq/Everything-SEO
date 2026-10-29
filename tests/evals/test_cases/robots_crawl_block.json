@@ -1,0 +1,15 @@
+{
+  "id": "eval-003-robots-crawl-block",
+  "title": "Critical Asset Rendering Crawl Block Detection",
+  "discipline": "Technical SEO",
+  "target_skill": "SEO/Technical SEO/RobotsTXT/SKILL.md",
+  "scenario": "A robots.txt file contains broad Disallow rules that unintentionally block Googlebot-Mobile from loading critical JavaScript bundles and CSS stylesheets, triggering mobile rendering failures.",
+  "malformed_robots_txt": "User-agent: *\nDisallow: /admin/\nDisallow: /static/\nDisallow: /*.js$\nDisallow: /*.css$\n",
+  "expected_diagnosis": "Googlebot is prohibited from fetching JavaScript and CSS bundles needed for Web Rendering Service (WRS)",
+  "expected_remediation": "User-agent: *\nDisallow: /admin/\nAllow: /static/css/\nAllow: /static/js/\n",
+  "verification_checks": [
+    "css_crawling_allowed",
+    "js_crawling_allowed",
+    "admin_disallow_preserved"
+  ]
+}

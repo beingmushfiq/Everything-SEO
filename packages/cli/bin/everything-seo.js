@@ -261,6 +261,140 @@ function handleAudit(targetPath = '.') {
   console.log(`For deep forensic diagnostics, execute skill: SEO/Technical SEO/Crawling/SKILL.md\n`);
 }
 
+function handleScaffold(name, category = 'Technical SEO') {
+  if (!name) {
+    console.error('\x1b[31m[ERROR] Please provide a skill name: everything-seo scaffold --name <skill-name> [--category <cat>]\x1b[0m');
+    process.exit(1);
+  }
+  printBanner();
+  const targetDir = path.join(process.cwd(), '.agent', 'skills', category, name);
+  fs.mkdirSync(targetDir, { recursive: true });
+
+  const authoringTemplatePath = path.join(ROOT_DIR, 'templates', 'skill_authoring_template.md');
+  let content = '';
+  if (fs.existsSync(authoringTemplatePath)) {
+    content = fs.readFileSync(authoringTemplatePath, 'utf8')
+      .replace(/\[DISCIPLINE NAME\]/g, category)
+      .replace(/\[SKILL NAME\]/g, name);
+  } else {
+    content = `---\nname: "${name}"\ndescription: "Custom project SEO capability for ${name}"\n---\n\n# ${name}\n`;
+  }
+
+  const destFile = path.join(targetDir, 'SKILL.md');
+  fs.writeFileSync(destFile, content, 'utf8');
+
+  // Also create matching Cursor rule
+  const cursorDir = path.join(process.cwd(), '.cursor', 'rules');
+  fs.mkdirSync(cursorDir, { recursive: true });
+  const slug = name.toLowerCase().replace(/[\s+]+/g, '-');
+  const cursorRule = `---
+description: "Custom project SEO rule for ${name}"
+globs: "**/*"
+alwaysApply: false
+---
+
+# ${name} Rules
+Follow operational procedures in .agent/skills/${category}/${name}/SKILL.md
+`;
+  fs.writeFileSync(path.join(cursorDir, `seo-${slug}.mdc`), cursorRule, 'utf8');
+
+  console.log(`\x1b[32m[PASS] Scaffolded custom skill:\x1b[0m`);
+  console.log(`  - Skill manual: .agent/skills/${category}/${name}/SKILL.md`);
+  console.log(`  - Cursor rule:  .cursor/rules/seo-${slug}.mdc\n`);
+}
+
+function handleView(skillQuery, sectionLetter) {
+  if (!skillQuery) {
+    console.error('Usage: everything-seo view <skill> [--section <letter>]');
+    process.exit(1);
+  }
+  const allSkills = findSkillDirectories();
+  const match = allSkills.find(s => 
+    s.slug.toLowerCase().includes(skillQuery.toLowerCase()) || 
+    s.name.toLowerCase().includes(skillQuery.toLowerCase())
+  );
+
+  if (!match) {
+    console.error(`\x1b[31m[ERROR] Skill "${skillQuery}" not found.\x1b[0m`);
+    process.exit(1);
+  }
+
+  printBanner();
+  console.log(`\x1b[1m\x1b[34m${match.discipline} / ${match.name}\x1b[0m (${match.slug})\n`);
+  const content = fs.readFileSync(match.path, 'utf8');
+
+  if (sectionLetter) {
+    const sLetter = sectionLetter.toUpperCase();
+    const regex = new RegExp(`(?:###\\s*Section\\s*${sLetter}:|##\\s*${sLetter}\\.)[^\\n]*\\n([\\s\\S]*?)(?=\\n##\\s*[A-Z]\\.|\\n###\\s*Section|\\Z)`, 'i');
+    const m = content.match(regex);
+    if (m) {
+      console.log(`\x1b[32m=== Section ${sLetter} ===\x1b[0m\n`);
+      console.log(m[1].trim());
+    } else {
+      console.log(`[Section ${sLetter} not found in this skill manual]`);
+    }
+  } else {
+    console.log(content);
+  }
+}
+
+function handleSync() {
+  printBanner();
+  console.log(`[*] Synchronizing installed project skills with upstream canonical library...`);
+  const agentSkillsDir = path.join(process.cwd(), '.agent', 'skills');
+
+  if (!fs.existsSync(agentSkillsDir)) {
+    console.log(`[INFO] No .agent/skills directory found in current workspace. Nothing to sync.`);
+    return;
+  }
+
+  const allSkills = findSkillDirectories();
+  let updatedCount = 0;
+
+  function scanAndSync(dir) {
+    const entries = fs.readdirSync(dir, { withFileTypes: true });
+    for (const ent of entries) {
+      const fullPath = path.join(dir, ent.name);
+      if (ent.isDirectory()) {
+        scanAndSync(fullPath);
+      } else if (ent.name === 'SKILL.md') {
+        const skillName = path.basename(dir);
+        const canonical = allSkills.find(s => s.name.toLowerCase() === skillName.toLowerCase());
+        if (canonical) {
+          const localContent = fs.readFileSync(fullPath, 'utf8');
+          const upstreamContent = fs.readFileSync(canonical.path, 'utf8');
+          if (localContent !== upstreamContent) {
+            const bakPath = `${fullPath}.bak.${Date.now()}`;
+            fs.writeFileSync(bakPath, localContent, 'utf8');
+            fs.writeFileSync(fullPath, upstreamContent, 'utf8');
+            console.log(`\x1b[32m[UPDATED]\x1b[0m ${skillName} (Backup saved: ${path.basename(bakPath)})`);
+            updatedCount++;
+          }
+        }
+      }
+    }
+  }
+
+  scanAndSync(agentSkillsDir);
+  console.log(`\n\x1b[32m[PASS] Sync complete. ${updatedCount} skills updated with upstream improvements.\x1b[0m\n`);
+}
+
+function handleRegistry(action = 'list') {
+  printBanner();
+  const regPath = path.join(ROOT_DIR, 'registry', 'registry.json');
+  if (!fs.existsSync(regPath)) {
+    console.error('[ERROR] Registry catalog not found.');
+    return;
+  }
+  const reg = JSON.parse(fs.readFileSync(regPath, 'utf8'));
+  console.log(`Verified Community Skill Packs (${reg.packages.length} available):\n`);
+  for (const pkg of reg.packages) {
+    console.log(`\x1b[1m\x1b[34m${pkg.name}\x1b[0m v${pkg.version} [${pkg.verified ? 'Verified' : 'Unverified'}]`);
+    console.log(`  ${pkg.description}`);
+    console.log(`  Disciplines: ${pkg.disciplines.join(', ')} | Skills: ${pkg.skills_count}\n`);
+  }
+}
+
 function handleMCP() {
   const mcpServerPath = path.join(ROOT_DIR, 'packages', 'mcp-server', 'src', 'server.js');
   if (fs.existsSync(mcpServerPath)) {
@@ -292,6 +426,23 @@ switch (command) {
     }
     handleAdd(args[1]);
     break;
+  case 'scaffold': {
+    const nameIdx = args.indexOf('--name');
+    const nameVal = nameIdx !== -1 && args[nameIdx + 1] ? args[nameIdx + 1] : args[1];
+    const catIdx = args.indexOf('--category');
+    const catVal = catIdx !== -1 && args[catIdx + 1] ? args[catIdx + 1] : 'Technical SEO';
+    handleScaffold(nameVal, catVal);
+    break;
+  }
+  case 'view': {
+    const secIdx = args.indexOf('--section');
+    const secVal = secIdx !== -1 && args[secIdx + 1] ? args[secIdx + 1] : null;
+    handleView(args[1], secVal);
+    break;
+  }
+  case 'sync':
+    handleSync();
+    break;
   case 'search':
     handleSearch(args[1]);
     break;
@@ -300,6 +451,9 @@ switch (command) {
     break;
   case 'audit':
     handleAudit(args[1] || '.');
+    break;
+  case 'registry':
+    handleRegistry(args[1] || 'list');
     break;
   case 'mcp':
     handleMCP();

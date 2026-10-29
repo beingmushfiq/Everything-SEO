@@ -58,3 +58,4 @@ Write-Host ""
 Write-Host "=== ✅ Everything SEO Windows Installation Complete ===" -ForegroundColor Cyan
 Write-Host "Your AI coding assistants (Antigravity, Claude Code, Cursor) are now equipped with 55 operational SEO skills."
 Write-Host "Docs: https://github.com/beingmushfiq/Everything-SEO"
+

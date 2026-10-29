@@ -47,8 +47,8 @@ def extract_frontmatter(content: str) -> dict:
     return metadata
 
 def extract_section(content: str, section_letter: str) -> str:
-    pattern = rf"### Section {section_letter}:[^\n]*\n(.*?)(?=\n### Section |\Z)"
-    match = re.search(pattern, content, re.DOTALL)
+    pattern = rf"(?:###\s*Section\s*{section_letter}:|##\s*{section_letter}\.)[^\n]*\n([\s\S]*?)(?=\n##\s*[A-Z]\.|\n###\s*Section|\Z)"
+    match = re.search(pattern, content, re.IGNORECASE)
     if match:
         return match.group(1).strip()
     return ""
@@ -112,3 +112,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+

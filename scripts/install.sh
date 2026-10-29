@@ -47,3 +47,4 @@ echo ""
 echo "=== ✅ Everything SEO Installation Complete ==="
 echo "Your AI coding assistants (Antigravity, Claude Code, Cursor) can now discover and use 55 operational SEO skills."
 echo "Docs: https://github.com/beingmushfiq/Everything-SEO"
+

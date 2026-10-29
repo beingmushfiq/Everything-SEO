@@ -1,0 +1,38 @@
+name: Certify Community Skill
+
+on:
+  pull_request:
+    paths:
+      - 'SEO/**/SKILL.md'
+      - 'examples/**'
+      - 'registry/**'
+
+jobs:
+  certify-skill:
+    name: Validate 17-Section Ontology Compliance
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Validate Skill Ontology & Word Count
+        run: |
+          python scripts/validate_skills.py
+
+      - name: Verify Link Integrity
+        run: |
+          python scripts/check_links.py
+
+      - name: Run SEO-Eval Benchmark
+        run: |
+          python scripts/run_evals.py
+
+      - name: Run Adapter & Preset Test Suite
+        run: |
+          python -m unittest discover -s tests -p "test_*.py" -v

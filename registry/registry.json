@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "registry_version": "1.0.0",
+  "maintainer": "DevCenterPoint (https://devcenterpoint.com)",
+  "packages": [
+    {
+      "name": "@community/shopify-headless-seo",
+      "version": "1.0.0",
+      "description": "Faceted navigation, collection canonicalization, and Hydrogen SSR structured data patterns for headless Shopify Plus stores.",
+      "author": "Everything SEO Community",
+      "license": "MIT",
+      "disciplines": ["Technical SEO", "On-page SEO"],
+      "skills_count": 3,
+      "verified": true,
+      "url": "https://github.com/beingmushfiq/Everything-SEO/tree/main/examples"
+    },
+    {
+      "name": "@community/wordpress-headless-seo",
+      "version": "1.0.0",
+      "description": "GraphQL schema generation, Yoast/RankMath headless REST synchronization, and Next.js ISR cache invalidation for WordPress.",
+      "author": "Everything SEO Community",
+      "license": "MIT",
+      "disciplines": ["Technical SEO", "Growth"],
+      "skills_count": 2,
+      "verified": true,
+      "url": "https://github.com/beingmushfiq/Everything-SEO/tree/main/examples"
+    },
+    {
+      "name": "@community/amazon-marketplace-seo",
+      "version": "1.0.0",
+      "description": "Amazon A9 algorithm keyword indexing, backend search terms, bullet point CTR optimization, and brand storefront SEO.",
+      "author": "Everything SEO Community",
+      "license": "MIT",
+      "disciplines": ["Growth", "Keyword Research"],
+      "skills_count": 2,
+      "verified": true,
+      "url": "https://github.com/beingmushfiq/Everything-SEO/tree/main/SEO/Growth"
+    },
+    {
+      "name": "@community/youtube-video-seo",
+      "version": "1.0.0",
+      "description": "YouTube search rank optimization, timestamp chaptering, VideoObject schema, and VTT caption salience.",
+      "author": "Everything SEO Community",
+      "license": "MIT",
+      "disciplines": ["On-page SEO", "AI SEO"],
+      "skills_count": 2,
+      "verified": true,
+      "url": "https://github.com/beingmushfiq/Everything-SEO/tree/main/SEO/On-page%20SEO"
+    }
+  ]
+}

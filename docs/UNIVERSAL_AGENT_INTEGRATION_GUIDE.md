@@ -259,3 +259,4 @@ The sync engine performs a 3-way AST merge, creates automatic `.bak` backups of 
 ---
 
 *Maintained by **[DevCenterPoint](https://devcenterpoint.com)** — Open-source knowledge infrastructure for search excellence.*
+

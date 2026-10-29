@@ -1,0 +1,35 @@
+{
+  "id": "eval-002-schema-syntax",
+  "title": "Malformed Article & Product JSON-LD Remediation",
+  "discipline": "On-page SEO",
+  "target_skill": "SEO/On-page SEO/Schema Markup/SKILL.md",
+  "scenario": "An e-commerce product page contains invalid Schema.org markup missing @context protocol, missing required 'offers' object, and declaring invalid date strings.",
+  "malformed_json": {
+    "@context": "http://schema.org",
+    "@type": "Product",
+    "name": "SuperTrail Ultralight Tent",
+    "description": "2-person backpacking tent",
+    "sku": "TENT-992",
+    "price": "299.99"
+  },
+  "expected_errors": [
+    "Non-secure or invalid @context (must use https://schema.org)",
+    "Missing required 'offers' object containing 'price' and 'priceCurrency'"
+  ],
+  "expected_remediation": {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "SuperTrail Ultralight Tent",
+    "offers": {
+      "@type": "Offer",
+      "price": "299.99",
+      "priceCurrency": "USD",
+      "availability": "https://schema.org/InStock"
+    }
+  },
+  "verification_checks": [
+    "https_context_validated",
+    "offers_object_structured",
+    "currency_code_iso4217"
+  ]
+}

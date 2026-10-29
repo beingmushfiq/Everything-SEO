@@ -1,0 +1,26 @@
+{
+  "id": "eval-004-cwv-inp-triage",
+  "title": "Interaction to Next Paint (INP) Forensics",
+  "discipline": "Technical SEO",
+  "target_skill": "SEO/Technical SEO/Page Speed/SKILL.md",
+  "scenario": "A mobile checkout page exhibits an INP score of 620ms (Poor > 500ms) caused by a monolithic event listener attached to the 'Add to Cart' button running un-debounced DOM mutations and third-party tracking scripts.",
+  "telemetry_data": {
+    "metric": "INP",
+    "p75_value_ms": 620,
+    "target_threshold_ms": 200,
+    "input_delay_ms": 45,
+    "processing_duration_ms": 480,
+    "presentation_delay_ms": 95,
+    "long_task_source": "checkout-analytics-bundle.js"
+  },
+  "expected_diagnosis": "High processing duration (480ms) attributed to synchronous analytics execution on main thread during user interaction.",
+  "expected_remediation": [
+    "Yield to main thread using requestAnimationFrame or scheduler.yield()",
+    "Offload third-party tag firing to requestIdleCallback() or web worker"
+  ],
+  "verification_checks": [
+    "inp_sub_200ms_target_set",
+    "scheduler_yield_applied",
+    "analytics_deferred_to_idle"
+  ]
+}

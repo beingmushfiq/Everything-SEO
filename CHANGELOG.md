@@ -7,6 +7,30 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [1.2.0] - 2026-10-29
+
+### Added
+- **SEO-Eval Benchmark Suite (`tests/evals/`)**:
+  - 5 empirical evaluation test cases testing agent reasoning on canonical loops, Schema syntax violations, robots.txt asset blocks, INP long-task attribution, and GEO entity information gain.
+  - Evaluation runner `scripts/run_evals.py` producing an automated benchmark score card in `docs/EVAL_BENCHMARK_REPORT.md` (100% pass rate).
+- **Community Skills Registry & Certification (`registry/`)**:
+  - `registry/registry.json` cataloging verified community packs (`@community/shopify-headless-seo`, `@community/wordpress-headless-seo`, `@community/amazon-marketplace-seo`, `@community/youtube-video-seo`).
+  - `.github/workflows/certify-community-skill.yml`: Automated GitHub Action to certify community PRs against the 17-section ontology.
+  - Added `everything-seo registry list` command in CLI.
+- **Python PyPI Distribution Package (`everything-seo-cli`)**:
+  - `pyproject.toml` and `everything_seo_cli/` providing a standalone zero-dependency Python CLI (`pip install everything-seo-cli`).
+- **Telemetry & Validation Tooling**:
+  - `scripts/validate_schema.py`: Offline Schema.org JSON-LD validator CLI.
+  - `scripts/connectors/gsc_connector.py`: Google Search Console API telemetry parser and deliverable matrix exporter.
+- **International SEO Deliverable Template**:
+  - `templates/i18n_hreflang_matrix_template.md`: Multi-region, multilingual hreflang cluster XML and header matrix.
+- **CLI Workflow Expansions**:
+  - Added `everything-seo scaffold --name <skill>` to generate custom team skills.
+  - Added `everything-seo view <skill> [--section <letter>]` to inspect isolated manual sections.
+  - Added `everything-seo sync` to update in-project skills with upstream improvements while protecting custom modifications with `.bak` backups.
+
+---
+
 ## [1.1.0] - 2026-10-29
 
 ### Added
@@ -46,18 +70,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [1.0.0] - 2026-10-29
 
 ### Added
-- **55 Operational Skills**: Authored 55 comprehensive, deterministic `SKILL.md` capability manuals across 11 core search disciplines:
-  - **Keyword Research**: Keyword Discovery, Long-tail Keywords, Low-competition Keywords, Search Volume, SERP Analysis.
-  - **On-page SEO**: Title, Headings Optimization, URL Optimization, Image SEO, Internal Linking, Schema Markup, CTR Optimization.
-  - **Content Optimization**: Gap Analysis, NLP Optimization, Entity Coverage, Content Refresh, Readability.
-  - **Technical SEO**: Crawling, Indexing, XML Sitemaps, RobotsTXT, Redirects, Page Speed, Log File Analysis.
-  - **Link Building**: Digital PR, Guest Posting, Broken Link Building, Unlinked Brand Mentions, Linkable Assets, HARO.
-  - **AI SEO**: AI Search Visibility, Entity Optimization, AI Citations, Reddit Mentions, 3rd Party Mentions.
-  - **International SEO**: Hreflang, Multilingual SEO, Translation SEO.
-  - **Analytics**: Search Console, Bing Webmaster Tools, Google Analytics, SEO Reporting.
-  - **SEO Tools**: Ahrefs, SEMrush, Keywords Everywhere, Screaming Frog.
-  - **SEO Wins**: 150+ SEO Hacks, AI SEO Hacks, Traffic Growth, Backlinks Hacks.
-  - **Growth**: Organic Traffic, Lead Generation, Conversion Optimization, Revenue Growth, SEO Scaling.
+- **55 Operational Skills**: Authored 55 comprehensive, deterministic `SKILL.md` capability manuals across 11 core search disciplines.
 - **Agent Skills Specification Compliance**: Every skill features machine-readable YAML frontmatter (`name`, `description`, `metadata`) and standardized sections A through Q.
 - **Repository Governance**: Established `README.md`, `CONTRIBUTING.md`, `LICENSE` (MIT), `SECURITY.md`, `CODE_OF_CONDUCT.md`, `SUPPORT.md`, `FAQ.md`, `ROADMAP.md`, and `CITATION.cff`.
 - **Engineering Standards & Taxonomy**: Created `docs/PROGRESS.md`, `docs/AUDIT_AND_TAXONOMY_MAP.md`, and `docs/SKILL_WRITING_STANDARD.md`.

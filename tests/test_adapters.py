@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Test Suite for Everything SEO Adapters, Presets, and Universal CLI.
+Test Suite for Everything SEO Adapters, Presets, Universal CLI, and SEO-Eval.
 Maintained by DevCenterPoint (https://devcenterpoint.com)
 """
 
@@ -14,6 +14,7 @@ from pathlib import Path
 ROOT_DIR = Path(__file__).resolve().parent.parent
 SEO_DIR = ROOT_DIR / "SEO"
 PRESETS_DIR = ROOT_DIR / "templates" / "presets"
+REGISTRY_FILE = ROOT_DIR / "registry" / "registry.json"
 
 class TestAdaptersAndPresets(unittest.TestCase):
 
@@ -98,6 +99,43 @@ class TestAdaptersAndPresets(unittest.TestCase):
         res = subprocess.run(cmd, capture_output=True, text=True)
         self.assertEqual(res.returncode, 0, f"CLI search failed: {res.stderr}")
         self.assertIn("Schema Markup", res.stdout)
+
+    def test_python_cli_execution(self):
+        """Verify Python CLI executes cleanly."""
+        cmd = [sys.executable, "-m", "everything_seo_cli.cli", "search", "indexing"]
+        res = subprocess.run(cmd, capture_output=True, text=True)
+        self.assertEqual(res.returncode, 0, f"Python CLI failed: {res.stderr}")
+        self.assertIn("Indexing", res.stdout)
+
+    def test_schema_validator_script(self):
+        """Verify offline schema validator script."""
+        script = ROOT_DIR / "scripts" / "validate_schema.py"
+        valid_json = json.dumps({
+            "@context": "https://schema.org",
+            "@type": "Article",
+            "headline": "Testing Schema Validator",
+            "author": {"@type": "Person", "name": "Test Author"},
+            "datePublished": "2026-10-29"
+        })
+        cmd = [sys.executable, str(script), valid_json]
+        res = subprocess.run(cmd, capture_output=True, text=True)
+        self.assertEqual(res.returncode, 0, f"Schema validator rejected valid schema:\n{res.stdout}")
+
+    def test_seo_eval_benchmark_runner(self):
+        """Verify SEO-Eval benchmark runner executes and passes all test scenarios."""
+        script = ROOT_DIR / "scripts" / "run_evals.py"
+        cmd = [sys.executable, str(script)]
+        res = subprocess.run(cmd, capture_output=True, text=True)
+        self.assertEqual(res.returncode, 0, f"SEO-Eval runner failed:\n{res.stderr}")
+        self.assertIn("100.0% accuracy", res.stdout)
+
+    def test_registry_manifest_validity(self):
+        """Verify community skill registry manifest exists and contains packages."""
+        self.assertTrue(REGISTRY_FILE.exists())
+        with open(REGISTRY_FILE, "r", encoding="utf-8") as f:
+            reg = json.load(f)
+        self.assertIn("packages", reg)
+        self.assertGreaterEqual(len(reg["packages"]), 1)
 
 if __name__ == "__main__":
     unittest.main()

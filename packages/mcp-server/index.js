@@ -141,7 +141,7 @@ function handleToolCall(name, args) {
       const extracted = {};
 
       for (const letter of requestedSections) {
-        const regex = new RegExp(`### Section ${letter}:[^\\n]*\\n([\\s\\S]*?)(?=\\n### Section |\\Z)`, 'i');
+        const regex = new RegExp(`(?:###\\s*Section\\s*${letter}:|##\\s*${letter}\\.)[^\\n]*\\n([\\s\\S]*?)(?=\\n##\\s*[A-Z]\\.|\\n###\\s*Section|\\Z)`, 'i');
         const m = fileContent.match(regex);
         if (m) {
           extracted[`Section_${letter}`] = m[1].trim();
@@ -337,3 +337,4 @@ rl.on('line', (line) => {
     sendResponse(id, null, { code: -32601, message: `Method not supported: ${method}` });
   }
 });
+

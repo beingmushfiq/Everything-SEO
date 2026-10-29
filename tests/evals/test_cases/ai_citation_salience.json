@@ -1,0 +1,26 @@
+{
+  "id": "eval-005-ai-citation-salience",
+  "title": "GEO Information Gain & Entity Salience Evaluation",
+  "discipline": "AI SEO",
+  "target_skill": "SEO/AI SEO/AI Search Visibility/SKILL.md",
+  "scenario": "A technical article has high search impressions but 0 citations in Google AI Overviews and Perplexity because it repeats generic definition text without unique entity relationships or original data.",
+  "article_profile": {
+    "topic": "PostgreSQL Connection Pooling",
+    "word_count": 1800,
+    "unique_benchmark_data": false,
+    "wikidata_entity_reconciliation": false,
+    "direct_answer_table": false,
+    "external_expert_mentions": 0
+  },
+  "expected_diagnosis": "Zero Information Gain score; content is a statistical consensus clone lacking extractable entity triples.",
+  "expected_remediation": [
+    "Inject direct comparison benchmarks (e.g. PgBouncer vs Odyssey RPS/latency metrics)",
+    "Format key specifications into structured HTML comparison tables for LLM retrieval",
+    "Define clear Wikidata QID entity references in article schema"
+  ],
+  "verification_checks": [
+    "information_gain_score_positive",
+    "structured_table_injected",
+    "entity_wikidata_linked"
+  ]
+}

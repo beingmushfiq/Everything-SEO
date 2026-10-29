@@ -36,3 +36,4 @@ jobs:
       - name: Run Adapter & Preset Test Suite
         run: |
           python -m unittest discover -s tests -p "test_*.py" -v
+

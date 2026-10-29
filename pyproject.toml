@@ -32,3 +32,4 @@ everything-seo = "everything_seo_cli.cli:main"
 Homepage = "https://github.com/beingmushfiq/Everything-SEO"
 Repository = "https://github.com/beingmushfiq/Everything-SEO.git"
 Documentation = "https://github.com/beingmushfiq/Everything-SEO/blob/main/docs/UNIVERSAL_AGENT_INTEGRATION_GUIDE.md"
+

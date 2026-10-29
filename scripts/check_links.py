@@ -21,7 +21,7 @@ if hasattr(sys.stdout, "reconfigure"):
 
 ROOT_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 
-IGNORE_DIRS = {".git", ".pytest_cache", "__pycache__", "venv", ".venv", "env", "node_modules"}
+IGNORE_DIRS = {".git", ".pytest_cache", "__pycache__", "venv", ".venv", "env", "node_modules", "internal", ".agent"}
 
 def extract_internal_links(content):
     # Matches [link text](target_url)

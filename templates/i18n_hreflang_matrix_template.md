@@ -68,3 +68,4 @@ Per Google and Bing best practices, XML Sitemap injection is the preferred deplo
 - [ ] **No Redirected Targets**: No hreflang tag points to a 301, 302, 404, or 500 status code.
 - [ ] **Valid ISO Codes**: Language is declared before country code (e.g. `en-gb`, NOT `gb-en`).
 - [ ] **x-default Declared**: A global fallback URL is assigned for unmapped locales and IP routing.
+

@@ -11,7 +11,7 @@
 
 <p align="center">
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="License: MIT"></a>
-  <a href="docs/PROGRESS.md"><img src="https://img.shields.io/badge/specification-Agent%20Skills%20v1.0-blueviolet.svg" alt="Specification"></a>
+  <a href="docs/SKILL_WRITING_STANDARD.md"><img src="https://img.shields.io/badge/specification-Agent%20Skills%20v1.0-blueviolet.svg" alt="Specification"></a>
   <a href="SEO/SKILL_INDEX.md"><img src="https://img.shields.io/badge/skills-55%20operational-emerald.svg" alt="55 Operational Skills"></a>
   <a href="https://devcenterpoint.com"><img src="https://img.shields.io/badge/maintainer-DevCenterPoint-2563EB.svg" alt="Maintainer: DevCenterPoint"></a>
 </p>
@@ -215,7 +215,7 @@ python -m unittest discover -s tests -p "test_*.py" -v
 - **Universal Integration & Guides**:
   - [Universal Agent Integration Guide](docs/UNIVERSAL_AGENT_INTEGRATION_GUIDE.md)
   - [Strategic Roadmap](ROADMAP.md)
-  - [Post-Launch Operational Roadmap](docs/POST_LAUNCH_ROADMAP.md)
+  - [SEO-Eval Benchmark Report](docs/EVAL_BENCHMARK_REPORT.md)
 - **Repository Guidelines & Standards**:
   - [Contributing Guidelines](CONTRIBUTING.md)
   - [Skill Writing Standard](docs/SKILL_WRITING_STANDARD.md)
@@ -227,7 +227,6 @@ python -m unittest discover -s tests -p "test_*.py" -v
   - [MIT License](LICENSE)
   - [Changelog](CHANGELOG.md)
   - [Citation File Format (CITATION.cff)](CITATION.cff)
-  - [Phase 1 & 2 Progress Ledger](docs/PROGRESS.md)
 - **Reusable Assets & Demonstrations**:
   - [Demonstrations Index](docs/DEMONSTRATION_INDEX.md)
   - [3 Complete Worked Examples](examples/)

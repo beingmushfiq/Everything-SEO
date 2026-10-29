@@ -73,7 +73,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **55 Operational Skills**: Authored 55 comprehensive, deterministic `SKILL.md` capability manuals across 11 core search disciplines.
 - **Agent Skills Specification Compliance**: Every skill features machine-readable YAML frontmatter (`name`, `description`, `metadata`) and standardized sections A through Q.
 - **Repository Governance**: Established `README.md`, `CONTRIBUTING.md`, `LICENSE` (MIT), `SECURITY.md`, `CODE_OF_CONDUCT.md`, `SUPPORT.md`, `FAQ.md`, `ROADMAP.md`, and `CITATION.cff`.
-- **Engineering Standards & Taxonomy**: Created `docs/PROGRESS.md`, `docs/AUDIT_AND_TAXONOMY_MAP.md`, and `docs/SKILL_WRITING_STANDARD.md`.
+- **Engineering Standards & Taxonomy**: Created `docs/SKILL_WRITING_STANDARD.md` and `SEO/SKILL_INDEX.md`.
 - **Offline Validation Tooling**: Built `scripts/validate_skills.py`, `scripts/check_links.py`, and `scripts/generate_index.py`.
 - **Automated Test Suites**: Built `tests/test_skill_structure.py` and `tests/test_examples_and_templates.py`.
 - **3 End-to-End Worked Examples**: E-commerce Migration Keyword Research, B2B SaaS Semantic Content Gap, and Online Retailer Technical SEO Audit.

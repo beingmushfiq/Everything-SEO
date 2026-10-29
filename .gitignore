@@ -67,3 +67,9 @@ Thumbs.db
 # Temporary test dumps
 tmp/
 *.tmp
+
+# Internal agency working notes & launch prep
+docs/internal/
+*.bak*
+.everything-seo.json
+.everything-seo.lock

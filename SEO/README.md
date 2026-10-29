@@ -10,7 +10,7 @@ This repository is not a software prototype, web dashboard, or superficial colle
 
 ## 🗺️ Library Architecture & Taxonomy
 
-The library is organized into **11 Core Disciplines** containing **55 Specialized Operational Skills**, structured as follows:
+The library is organized into **11 Core Disciplines** containing **56 Specialized Operational Skills**, structured as follows:
 
 ```
 📂 SEO
@@ -73,11 +73,12 @@ The library is organized into **11 Core Disciplines** containing **55 Specialize
 ┃ ┣ 📂 Google Analytics               -> GA4 organic engagement rates & conversion key events
 ┃ ┗ 📂 SEO Reporting                 -> Executive dashboards, YoY trajectories & ARR attribution
 ┃
-┣ 📂 SEO Tools (4 Skills)
+┣ 📂 SEO Tools (5 Skills)
 ┃ ┣ 📂 Ahrefs                         -> Site Explorer, Keywords Explorer, Batch & Intersect SOPs
 ┃ ┣ 📂 SEMrush                        -> Keyword Magic, Keyword Gap & Position Tracking SOPs
 ┃ ┣ 📂 Keywords Everywhere            -> Bulk volume enrichment & CPC commercial intent overlays
-┃ ┗ 📂 Screaming Frog                 -> Database storage mode, JS rendering & custom extraction
+┃ ┣ 📂 Screaming Frog                 -> Database storage mode, JS rendering & custom extraction
+┃ ┗ 📂 SEO Orchestrator             -> Master triage supervisor, forensic intent diagnosis & multi-skill routing
 ┃
 ┣ 📂 SEO Wins (4 Skills)
 ┃ ┣ 📂 150+ SEO Hacks                 -> Curated 40+ evidence-tiered tactical experimentation catalog
@@ -97,7 +98,7 @@ The library is organized into **11 Core Disciplines** containing **55 Specialize
 
 ## 📜 Complete Master Indexes & Reports
 
-- **[Master Skill Index (SKILL_INDEX.md)](SKILL_INDEX.md)**: Searchable inventory of all 55 skills with inputs, outputs, and cross-skill dependency links.
+- **[Master Skill Index (SKILL_INDEX.md)](SKILL_INDEX.md)**: Searchable inventory of all 56 skills with inputs, outputs, and cross-skill dependency links.
 - **[Verification Coverage Report (COVERAGE_REPORT.md)](COVERAGE_REPORT.md)**: Audit trail confirming 100% directory coverage, frontmatter compliance, link validation, and word counts.
 
 ---

@@ -91,7 +91,7 @@ REQUIRED_SECTIONS = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L",
 class TestSkillStructure(unittest.TestCase):
 
     def test_total_skill_count(self):
-        """Assert exactly 55 skills exist across 11 disciplines."""
+        """Assert exactly 56 skills exist across 11 disciplines."""
         total_skills = sum(len(skills) for skills in EXPECTED_TAXONOMY.values())
         self.assertEqual(total_skills, 56, "Taxonomy must define exactly 56 skills")
         
@@ -104,7 +104,7 @@ class TestSkillStructure(unittest.TestCase):
         self.assertEqual(found_skills, 56, "All 56 skill files must exist on disk")
 
     def test_skill_frontmatter(self):
-        """Assert all 55 skills start with valid YAML frontmatter containing required fields."""
+        """Assert all 56 skills start with valid YAML frontmatter containing required fields."""
         for disc, skills in EXPECTED_TAXONOMY.items():
             for skill in skills:
                 skill_path = os.path.join(SEO_DIR, disc, skill, "SKILL.md")

@@ -140,15 +140,15 @@ function printHelp() {
   console.log(`  init [--all | --preset <name>]   Initialize SEO capabilities (Interactive menu by default)`);
   console.log(`  triage <symptom>                 Run forensic triage on an SEO problem or error message`);
   console.log(`  add <skill | alias>              Progressively add a skill (supports aliases: canonical, schema, etc.)`);
-  console.log(`  install --global                 Install all 55 skills globally for Antigravity & Claude Code`);
+  console.log(`  install --global                 Install all 56 skills globally for Antigravity & Claude Code`);
   console.log(`  scaffold --name <name>           Scaffold a new 17-section compliant custom project skill`);
-  console.log(`  list                             List all 55 available skills across 11 disciplines`);
+  console.log(`  list                             List all 56 available skills across 11 disciplines`);
   console.log(`  search <query>                   Search skills by keyword, intent, symptom, or framework`);
   console.log(`  audit [dir]                      Run an offline SEO health check on workspace`);
   console.log(`  mcp [--stdio]                    Launch the Model Context Protocol (MCP) server`);
   console.log(`  version, -v                      Show version`);
   console.log(`  help, -h                         Show this help message\n`);
-  console.log(`Presets available: all (55 skills), starter (5 skills), nextjs, ecommerce, saas, publisher\n`);
+  console.log(`Presets available: all (56 skills), starter (5 skills), nextjs, ecommerce, saas, publisher\n`);
   console.log(`Docs: https://github.com/beingmushfiq/Everything-SEO\n`);
 }
 
@@ -201,7 +201,7 @@ function resolveSkillSource(skillRel) {
 
 function promptPresetChoice() {
   console.log(`\x1b[1mSelect SEO capabilities to install in this workspace:\x1b[0m\n`);
-  console.log(`  \x1b[32m1) Complete Library (All 55 Skills)\x1b[0m  — All 11 disciplines + 55 Cursor rules (Recommended)`);
+  console.log(`  \x1b[32m1) Complete Library (All 56 Skills)\x1b[0m  — All 11 disciplines + 56 Cursor rules (Recommended)`);
   console.log(`  \x1b[36m2) Essential Starter Pack (5 Skills)\x1b[0m — Indexing, RobotsTXT, Page Speed, Schema, AI Visibility`);
   console.log(`  \x1b[34m3) Next.js / Jamstack (5 Skills)\x1b[0m    — Technical Crawling, SSR Schema, Indexing, Sitemaps, Speed`);
   console.log(`  \x1b[34m4) E-Commerce Preset (5 Skills)\x1b[0m     — Product Schema, Faceted URLs, Digital PR, Speed`);
@@ -556,7 +556,7 @@ function handleAdd(skillQuery) {
 
   if (!match) {
     console.error(`\x1b[31m[ERROR] No skill matching "${skillQuery}" found.\x1b[0m`);
-    console.log(`Run 'everything-seo list' to see all 55 available skills, or 'everything-seo triage <problem>'.`);
+    console.log(`Run 'everything-seo list' to see all 56 available skills, or 'everything-seo triage <problem>'.`);
     process.exit(1);
   }
 

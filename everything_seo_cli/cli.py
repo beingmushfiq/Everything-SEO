@@ -379,7 +379,7 @@ def cmd_add(skill_query: str):
     match = next((s for s in all_skills if resolved_q in s["slug"].lower() or resolved_q in s["name"].lower()), None)
     if not match:
         print(f"[ERROR] No skill matching '{skill_query}' found.")
-        print("Run 'everything-seo list' to see all 55 available skills, or 'everything-seo triage <symptom>'.")
+        print("Run 'everything-seo list' to see all 56 available skills, or 'everything-seo triage <symptom>'.")
         sys.exit(1)
 
     clean_name = re.sub(r'^seo[-\s]+', '', match["name"], flags=re.IGNORECASE)

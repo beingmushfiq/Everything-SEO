@@ -12,7 +12,7 @@
 <p align="center">
   <a href="https://www.npmjs.com/package/@devcenterpoint/everything-seo"><img src="https://img.shields.io/npm/v/@devcenterpoint/everything-seo.svg?logo=npm&color=CB3837" alt="npm CLI"></a>
   <a href="https://www.npmjs.com/package/@devcenterpoint/mcp-server-seo"><img src="https://img.shields.io/npm/v/@devcenterpoint/mcp-server-seo.svg?logo=npm&label=mcp-server&color=CB3837" alt="npm MCP"></a>
-  <a href="https://pypi.org/project/everything-seo-cli/"><img src="https://img.shields.io/pypi/v/everything-seo-cli.svg?logo=pypi&logoColor=white&color=3775A9" alt="PyPI Package"></a>
+  <a href="https://pypi.org/project/everything-seo-cli/"><img src="https://img.shields.io/pypi/v/everything-seo-cli.svg?logo=pypi&logoColor=white&label=pypi&color=3775A9" alt="PyPI Package"></a>
   <a href="https://github.com/beingmushfiq/Everything-SEO/releases/tag/v1.4.0"><img src="https://img.shields.io/badge/release-v1.4.0-10B981.svg?logo=github" alt="Release: v1.4.0"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="License: MIT"></a>
   <a href="SEO/SKILL_INDEX.md"><img src="https://img.shields.io/badge/skills-56%20operational-emerald.svg" alt="56 Operational Skills"></a>
@@ -124,7 +124,7 @@ For complete IDE setups, configuration files, and MCP server instructions, consu
   <img src="assets/category_architecture.svg" alt="Everything SEO Taxonomy Architecture" width="100%" />
 </p>
 
-All 55 operational skills reside within the [`SEO/`](SEO/README.md) directory across **11 Core Disciplines**:
+All 56 operational skills reside within the [`SEO/`](SEO/README.md) directory across **11 Core Disciplines**:
 
 ```
 📂 Everything-SEO
@@ -235,7 +235,7 @@ This repository includes a 100% offline automated validation suite. It requires 
 # 1. Install dev dependencies (optional, pytest is optional - unittest works natively)
 pip install -r requirements-dev.txt
 
-# 2. Validate all 55 skill files for frontmatter, mandatory sections, and word count
+# 2. Validate all 56 skill files for frontmatter, mandatory sections, and word count
 python scripts/validate_skills.py
 
 # 3. Verify all internal relative markdown links resolve on disk
@@ -264,6 +264,7 @@ python -m unittest discover -s tests -p "test_*.py" -v
   - [Security Policy](SECURITY.md)
   - [Support & FAQ](FAQ.md)
 - **Project Governance & Release**:
+  - [v1.4.0 Release Notes](docs/RELEASE_NOTES_v1.4.0.md)
   - [v1.3.0 Release Notes](docs/RELEASE_NOTES_v1.3.0.md)
   - [v1.2.1 Release Notes](docs/RELEASE_NOTES_v1.2.1.md)
   - [v1.2.0 Release Notes](docs/RELEASE_NOTES_v1.2.0.md)

@@ -1,6 +1,6 @@
 # 📚 Master SEO Skill Index
 
-This master index catalogs all **55 operational skills** across the **11 core disciplines** of the SEO Master Skill Library. Every skill file (`SKILL.md`) is linked via its exact relative path, paired with its primary purpose, core inputs, and standard deliverables.
+This master index catalogs all **56 operational skills** across the **11 core disciplines** of the SEO Master Skill Library. Every skill file (`SKILL.md`) is linked via its exact relative path, paired with its primary purpose, core inputs, and standard deliverables.
 
 ---
 
@@ -110,6 +110,7 @@ This master index catalogs all **55 operational skills** across the **11 core di
 | **SEMrush** | [SEO%20Tools/SEMrush/SKILL.md](SEO%20Tools/SEMrush/SKILL.md) | Keyword Magic Tool, Keyword Gap analysis, Position Tracking, and On Page Checker. | Target domain, competitors, country database | Semrush Competitive & Keyword Report |
 | **Keywords Everywhere** | [SEO%20Tools/Keywords%20Everywhere/SKILL.md](SEO%20Tools/Keywords%20Everywhere/SKILL.md) | In-browser SERP metrics overlay, bulk keyword volume import (up to 10k), and CPC data. | Keyword list, API key, target country | Keywords Everywhere Enriched Dataset |
 | **Screaming Frog** | [SEO%20Tools/Screaming%20Frog/SKILL.md](SEO%20Tools/Screaming%20Frog/SKILL.md) | Database storage mode, JavaScript rendering, custom XPath extraction, and CLI cron crawls. | Seed URL / list, RAM specs, Google API keys | Screaming Frog Full-Site Diagnostic |
+| **SEO Orchestrator** | [SEO%20Tools/SEO%20Orchestrator/SKILL.md](SEO%20Tools/SEO%20Orchestrator/SKILL.md) | Level-1 master triage supervisor, forensic intent diagnosis, and multi-skill execution routing. | Problem statement, domain, GSC coverage data | Forensic SEO Triage & Remediation Plan |
 
 ---
 

@@ -4,7 +4,7 @@
 > **Repository:** [`beingmushfiq/Everything-SEO`](https://github.com/beingmushfiq/Everything-SEO)  
 > **Standard:** Agent Skills Open Specification v1.0
 
-When an autonomous AI agent (Cursor, Claude Code, Antigravity) or technical lead encounters an organic search problem, use this triage decision matrix to instantly identify which of the 55 operational skills to execute.
+When an autonomous AI agent (Cursor, Claude Code, Antigravity) or technical lead encounters an organic search problem, use this triage decision matrix to instantly identify which of the 56 operational skills to execute.
 
 ---
 
@@ -37,7 +37,7 @@ If configuring a new repository workspace, use one of the curated domain presets
 
 | Web Architecture / Stack | Recommended Preset | Included Skills | Initialization Command |
 | :--- | :--- | :--- | :--- |
-| **Full 55-Skill Operational Fleet** | `all` | All 55 skills across all 11 disciplines | `everything-seo init --all` |
+| **Full 56-Skill Operational Fleet** | `all` | All 56 skills across all 11 disciplines | `everything-seo init --all` |
 | **Baseline Starter (Framework-Agnostic)** | `starter` | Indexing, RobotsTXT, Page Speed, Schema, AI Visibility | `everything-seo init --preset starter` |
 | **Next.js / Jamstack / SSR** | `nextjs` | Crawling, Indexing, XML Sitemaps, Page Speed, Schema | `everything-seo init --preset nextjs` |
 | **Shopify / E-Commerce Platforms** | `ecommerce` | Schema, Faceted URLs, Page Speed, Digital PR, Internal Linking | `everything-seo init --preset ecommerce` |

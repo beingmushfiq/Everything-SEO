@@ -27,7 +27,7 @@ This document provides definitive, copy-paste instructions for connecting the **
 
 ## 1. Architectural Overview: The Ingestion Problem Solved
 
-When AI coding assistants are asked to audit or optimize web projects, they frequently suffer from **instruction dilution** and **token bloat**. Ingesting all 55 skills (~88,000 words) dumps ~120,000 tokens into prompt memory, creating latency, driving up API costs, and causing agents to hallucinate.
+When AI coding assistants are asked to audit or optimize web projects, they frequently suffer from **instruction dilution** and **token bloat**. Ingesting all 56 skills (~90,000 words) dumps ~120,000 tokens into prompt memory, creating latency, driving up API costs, and causing agents to hallucinate.
 
 **Everything SEO** solves this through two architectural mechanisms:
 1. **Just-In-Time (JIT) Selective Ingestion**: Install only the specific discipline or preset needed for your tech stack.
@@ -145,7 +145,7 @@ Google Antigravity natively loads skills conforming to the Agent Skills Open Spe
 ```bash
 python scripts/adapters/generate_antigravity_skills.py
 ```
-This automatically links the 55 skills into `~/.gemini/antigravity/skills/` or `.gemini/config/skills/`.
+This automatically links the 56 skills into `~/.gemini/antigravity/skills/` or `.gemini/config/skills/`.
 
 #### Step 2: In-Chat Invocation
 In your Antigravity conversation, simply reference the skill by name:
@@ -227,7 +227,7 @@ Add the server definition into your Antigravity MCP settings:
 
 ## 6. Curated Project Presets
 
-Instead of installing all 55 skills, choose a preset tailored to your stack:
+Instead of installing all 56 skills, choose a preset tailored to your stack:
 
 | Preset Name | CLI Command | Included Core Skills | Best For |
 | :--- | :--- | :--- | :--- |

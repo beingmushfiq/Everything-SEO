@@ -66,3 +66,4 @@ With `v1.4.0`, the library introduces:
 ---
 
 *Authored by **[Mushfiqur Rahman Aayan](https://github.com/beingmushfiq)** & **[DevCenterPoint](https://devcenterpoint.com)** under the **[MIT License](../LICENSE)**.*
+

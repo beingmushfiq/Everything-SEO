@@ -1,0 +1,142 @@
+name: Automated Release & Package Distribution
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  packages: write
+
+jobs:
+  build-and-test:
+    name: Build & Test Distribution Artifacts
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20.x'
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: Install Build Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install build twine pyyaml
+          npm install -g npm@latest
+
+      - name: Validate Skills & Internal Links
+        run: |
+          python scripts/validate_skills.py
+          python scripts/check_links.py
+          python -m unittest discover -s tests -p "test_*.py"
+
+      - name: Bundle Everything SEO Assets
+        run: node scripts/bundle_packages.js
+
+      - name: Build Python Wheel & Source Archive
+        run: python -m build
+
+      - name: Pack npm Packages
+        run: |
+          cd packages/cli && npm pack
+          cd ../mcp-server && npm pack
+
+      - name: Upload Build Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: release-artifacts
+          path: |
+            dist/*.whl
+            dist/*.tar.gz
+            packages/cli/*.tgz
+            packages/mcp-server/*.tgz
+
+  github-release:
+    name: Publish GitHub Release & Attach Binaries
+    needs: build-and-test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Download Build Artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: release-artifacts
+          path: release-assets
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            release-assets/*.whl
+            release-assets/*.tar.gz
+            release-assets/*.tgz
+          generate_release_notes: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  publish-pypi:
+    name: Publish to PyPI (If PYPI_API_TOKEN is set)
+    needs: build-and-test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download Artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: release-artifacts
+          path: dist
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Publish to PyPI
+        if: env.PYPI_API_TOKEN != ''
+        run: |
+          pip install twine
+          twine upload --skip-existing dist/*.whl dist/*.tar.gz
+        env:
+          TWINE_USERNAME: __token__
+          TWINE_PASSWORD: ${{ secrets.PYPI_API_TOKEN }}
+          PYPI_API_TOKEN: ${{ secrets.PYPI_API_TOKEN }}
+
+  publish-npm:
+    name: Publish to npm (If NPM_TOKEN is set)
+    needs: build-and-test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20.x'
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: Bundle Assets
+        run: node scripts/bundle_packages.js
+
+      - name: Publish npm Packages
+        if: env.NPM_TOKEN != ''
+        run: |
+          cd packages/cli && npm publish --access public
+          cd ../mcp-server && npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}

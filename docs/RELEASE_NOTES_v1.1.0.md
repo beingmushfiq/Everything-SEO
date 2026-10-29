@@ -49,3 +49,4 @@ An official MCP 2024-11-05 server (`@devcenterpoint/mcp-server-seo`) supporting 
 ---
 
 *Maintained with pride by **[DevCenterPoint](https://devcenterpoint.com)** under the **[MIT License](../LICENSE)**.*
+

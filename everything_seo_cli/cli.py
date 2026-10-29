@@ -23,7 +23,7 @@ SEO_DIR = ROOT_DIR / "SEO"
 PRESETS_DIR = ROOT_DIR / "templates" / "presets"
 
 BANNER = """===================================================
-Everything SEO CLI (Python) v1.1.0 — DevCenterPoint
+Everything SEO CLI (Python) v1.2.0 — DevCenterPoint
 Universal Skill Manager for AI Agents & Developers
 ===================================================
 """
@@ -88,7 +88,7 @@ def cmd_init(preset_name=None):
 
     manifest = cwd / ".everything-seo.json"
     manifest.write_text(json.dumps({
-        "version": "1.1.0",
+        "version": "1.2.0",
         "preset": preset_name or "custom",
         "maintainer": "DevCenterPoint"
     }, indent=2), encoding="utf-8")

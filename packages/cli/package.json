@@ -1,6 +1,6 @@
 {
   "name": "@devcenterpoint/everything-seo",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Universal CLI, agent adapter, and progressive skill manager for Everything SEO by DevCenterPoint",
   "main": "bin/everything-seo.js",
   "bin": {

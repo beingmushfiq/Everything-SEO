@@ -297,7 +297,7 @@ rl.on('line', (line) => {
       },
       serverInfo: {
         name: '@devcenterpoint/mcp-server-seo',
-        version: '1.1.0'
+        version: '1.2.0'
       }
     });
   } else if (method === 'notifications/initialized') {

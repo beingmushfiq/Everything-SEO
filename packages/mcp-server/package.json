@@ -1,6 +1,6 @@
 {
   "name": "@devcenterpoint/mcp-server-seo",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Official Model Context Protocol (MCP) server for Everything SEO by DevCenterPoint",
   "main": "index.js",
   "keywords": [

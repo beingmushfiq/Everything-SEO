@@ -90,7 +90,7 @@ class TestAdaptersAndPresets(unittest.TestCase):
         cmd = ["node", str(cli_entry), "--version"]
         res = subprocess.run(cmd, capture_output=True, text=True)
         self.assertEqual(res.returncode, 0, f"CLI version command failed: {res.stderr}")
-        self.assertIn("1.1.0", res.stdout)
+        self.assertIn("1.2.0", res.stdout)
 
     def test_cli_search_execution(self):
         """Verify node CLI search command works."""

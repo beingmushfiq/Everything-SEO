@@ -10,7 +10,7 @@ const path = require('path');
 const { execSync, spawn } = require('child_process');
 const os = require('os');
 
-const VERSION = '1.1.0';
+const VERSION = '1.2.0';
 const ROOT_DIR = path.resolve(__dirname, '..', '..', '..');
 const SEO_DIR = path.join(ROOT_DIR, 'SEO');
 const PRESETS_DIR = path.join(ROOT_DIR, 'templates', 'presets');

@@ -7,6 +7,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [1.2.1] - 2026-10-30
+
+### Fixed
+- **Empty Folder on Workspace `init`**: Defaulted `everything-seo init` without `--preset` to the **Essential SEO Starter Pack** (`templates/presets/starter.json`), installing 5 foundational skills (`Indexing`, `RobotsTXT`, `Page Speed`, `Schema Markup`, `AI Search Visibility`) into `.agent/skills/`.
+- **Distributed Package Asset Resolution**: Replaced static monorepo path assumptions with multi-tier dynamic resolvers (`getSeoDir()`, `getPresetsDir()`, `getAuthoringTemplatePath()`) in CLI and MCP server, fixing asset loading when executed via global npm or `npx`.
+- **Cursor Rule Generation**: Added automatic generation of `.cursor/rules/seo-<slug>.mdc` with YAML frontmatter descriptions and file globs on both `init` and `add` commands.
+
+### Added
+- **Automated Package Distribution Bundling**: Added `scripts/bundle_packages.js` hooked into npm lifecycle `prepack` scripts, bundling all 55 skills, presets, and templates into `@devcenterpoint/everything-seo` and `@devcenterpoint/mcp-server-seo` (~261 kB gzipped) while keeping Git clean.
+- **Native JavaScript Global Installer**: Upgraded `everything-seo install --global` to deploy skills directly to Google Antigravity and Claude Code with zero external Python or subprocess requirements.
+- **Python CLI Parity**: Updated `everything-seo-cli` to `1.2.1` with parity on starter preset initialization and Cursor rule generation.
+
+---
+
 ## [1.2.0] - 2026-10-29
 
 ### Added

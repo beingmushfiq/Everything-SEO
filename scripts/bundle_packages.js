@@ -39,3 +39,4 @@ for (const target of TARGETS) {
   copyFolder(PRESETS_SRC, path.join(target, 'presets'));
 }
 console.log('[PASS] Asset bundling complete.');
+

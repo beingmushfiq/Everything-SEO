@@ -1,6 +1,6 @@
 {
   "name": "@devcenterpoint/everything-seo",
-  "version": "1.3.0",
+  "version": "1.4.0",
   "description": "Universal CLI, agent adapter, and progressive skill manager for Everything SEO by Mushfiqur Rahman Aayan & DevCenterPoint",
   "main": "bin/everything-seo.js",
   "scripts": {

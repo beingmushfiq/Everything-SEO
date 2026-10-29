@@ -10,7 +10,8 @@
     "SEO/Technical SEO/RobotsTXT",
     "SEO/Technical SEO/Page Speed",
     "SEO/On-page SEO/Schema Markup",
-    "SEO/AI SEO/AI Search Visibility"
+    "SEO/AI SEO/AI Search Visibility",
+    "SEO/SEO Tools/SEO Orchestrator"
   ],
   "recommended_globs": [
     "app/**/page.tsx",

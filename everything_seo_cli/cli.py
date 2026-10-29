@@ -7,7 +7,9 @@ Maintained by DevCenterPoint (https://devcenterpoint.com)
 
 import sys
 import os
+import re
 import json
+import shutil
 import argparse
 import subprocess
 from pathlib import Path
@@ -111,11 +113,15 @@ SKILL_ALIASES = {
     "conversion": "Growth/Conversion Optimization",
     "cro": "Growth/Conversion Optimization",
     "leads": "Growth/Lead Generation",
-    "traffic": "Growth/Organic Traffic"
+    "traffic": "Growth/Organic Traffic",
+    "orchestrator": "SEO Tools/SEO Orchestrator",
+    "triage": "SEO Tools/SEO Orchestrator",
+    "doctor": "SEO Tools/SEO Orchestrator",
+    "seo-orchestrator": "SEO Tools/SEO Orchestrator"
 }
 
 BANNER = """===================================================
-Everything SEO CLI (Python) v1.3.0
+Everything SEO CLI (Python) v1.4.0
 Author: Mushfiqur Rahman Aayan (@beingmushfiq)
 Maintainer: DevCenterPoint (https://devcenterpoint.com)
 Universal Skill Manager for AI Agents & Developers
@@ -158,7 +164,8 @@ def cmd_install_global():
         target_dir.mkdir(parents=True, exist_ok=True)
         count = 0
         for s in skills:
-            slug = f"seo-{s['name'].lower().replace(' ', '-').replace('+', '')}"
+            clean_name = re.sub(r'^seo[-\s]+', '', s['name'], flags=re.IGNORECASE)
+            slug = f"seo-{clean_name.lower().replace(' ', '-').replace('+', '')}"
             dest_dir = target_dir / slug
             dest_dir.mkdir(parents=True, exist_ok=True)
             (dest_dir / "SKILL.md").write_text(s["path"].read_text(encoding="utf-8"), encoding="utf-8")
@@ -171,8 +178,8 @@ def cmd_install_global():
 
 def prompt_preset_choice() -> str:
     print("Select SEO capabilities to install in this workspace:\n")
-    print("  1) Complete Library (All 55 Skills)  — All 11 disciplines + Cursor rules (Recommended)")
-    print("  2) Essential Starter Pack (5 Skills) — Indexing, RobotsTXT, Page Speed, Schema, AI Visibility")
+    print("  1) Complete Library (All 56 Skills)  — All 11 disciplines + Cursor rules (Recommended)")
+    print("  2) Essential Starter Pack (6 Skills) — Master Orchestrator, Indexing, RobotsTXT, Page Speed, Schema, AI Visibility")
     print("  3) Next.js / Jamstack (5 Skills)    — Technical Crawling, SSR Schema, Indexing, Speed, Sitemaps")
     print("  4) E-Commerce Preset (5 Skills)     — Product Schema, Faceted URLs, Digital PR, Speed")
     print("  5) B2B SaaS Preset (5 Skills)       — AI Visibility, Entity Coverage, Content Gap, Leads")
@@ -230,27 +237,43 @@ def cmd_init(preset_name=None, is_all=False):
             src = ROOT_DIR / skill_rel / "SKILL.md"
 
         skill_name = Path(skill_rel).name
-        dest = agent_skills / skill_name / "SKILL.md"
+        clean_name = re.sub(r'^seo[-\s]+', '', skill_name, flags=re.IGNORECASE)
+        slug = f"seo-{clean_name.lower().replace(' ', '-').replace('+', '')}"
+        dest = agent_skills / slug / "SKILL.md"
         dest.parent.mkdir(parents=True, exist_ok=True)
 
         if src.exists():
             content = src.read_text(encoding="utf-8")
             dest.write_text(content, encoding="utf-8")
-            print(f" + Installed skill: .agent/skills/{skill_name}/SKILL.md")
+            print(f" + Installed skill: .agent/skills/{slug}/SKILL.md")
+
+            # Extract rich description and Section B triggers
+            desc = f"SEO operational skill for {skill_name}"
+            desc_m = re.search(r'description:\s*["\']?([^"\']+)["\']?', content)
+            if desc_m:
+                desc = desc_m.group(1).strip()
+            trigger_m = re.search(r'##\s*B\.\s*Trigger Conditions([\s\S]*?)(?=\n##\s*[A-Z]\.|\Z)', content, re.IGNORECASE)
+            if trigger_m:
+                trig_raw = trigger_m.group(1)
+                trig_raw = re.sub(r'Invoke this skill when:?', '', trig_raw, flags=re.IGNORECASE)
+                trig_raw = re.sub(r'Upstream dependencies:[\s\S]*', '', trig_raw, flags=re.IGNORECASE)
+                clean_trig = " ".join(trig_raw.split())[:250]
+                if clean_trig:
+                    desc = f"{desc} Trigger when: {clean_trig}"
+            safe_desc = desc.replace('"', "'")
 
             # Generate Cursor rule
-            slug = skill_name.lower().replace(" ", "-").replace("+", "")
             cursor_rule_content = f"""---
-description: "SEO operational skill for {skill_name}"
+description: "{safe_desc}"
 globs: "**/*"
 alwaysApply: false
 ---
 
 # {skill_name} Rules
-Follow operational procedures in .agent/skills/{skill_name}/SKILL.md
+Follow operational procedures in .agent/skills/{slug}/SKILL.md
 """
-            (cursor_rules / f"seo-{slug}.mdc").write_text(cursor_rule_content, encoding="utf-8")
-            installed_skills.append(skill_name)
+            (cursor_rules / f"{slug}.mdc").write_text(cursor_rule_content, encoding="utf-8")
+            installed_skills.append(slug)
 
     # Master Router Rule
     router_rule = """---
@@ -260,32 +283,36 @@ alwaysApply: true
 ---
 
 # Everything SEO Master Router & Triage Engine
-When the user asks an SEO-related question, use this triage matrix to apply the exact operational manual from .agent/skills/<skill>/SKILL.md:
+When the user asks an SEO-related question, use this triage matrix to apply the exact operational manual from .agent/skills/seo-<slug>/SKILL.md:
 
 - Indexation, Crawl Status, Canonical Loops, 404s, Noindex Directives:
-  -> Read .agent/skills/Indexing/SKILL.md or Crawling/SKILL.md
+  -> Read .agent/skills/seo-indexing/SKILL.md or .agent/skills/seo-crawling/SKILL.md
 - Robots.txt Errors, Bot Blocking, RFC 9309 Directive Syntax:
-  -> Read .agent/skills/RobotsTXT/SKILL.md
+  -> Read .agent/skills/seo-robotstxt/SKILL.md
 - Schema.org, JSON-LD, Rich Results, Structured Data Errors:
-  -> Read .agent/skills/Schema Markup/SKILL.md
+  -> Read .agent/skills/seo-schema-markup/SKILL.md
 - Core Web Vitals, LCP, INP, CLS, Asset Optimization:
-  -> Read .agent/skills/Page Speed/SKILL.md
+  -> Read .agent/skills/seo-page-speed/SKILL.md
 - AI Overviews, Perplexity Citations, ChatGPT Search, GEO Entity Gain:
-  -> Read .agent/skills/AI Search Visibility/SKILL.md
+  -> Read .agent/skills/seo-ai-search-visibility/SKILL.md
 - Organic Traffic Decay, Stale Content, SERP Rank Decline:
-  -> Read .agent/skills/Content Refresh/SKILL.md
+  -> Read .agent/skills/seo-content-refresh/SKILL.md
 - Hreflang, Multilingual Sites, Multi-Region Targeting:
-  -> Read .agent/skills/Hreflang/SKILL.md
+  -> Read .agent/skills/seo-hreflang/SKILL.md
 - Internal Linking, Orphan Pages, PageRank Distribution:
-  -> Read .agent/skills/Internal Linking/SKILL.md
+  -> Read .agent/skills/seo-internal-linking/SKILL.md
 - Title Tags, Meta Descriptions, CTR Anomaly Remediation:
-  -> Read .agent/skills/Title/SKILL.md or CTR Optimization/SKILL.md
+  -> Read .agent/skills/seo-title/SKILL.md or .agent/skills/seo-ctr-optimization/SKILL.md
+- URL Structure, Slugs, Faceted Navigation Parameters:
+  -> Read .agent/skills/seo-url-optimization/SKILL.md
 - Redirect Chains, 301/302 Rules, HTTP-to-HTTPS Loops:
-  -> Read .agent/skills/Redirects/SKILL.md
+  -> Read .agent/skills/seo-redirects/SKILL.md
 - XML Sitemaps, Sitemap Indexing, Lastmod Hygeine:
-  -> Read .agent/skills/XML Sitemaps/SKILL.md
+  -> Read .agent/skills/seo-xml-sitemaps/SKILL.md
 - Search Console Performance, GSC Coverage Errors, Query Clicks:
-  -> Read .agent/skills/Search Console/SKILL.md
+  -> Read .agent/skills/seo-search-console/SKILL.md
+- Master Triage, Multi-Symptom Diagnostics, or Ambiguous Ranking Losses:
+  -> Read .agent/skills/seo-orchestrator/SKILL.md
 
 Follow the 5-phase procedure in the referenced skill manual.
 """
@@ -294,7 +321,7 @@ Follow the 5-phase procedure in the referenced skill manual.
 
     manifest = cwd / ".everything-seo.json"
     manifest.write_text(json.dumps({
-        "version": "1.3.0",
+        "version": "1.4.0",
         "preset": active_preset,
         "installed_skills": installed_skills,
         "author": "Mushfiqur Rahman Aayan (@beingmushfiq)",
@@ -315,7 +342,8 @@ def cmd_triage(query: str):
         (["ai", "geo", "perplexity", "overview", "chatgpt", "copilot", "llm", "citation"], "AI SEO/AI Search Visibility", "AI Search Visibility", "Optimizes for Generative Engine Optimization (GEO) and AI search citations."),
         (["redirect", "301", "302", "404", "loop", "chain", "migration"], "Technical SEO/Redirects", "Redirects", "Fixes 301/302 redirect loops, trailing slash anomalies, and migration maps."),
         (["hreflang", "multilingual", "international", "country", "language", "x-default"], "International SEO/Hreflang", "Hreflang", "Builds valid multi-region hreflang XML clusters and prevents regional cannibalization."),
-        (["decay", "traffic drop", "lost traffic", "refresh", "old content"], "Content Optimization/Content Refresh", "Content Refresh", "Conducts content decay triage and updates stale ranking assets.")
+        (["decay", "traffic drop", "lost traffic", "refresh", "old content"], "Content Optimization/Content Refresh", "Content Refresh", "Conducts content decay triage and updates stale ranking assets."),
+        (["triage", "orchestrator", "diagnose", "general", "audit", "everything", "traffic drop", "lost traffic", "ranking drop", "drop", "rank", "ranking", "penalty", "penalized", "decline"], "SEO Tools/SEO Orchestrator", "SEO Orchestrator", "Executes forensic diagnostic triage across all 11 disciplines to pinpoint root causes.")
     ]
 
     matches = []
@@ -354,27 +382,45 @@ def cmd_add(skill_query: str):
         print("Run 'everything-seo list' to see all 55 available skills, or 'everything-seo triage <symptom>'.")
         sys.exit(1)
 
+    clean_name = re.sub(r'^seo[-\s]+', '', match["name"], flags=re.IGNORECASE)
+    slug = f"seo-{clean_name.lower().replace(' ', '-').replace('+', '')}"
+
     cwd = Path.cwd()
-    target_dir = cwd / ".agent" / "skills" / match["name"]
+    target_dir = cwd / ".agent" / "skills" / slug
     target_dir.mkdir(parents=True, exist_ok=True)
-    (target_dir / "SKILL.md").write_text(match["path"].read_text(encoding="utf-8"), encoding="utf-8")
+    content = match["path"].read_text(encoding="utf-8")
+    (target_dir / "SKILL.md").write_text(content, encoding="utf-8")
 
     cursor_dir = cwd / ".cursor" / "rules"
     cursor_dir.mkdir(parents=True, exist_ok=True)
-    slug = match["name"].lower().replace(" ", "-").replace("+", "")
+
+    desc = f"SEO operational skill for {match['name']}"
+    desc_m = re.search(r'description:\s*["\']?([^"\']+)["\']?', content)
+    if desc_m:
+        desc = desc_m.group(1).strip()
+    trigger_m = re.search(r'##\s*B\.\s*Trigger Conditions([\s\S]*?)(?=\n##\s*[A-Z]\.|\Z)', content, re.IGNORECASE)
+    if trigger_m:
+        trig_raw = trigger_m.group(1)
+        trig_raw = re.sub(r'Invoke this skill when:?', '', trig_raw, flags=re.IGNORECASE)
+        trig_raw = re.sub(r'Upstream dependencies:[\s\S]*', '', trig_raw, flags=re.IGNORECASE)
+        clean_trig = " ".join(trig_raw.split())[:250]
+        if clean_trig:
+            desc = f"{desc} Trigger when: {clean_trig}"
+    safe_desc = desc.replace('"', "'")
+
     cursor_rule = f"""---
-description: "SEO operational skill for {match['name']}"
+description: "{safe_desc}"
 globs: "**/*"
 alwaysApply: false
 ---
 
 # {match['name']} Rules
-Follow operational procedures in .agent/skills/{match['name']}/SKILL.md
+Follow operational procedures in .agent/skills/{slug}/SKILL.md
 """
-    (cursor_dir / f"seo-{slug}.mdc").write_text(cursor_rule, encoding="utf-8")
+    (cursor_dir / f"{slug}.mdc").write_text(cursor_rule, encoding="utf-8")
     print(f"[PASS] Added skill: {match['slug']}")
-    print(f"- Agent skill: .agent/skills/{match['name']}/SKILL.md")
-    print(f"- Cursor rule: .cursor/rules/seo-{slug}.mdc\n")
+    print(f"- Agent skill: .agent/skills/{slug}/SKILL.md")
+    print(f"- Cursor rule: .cursor/rules/{slug}.mdc\n")
 
 def cmd_search(query):
     print_banner()

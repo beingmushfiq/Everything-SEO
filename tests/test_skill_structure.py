@@ -68,7 +68,8 @@ EXPECTED_TAXONOMY = {
         "Ahrefs",
         "SEMrush",
         "Keywords Everywhere",
-        "Screaming Frog"
+        "Screaming Frog",
+        "SEO Orchestrator"
     ],
     "SEO Wins": [
         "150+ SEO Hacks",
@@ -92,7 +93,7 @@ class TestSkillStructure(unittest.TestCase):
     def test_total_skill_count(self):
         """Assert exactly 55 skills exist across 11 disciplines."""
         total_skills = sum(len(skills) for skills in EXPECTED_TAXONOMY.values())
-        self.assertEqual(total_skills, 55, "Taxonomy must define exactly 55 skills")
+        self.assertEqual(total_skills, 56, "Taxonomy must define exactly 56 skills")
         
         found_skills = 0
         for disc, skills in EXPECTED_TAXONOMY.items():
@@ -100,7 +101,7 @@ class TestSkillStructure(unittest.TestCase):
                 skill_path = os.path.join(SEO_DIR, disc, skill, "SKILL.md")
                 self.assertTrue(os.path.exists(skill_path), f"Missing file: {skill_path}")
                 found_skills += 1
-        self.assertEqual(found_skills, 55, "All 55 skill files must exist on disk")
+        self.assertEqual(found_skills, 56, "All 56 skill files must exist on disk")
 
     def test_skill_frontmatter(self):
         """Assert all 55 skills start with valid YAML frontmatter containing required fields."""

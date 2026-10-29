@@ -75,6 +75,7 @@ docs/internal/
 .everything-seo.lock
 .agent/
 .cursor/
+.claude/
 packages/cli/data/
 packages/mcp-server/data/
 everything_seo_cli/data/

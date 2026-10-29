@@ -16,7 +16,8 @@
     "SEO/Content Optimization/Gap Analysis",
     "SEO/Content Optimization/Entity Coverage",
     "SEO/Growth/Lead Generation",
-    "SEO/On-page SEO/Schema Markup"
+    "SEO/On-page SEO/Schema Markup",
+    "SEO/SEO Tools/SEO Orchestrator"
   ],
   "recommended_globs": [
     "app/compare/**",

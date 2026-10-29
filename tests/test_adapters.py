@@ -55,7 +55,7 @@ class TestAdaptersAndPresets(unittest.TestCase):
 
             # Verify files were generated
             generated = list(Path(tmpdir).glob("*.mdc"))
-            self.assertEqual(len(generated), 55, f"Expected 55 generated .mdc files, found {len(generated)}")
+            self.assertEqual(len(generated), 57, f"Expected 57 generated .mdc files (56 skills + master router), found {len(generated)}")
 
             # Check frontmatter of a sample file
             sample = generated[0]
@@ -90,7 +90,7 @@ class TestAdaptersAndPresets(unittest.TestCase):
         cmd = ["node", str(cli_entry), "--version"]
         res = subprocess.run(cmd, capture_output=True, text=True)
         self.assertEqual(res.returncode, 0, f"CLI version command failed: {res.stderr}")
-        self.assertIn("1.3.0", res.stdout)
+        self.assertIn("1.4.0", res.stdout)
 
     def test_cli_search_execution(self):
         """Verify node CLI search command works."""

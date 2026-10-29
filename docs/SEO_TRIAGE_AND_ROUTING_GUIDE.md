@@ -72,3 +72,4 @@ Diagnose main-thread INP bottlenecks and propose a remediation plan.
 ---
 
 *Maintained by **[Mushfiqur Rahman Aayan](https://github.com/beingmushfiq)** & **[DevCenterPoint](https://devcenterpoint.com)** under the **[MIT License](../LICENSE)**.*
+

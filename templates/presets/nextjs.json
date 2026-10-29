@@ -16,7 +16,8 @@
     "SEO/Technical SEO/Page Speed",
     "SEO/Technical SEO/RobotsTXT",
     "SEO/On-page SEO/Schema Markup",
-    "SEO/On-page SEO/CTR Optimization"
+    "SEO/On-page SEO/CTR Optimization",
+    "SEO/SEO Tools/SEO Orchestrator"
   ],
   "recommended_globs": [
     "app/**/page.tsx",

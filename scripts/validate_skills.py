@@ -93,7 +93,8 @@ EXPECTED_TAXONOMY = {
         "Ahrefs",
         "SEMrush",
         "Keywords Everywhere",
-        "Screaming Frog"
+        "Screaming Frog",
+        "SEO Orchestrator"
     ],
     "SEO Wins": [
         "150+ SEO Hacks",

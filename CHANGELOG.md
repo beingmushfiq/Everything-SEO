@@ -7,6 +7,28 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [1.4.0] - 2026-10-30
+
+### Added
+- **Level-1 Master SEO Orchestrator (`seo-orchestrator`)**:
+  - Authored canonical 56th skill: `SEO/SEO Tools/SEO Orchestrator/SKILL.md` following full Section A-Q schema (1,707 words).
+  - Acts as the root supervisor for ambiguous multi-disciplinary inquiries (e.g. sudden ranking drops, traffic decay, site migrations).
+  - Integrated into all presets (`starter`, `all`, `nextjs`, `ecommerce`, `saas`, `publisher`).
+- **Standardized POSIX Kebab-Case Slash Command Autocomplete (`/seo-*`)**:
+  - Standardized local and global skill installations into `.agent/skills/seo-<slug>/SKILL.md`.
+  - Guarantees clean, shell-safe `/seo-` slash command dropdown autocomplete across Cursor IDE, Claude Code, Google Antigravity, and GitHub Copilot without token splits or space breakages.
+- **Enriched Semantic Trigger Descriptions in Cursor Rules (`.cursor/rules/*.mdc`)**:
+  - Automatically extracts Section B (Trigger Conditions) and error codes into the frontmatter `description` of every `.mdc` rule.
+  - Enables 100% autonomous prompt auto-utilization via vector embedding cosine similarity when users type natural questions without slash commands.
+- **Master Router Rule (`seo-router.mdc`)**:
+  - Generates `.cursor/rules/seo-router.mdc` with `alwaysApply: true` providing a universal diagnostic dispatch table.
+
+### Changed
+- Total verified skills expanded from 55 to **56 skills** across 11 disciplines (90,484 words total).
+- Updated Node.js CLI, Python CLI, and MCP server to `1.4.0` with alias support for `orchestrator`, `triage`, and `doctor`.
+
+---
+
 ## [1.3.0] - 2026-10-30
 
 ### Added

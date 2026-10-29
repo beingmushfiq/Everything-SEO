@@ -13,9 +13,9 @@
   <a href="https://www.npmjs.com/package/@devcenterpoint/everything-seo"><img src="https://img.shields.io/npm/v/@devcenterpoint/everything-seo.svg?logo=npm&color=CB3837" alt="npm CLI"></a>
   <a href="https://www.npmjs.com/package/@devcenterpoint/mcp-server-seo"><img src="https://img.shields.io/npm/v/@devcenterpoint/mcp-server-seo.svg?logo=npm&label=mcp-server&color=CB3837" alt="npm MCP"></a>
   <a href="https://pypi.org/project/everything-seo-cli/"><img src="https://img.shields.io/pypi/v/everything-seo-cli.svg?logo=pypi&logoColor=white&color=3775A9" alt="PyPI Package"></a>
-  <a href="https://github.com/beingmushfiq/Everything-SEO/releases/tag/v1.3.0"><img src="https://img.shields.io/badge/release-v1.3.0-10B981.svg?logo=github" alt="Release: v1.3.0"></a>
+  <a href="https://github.com/beingmushfiq/Everything-SEO/releases/tag/v1.4.0"><img src="https://img.shields.io/badge/release-v1.4.0-10B981.svg?logo=github" alt="Release: v1.4.0"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="License: MIT"></a>
-  <a href="SEO/SKILL_INDEX.md"><img src="https://img.shields.io/badge/skills-55%20operational-emerald.svg" alt="55 Operational Skills"></a>
+  <a href="SEO/SKILL_INDEX.md"><img src="https://img.shields.io/badge/skills-56%20operational-emerald.svg" alt="56 Operational Skills"></a>
   <a href="https://github.com/beingmushfiq"><img src="https://img.shields.io/badge/creator-Mushfiqur%20Rahman%20Aayan-F59E0B.svg" alt="Creator: Mushfiqur Rahman Aayan"></a>
   <a href="https://devcenterpoint.com"><img src="https://img.shields.io/badge/maintainer-DevCenterPoint-2563EB.svg" alt="Maintainer: DevCenterPoint"></a>
 </p>
@@ -27,7 +27,7 @@
 **Everything SEO** is an open-source, deterministic, and evidence-based operational capability library engineered for search professionals and autonomous coding agents.
 
 This repository is **not** an SEO SaaS application, marketing dashboard, or fragile crawler. It is an **actionable, modular knowledge manual**:
-- **55 Leaf Operational Skills**: Every topic contains a machine-readable `SKILL.md`.
+- **56 Leaf Operational Skills**: Every topic contains a machine-readable `SKILL.md`.
 - **Agent Skills v1.0 Standard**: Uniform **17-section ontology (Sections A through Q)** with valid YAML frontmatter.
 - **Strict 4-Tier Epistemic Hierarchy**: Rooted in official IETF RFCs (RFC 3986, RFC 9309, RFC 9110), W3C standards, Schema.org schemas, and Google Search Central / Bing Webmaster documentation.
 - **Universal Agent Interoperability**: Turnkey integration with **Cursor IDE**, **Claude Code**, **Google Antigravity**, **GitHub Copilot**, and **Model Context Protocol (MCP)**.
@@ -43,9 +43,9 @@ Whether you are using Cursor, Claude Code, Antigravity, or developing custom web
 
 | Package | Registry | Install / Run Command | Capabilities |
 | :--- | :--- | :--- | :--- |
-| **`@devcenterpoint/everything-seo`** | [npm](https://www.npmjs.com/package/@devcenterpoint/everything-seo) | `npx @devcenterpoint/everything-seo init` | Universal CLI, interactive installer, 55 offline skills, presets, Cursor rules |
+| **`@devcenterpoint/everything-seo`** | [npm](https://www.npmjs.com/package/@devcenterpoint/everything-seo) | `npx @devcenterpoint/everything-seo init` | Universal CLI, interactive installer, 56 offline skills, presets, Cursor rules |
 | **`@devcenterpoint/mcp-server-seo`** | [npm](https://www.npmjs.com/package/@devcenterpoint/mcp-server-seo) | `npx @devcenterpoint/mcp-server-seo` | Official MCP server (JSON-RPC tools, resources, forensic triage, validator) |
-| **`everything-seo-cli`** | [PyPI](https://pypi.org/project/everything-seo-cli/) | `pip install everything-seo-cli` | Standalone Python CLI with full 55-skill offline bundle & triage |
+| **`everything-seo-cli`** | [PyPI](https://pypi.org/project/everything-seo-cli/) | `pip install everything-seo-cli` | Standalone Python CLI with full 56-skill offline bundle & triage |
 
 ### 1. Global System Installation (Install Once, Available to All Agents)
 Install skills globally so your AI coding agents discover them automatically across all projects:
@@ -71,7 +71,7 @@ Add only the specific SEO skills your application requires directly into your pr
 # Initialize SEO capabilities (Interactive selection menu by default)
 everything-seo init
 
-# Or deploy the complete fleet of all 55 skills + 56 Cursor rules immediately
+# Or deploy the complete fleet of all 56 skills + 57 Cursor rules immediately
 everything-seo init --all
 
 # Run forensic triage on any search issue or GSC error message
@@ -92,6 +92,27 @@ everything-seo add "ai-search-visibility"
 # Scaffold a custom, compliant SEO skill for your company's proprietary rules
 everything-seo scaffold --name custom-internal-routing --category "Technical SEO"
 ```
+
+### ⚡ Autonomous Prompt Auto-Activation & `/seo-*` Slash Commands
+
+Everything SEO provides **two zero-friction interaction modes** designed for modern AI coding agents:
+
+#### 1. Implicit Natural Language Prompts (Zero-Command Autonomous Activation)
+You do not need to memorize skill names or type manual commands. When you ask a question in Cursor IDE, Claude Code, or Google Antigravity, the agent harness evaluates the enriched symptom triggers in `.cursor/rules/seo-*.mdc` and the Master Router (`seo-router.mdc`):
+- *"Google Search Console shows 500 pages with 'Discovered - currently not indexed'"* ➔ Autonomously activates `.agent/skills/seo-indexing/SKILL.md`.
+- *"How do I fix mobile INP long tasks in Next.js?"* ➔ Autonomously activates `.agent/skills/seo-page-speed/SKILL.md`.
+- *"How do we get cited by Perplexity and ChatGPT Search?"* ➔ Autonomously activates `.agent/skills/seo-ai-search-visibility/SKILL.md`.
+- *"Our organic traffic tanked 45% after site migration"* ➔ Autonomously activates Level-1 triage via `.agent/skills/seo-orchestrator/SKILL.md`.
+
+#### 2. Explicit Slash Commands (Standardized POSIX Kebab-Case)
+Type `/seo-` in your agent prompt box to display a clustered, clean autocomplete menu across all 56 skills:
+- `/seo-orchestrator` — Master triage doctor for ambiguous traffic drops and multi-symptom audits
+- `/seo-indexing` — Canonical loops, noindex directives, GSC indexation triage
+- `/seo-schema-markup` — JSON-LD syntax, Rich Results eligibility, Schema.org modeling
+- `/seo-page-speed` — Core Web Vitals (LCP, INP, CLS), TTFB, main-thread optimization
+- `/seo-robotstxt` — RFC 9309 directive syntax, crawler blockage remediation
+- `/seo-ai-search-visibility` — Generative Engine Optimization (GEO), AI Overviews, LLM citations
+- `/seo-internal-linking` — Orphan page elimination, PageRank distribution architecture
 
 For complete IDE setups, configuration files, and MCP server instructions, consult the **[Universal Agent Integration Guide](docs/UNIVERSAL_AGENT_INTEGRATION_GUIDE.md)**.
 
@@ -117,7 +138,7 @@ All 55 operational skills reside within the [`SEO/`](SEO/README.md) directory ac
 ┃ ┣ 📂 AI SEO (5 Skills)                -> AI Search (GEO), Entity Optimization, Citations, Reddit, 3rd Party
 ┃ ┣ 📂 International SEO (3 Skills)     -> Hreflang Clusters, Multilingual Setup, Translation & Transcreation
 ┃ ┣ 📂 Analytics (4 Skills)             -> Search Console, Bing Webmaster, GA4 Funnels, SEO Reporting
-┃ ┣ 📂 SEO Tools (4 Skills)             -> Ahrefs, SEMrush, Keywords Everywhere, Screaming Frog CLI
+┃ ┣ 📂 SEO Tools (5 Skills)             -> Ahrefs, SEMrush, Keywords Everywhere, Screaming Frog CLI, SEO Orchestrator
 ┃ ┣ 📂 SEO Wins (4 Skills)              -> 150+ Evidence Hacks, AI Hacks, Traffic Growth, Backlinks
 ┃ ┗ 📂 Growth (5 Skills)                -> Organic Traffic, Lead Gen, Conversion (CRO), Revenue, Scaling
 ┃

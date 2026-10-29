@@ -16,7 +16,8 @@
     "SEO/On-page SEO/Image SEO",
     "SEO/On-page SEO/URL Optimization",
     "SEO/Link Building/Digital PR",
-    "SEO/Growth/Conversion Optimization"
+    "SEO/Growth/Conversion Optimization",
+    "SEO/SEO Tools/SEO Orchestrator"
   ],
   "recommended_globs": [
     "templates/**/*.liquid",

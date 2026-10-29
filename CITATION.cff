@@ -1,7 +1,7 @@
 cff-version: 1.2.0
 message: "If you use or reference the Everything SEO Skill Library in academic research, software documentation, or AI agent toolkits, please cite it as below."
 title: "Everything SEO: A Deterministic Operational Skill Library for Search Intelligence & AI Agents"
-version: 1.3.0
+version: 1.4.0
 date-released: 2026-10-30
 url: "https://github.com/beingmushfiq/Everything-SEO"
 license: MIT

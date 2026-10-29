@@ -144,7 +144,7 @@ function handleToolCall(name, args) {
     }
 
     case 'get_seo_skill_section': {
-      const slugQuery = (args.skill_slug || '').toLowerCase();
+      const slugQuery = (args.skill_slug || '').toLowerCase().replace(/^seo-/, '');
       const match = skills.find(s => 
         s.slug.toLowerCase().includes(slugQuery) || 
         s.name.toLowerCase().includes(slugQuery)
@@ -331,6 +331,13 @@ function handleToolCall(name, args) {
           skill: 'Content Optimization/Content Refresh',
           rationale: 'Content decay detection, factual freshness updates, search intent alignment.',
           file: 'SEO/Content Optimization/Content Refresh/SKILL.md'
+        });
+      }
+      if (sym.includes('triage') || sym.includes('orchestrator') || sym.includes('traffic drop') || sym.includes('ranking drop') || sym.includes('audit') || sym.includes('general')) {
+        recommendations.push({
+          skill: 'SEO Tools/SEO Orchestrator',
+          rationale: 'Forensic multi-symptom triage across all 11 disciplines to pinpoint root causes.',
+          file: 'SEO/SEO Tools/SEO Orchestrator/SKILL.md'
         });
       }
       if (recommendations.length === 0) {

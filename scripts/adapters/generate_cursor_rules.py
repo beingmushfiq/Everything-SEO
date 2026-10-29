@@ -63,17 +63,28 @@ def generate_cursor_rule(skill_path: Path, output_dir: Path) -> Path:
 
     rel_parts = skill_path.relative_to(SEO_DIR).parts
     discipline = rel_parts[0] if len(rel_parts) > 1 else "General"
-    slug = skill_path.parent.name.lower().replace(" ", "-").replace("+", "")
+    clean_name = re.sub(r'^seo[-\s]+', '', skill_path.parent.name.strip(), flags=re.IGNORECASE)
+    slug = f"seo-{clean_name.lower().replace(' ', '-').replace('+', '')}"
 
     globs = DISCIPLINE_GLOBS.get(discipline, "**/*")
 
     # Extract Key Sections
+    section_b = extract_section(content, "B") # Trigger Conditions
     section_d = extract_section(content, "D") # Execution Steps
     section_e = extract_section(content, "E") # Verification Checklist
 
+    if section_b:
+        trig_clean = re.sub(r'Invoke this skill when:?', '', section_b, flags=re.IGNORECASE)
+        trig_clean = re.sub(r'Upstream dependencies:[\s\S]*', '', trig_clean, flags=re.IGNORECASE)
+        trig_clean = " ".join(trig_clean.split())[:250]
+        if trig_clean:
+            description = f"{description} Trigger when: {trig_clean}"
+
+    safe_description = description.replace('"', "'")
+
     # Build concise rule body to preserve context budget
     rule_body = f"""---
-description: "{description}"
+description: "{safe_description}"
 globs: "{globs}"
 alwaysApply: false
 ---
@@ -89,11 +100,58 @@ alwaysApply: false
 ---
 *Canonical Reference: `SEO/{'/'.join(rel_parts)}`*
 """
-    output_file = output_dir / f"seo-{slug}.mdc"
+    output_file = output_dir / f"{slug}.mdc"
     output_dir.mkdir(parents=True, exist_ok=True)
     with open(output_file, "w", encoding="utf-8") as f:
         f.write(rule_body.strip() + "\n")
     return output_file
+
+def generate_master_router(output_dir: Path) -> Path:
+    router_file = output_dir / "seo-router.mdc"
+    router_content = """---
+description: "Master SEO router and triage dispatcher. Activates on any SEO audit, ranking drop, indexation issue, Core Web Vitals, Schema.org markup, or AI search query."
+globs: "**/*"
+alwaysApply: true
+---
+
+# Everything SEO Master Router & Triage Engine
+When the user asks an SEO-related question or requests an optimization, use this triage decision matrix to inspect, read, and apply the exact operational manual from .agent/skills/seo-<slug>/SKILL.md:
+
+- Indexation, Crawl Status, Canonical Loops, 404s, Noindex Directives:
+  -> Read .agent/skills/seo-indexing/SKILL.md or .agent/skills/seo-crawling/SKILL.md
+- Robots.txt Errors, Bot Blocking, RFC 9309 Directive Syntax:
+  -> Read .agent/skills/seo-robotstxt/SKILL.md
+- Schema.org, JSON-LD, Rich Results, Structured Data Errors:
+  -> Read .agent/skills/seo-schema-markup/SKILL.md
+- Core Web Vitals, LCP, INP, CLS, Asset Optimization, Server Latency:
+  -> Read .agent/skills/seo-page-speed/SKILL.md
+- AI Overviews, Perplexity Citations, ChatGPT Search, GEO Entity Gain:
+  -> Read .agent/skills/seo-ai-search-visibility/SKILL.md
+- Organic Traffic Decay, Stale Content, SERP Rank Decline:
+  -> Read .agent/skills/seo-content-refresh/SKILL.md
+- Hreflang, Multilingual Sites, Multi-Region Targeting:
+  -> Read .agent/skills/seo-hreflang/SKILL.md
+- Internal Linking, Orphan Pages, PageRank Distribution:
+  -> Read .agent/skills/seo-internal-linking/SKILL.md
+- Title Tags, Meta Descriptions, CTR Anomaly Remediation:
+  -> Read .agent/skills/seo-title/SKILL.md or .agent/skills/seo-ctr-optimization/SKILL.md
+- URL Structure, Slugs, Faceted Navigation Parameters:
+  -> Read .agent/skills/seo-url-optimization/SKILL.md
+- Redirect Chains, 301/302 Rules, HTTP-to-HTTPS Loops:
+  -> Read .agent/skills/seo-redirects/SKILL.md
+- XML Sitemaps, Sitemap Indexing, Lastmod Hygeine:
+  -> Read .agent/skills/seo-xml-sitemaps/SKILL.md
+- Search Console Performance, GSC Coverage Errors, Query Clicks:
+  -> Read .agent/skills/seo-search-console/SKILL.md
+- Master Triage, Multi-Symptom Diagnostics, or Ambiguous Ranking Losses:
+  -> Read .agent/skills/seo-orchestrator/SKILL.md
+
+Follow the 5-phase procedure (Ingestion -> Extraction -> Synthesis -> Remediation -> Governance) in the referenced skill manual.
+"""
+    output_dir.mkdir(parents=True, exist_ok=True)
+    with open(router_file, "w", encoding="utf-8") as f:
+        f.write(router_content.strip() + "\n")
+    return router_file
 
 def main():
     parser = argparse.ArgumentParser(description="Generate Cursor .mdc rules from Everything SEO skills")
@@ -108,7 +166,8 @@ def main():
         generate_cursor_rule(skill_file, output_dir)
         count += 1
 
-    print(f"[PASS] Successfully generated {count} Cursor .mdc rules.")
+    generate_master_router(output_dir)
+    print(f"[PASS] Successfully generated {count} Cursor .mdc rules + Master Router (seo-router.mdc).")
 
 if __name__ == "__main__":
     main()

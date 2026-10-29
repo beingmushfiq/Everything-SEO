@@ -16,7 +16,8 @@
     "SEO/Content Optimization/Readability",
     "SEO/On-page SEO/Internal Linking",
     "SEO/On-page SEO/Headings Optimization",
-    "SEO/Analytics/Search Console"
+    "SEO/Analytics/Search Console",
+    "SEO/SEO Tools/SEO Orchestrator"
   ],
   "recommended_globs": [
     "posts/**/*.md",

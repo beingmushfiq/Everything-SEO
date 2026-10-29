@@ -11,7 +11,7 @@ const path = require('path');
 const readline = require('readline');
 const os = require('os');
 
-const VERSION = '1.3.0';
+const VERSION = '1.4.0';
 const ROOT_DIR = path.resolve(__dirname, '..', '..', '..');
 
 // Dynamic Path Resolvers (Self-Contained Bundles)
@@ -117,7 +117,11 @@ const SKILL_ALIASES = {
   'conversion': 'Growth/Conversion Optimization',
   'cro': 'Growth/Conversion Optimization',
   'leads': 'Growth/Lead Generation',
-  'traffic': 'Growth/Organic Traffic'
+  'traffic': 'Growth/Organic Traffic',
+  'orchestrator': 'SEO Tools/SEO Orchestrator',
+  'triage': 'SEO Tools/SEO Orchestrator',
+  'doctor': 'SEO Tools/SEO Orchestrator',
+  'seo-orchestrator': 'SEO Tools/SEO Orchestrator'
 };
 
 function printBanner() {
@@ -183,9 +187,13 @@ function resolveSkillSource(skillRel) {
   const fromRoot = path.join(ROOT_DIR, skillRel, 'SKILL.md');
   if (fs.existsSync(fromRoot)) return fromRoot;
 
-  const skillName = path.basename(skillRel);
+  const skillName = path.basename(skillRel).toLowerCase();
   const allSkills = findSkillDirectories();
-  const match = allSkills.find(s => s.name.toLowerCase() === skillName.toLowerCase());
+  const match = allSkills.find(s => 
+    s.name.toLowerCase() === skillName || 
+    s.slug.toLowerCase() === skillName ||
+    `seo-${s.name.toLowerCase().replace(/[\s+]+/g, '-').replace(/[^\w-]/g, '')}` === skillName
+  );
   if (match) return match.path;
 
   return null;
@@ -241,7 +249,8 @@ function handleInstallGlobal() {
     fs.mkdirSync(targetDir, { recursive: true });
     let count = 0;
     for (const s of allSkills) {
-      const slug = `seo-${s.name.toLowerCase().replace(/[\s+]+/g, '-').replace(/[^\w-]/g, '')}`;
+      const cleanName = s.name.replace(/^seo[-\s]+/i, '');
+      const slug = `seo-${cleanName.toLowerCase().replace(/[\s+]+/g, '-').replace(/[^\w-]/g, '')}`;
       const destDir = path.join(targetDir, slug);
       fs.mkdirSync(destDir, { recursive: true });
       fs.copyFileSync(s.path, path.join(destDir, 'SKILL.md'));
@@ -299,30 +308,40 @@ async function handleInit(presetName, isAll = false) {
   for (const skillRel of preset.skills) {
     const src = resolveSkillSource(skillRel);
     const skillName = path.basename(skillRel);
-    const destSkillDir = path.join(agentSkillsDir, skillName);
+    const cleanName = skillName.replace(/^seo[-\s]+/i, '');
+    const slug = `seo-${cleanName.toLowerCase().replace(/[\s+]+/g, '-').replace(/[^\w-]/g, '')}`;
+    const destSkillDir = path.join(agentSkillsDir, slug);
     const dest = path.join(destSkillDir, 'SKILL.md');
     fs.mkdirSync(destSkillDir, { recursive: true });
 
     if (src && fs.existsSync(src)) {
       const content = fs.readFileSync(src, 'utf8');
       fs.writeFileSync(dest, content, 'utf8');
-      console.log(` \x1b[32m+\x1b[0m Installed skill: .agent/skills/${skillName}/SKILL.md`);
+      console.log(` \x1b[32m+\x1b[0m Installed skill: .agent/skills/${slug}/SKILL.md`);
 
-      // Generate matching Cursor rule with rich description
-      const slug = skillName.toLowerCase().replace(/[\s+]+/g, '-').replace(/[^\w-]/g, '');
+      // Generate matching Cursor rule with rich description and Section B triggers
       let desc = `SEO operational skill for ${skillName}`;
-      const descMatch = content.match(/description:\s*"([^"]+)"/) || content.match(/description:\s*'([^']+)'/);
-      if (descMatch) desc = descMatch[1];
+      const descMatch = content.match(/description:\s*"([^"]+)"/) || content.match(/description:\s*'([^']+)'/) || content.match(/description:\s*([^\n]+)/);
+      if (descMatch) desc = descMatch[1].trim();
+
+      const triggerMatch = content.match(/##\s*B\.\s*Trigger Conditions([\s\S]*?)(?=\n##\s*[A-Z]\.|\Z)/i);
+      if (triggerMatch) {
+        let trigText = triggerMatch[1].replace(/Invoke this skill when:?/i, '').replace(/Upstream dependencies:[\s\S]*/i, '').replace(/\r?\n/g, ' ').replace(/\s+/g, ' ').trim();
+        if (trigText.length > 250) trigText = trigText.slice(0, 250) + '...';
+        if (trigText) desc = `${desc} Trigger when: ${trigText}`;
+      }
+      const safeDesc = desc.replace(/"/g, "'");
+
       const cursorRule = `---
-description: "${desc}"
+description: "${safeDesc}"
 globs: "**/*"
 alwaysApply: false
 ---
 
 # ${skillName} Rules
-Follow operational procedures in .agent/skills/${skillName}/SKILL.md
+Follow operational procedures in .agent/skills/${slug}/SKILL.md
 `;
-      fs.writeFileSync(path.join(cursorRulesDir, `seo-${slug}.mdc`), cursorRule, 'utf8');
+      fs.writeFileSync(path.join(cursorRulesDir, `${slug}.mdc`), cursorRule, 'utf8');
       installedCount++;
     } else {
       console.warn(` \x1b[33m!\x1b[0m Source for skill "${skillRel}" could not be resolved.`);
@@ -337,34 +356,36 @@ alwaysApply: true
 ---
 
 # Everything SEO Master Router & Triage Engine
-When the user asks an SEO-related question or requests an optimization, use this triage decision matrix to inspect, read, and apply the exact operational manual from .agent/skills/<skill>/SKILL.md:
+When the user asks an SEO-related question or requests an optimization, use this triage decision matrix to inspect, read, and apply the exact operational manual from .agent/skills/seo-<slug>/SKILL.md:
 
 - Indexation, Crawl Status, Canonical Loops, 404s, Noindex Directives:
-  -> Read .agent/skills/Indexing/SKILL.md or .agent/skills/Crawling/SKILL.md
+  -> Read .agent/skills/seo-indexing/SKILL.md or .agent/skills/seo-crawling/SKILL.md
 - Robots.txt Errors, Bot Blocking, RFC 9309 Directive Syntax:
-  -> Read .agent/skills/RobotsTXT/SKILL.md
+  -> Read .agent/skills/seo-robotstxt/SKILL.md
 - Schema.org, JSON-LD, Rich Results, Structured Data Errors:
-  -> Read .agent/skills/Schema Markup/SKILL.md
+  -> Read .agent/skills/seo-schema-markup/SKILL.md
 - Core Web Vitals, LCP, INP, CLS, Asset Optimization, Server Latency:
-  -> Read .agent/skills/Page Speed/SKILL.md
+  -> Read .agent/skills/seo-page-speed/SKILL.md
 - AI Overviews, Perplexity Citations, ChatGPT Search, GEO Entity Gain:
-  -> Read .agent/skills/AI Search Visibility/SKILL.md
+  -> Read .agent/skills/seo-ai-search-visibility/SKILL.md
 - Organic Traffic Decay, Stale Content, SERP Rank Decline:
-  -> Read .agent/skills/Content Refresh/SKILL.md
+  -> Read .agent/skills/seo-content-refresh/SKILL.md
 - Hreflang, Multilingual Sites, Multi-Region Targeting:
-  -> Read .agent/skills/Hreflang/SKILL.md
+  -> Read .agent/skills/seo-hreflang/SKILL.md
 - Internal Linking, Orphan Pages, PageRank Distribution:
-  -> Read .agent/skills/Internal Linking/SKILL.md
+  -> Read .agent/skills/seo-internal-linking/SKILL.md
 - Title Tags, Meta Descriptions, CTR Anomaly Remediation:
-  -> Read .agent/skills/Title/SKILL.md or .agent/skills/CTR Optimization/SKILL.md
+  -> Read .agent/skills/seo-title/SKILL.md or .agent/skills/seo-ctr-optimization/SKILL.md
 - URL Structure, Slugs, Faceted Navigation Parameters:
-  -> Read .agent/skills/URL Optimization/SKILL.md
+  -> Read .agent/skills/seo-url-optimization/SKILL.md
 - Redirect Chains, 301/302 Rules, HTTP-to-HTTPS Loops:
-  -> Read .agent/skills/Redirects/SKILL.md
+  -> Read .agent/skills/seo-redirects/SKILL.md
 - XML Sitemaps, Sitemap Indexing, Lastmod Hygeine:
-  -> Read .agent/skills/XML Sitemaps/SKILL.md
+  -> Read .agent/skills/seo-xml-sitemaps/SKILL.md
 - Search Console Performance, GSC Coverage Errors, Query Clicks:
-  -> Read .agent/skills/Search Console/SKILL.md
+  -> Read .agent/skills/seo-search-console/SKILL.md
+- Master Triage, Multi-Symptom Diagnostics, or Ambiguous Ranking Losses:
+  -> Read .agent/skills/seo-orchestrator/SKILL.md
 
 Follow the 5-phase procedure (Ingestion -> Extraction -> Synthesis -> Remediation -> Governance) in the referenced skill manual.
 `;
@@ -475,6 +496,12 @@ function handleTriage(query) {
       skill: 'Link Building/Broken Link Building',
       name: 'Broken Link Building',
       reason: 'Discovers reclamation targets and builds authoritative backlinks.'
+    },
+    {
+      keywords: ['triage', 'orchestrator', 'diagnose', 'general', 'audit', 'everything', 'traffic drop', 'lost traffic', 'ranking drop', 'drop', 'rank', 'ranking', 'penalty', 'penalized', 'decline'],
+      skill: 'SEO Tools/SEO Orchestrator',
+      name: 'SEO Orchestrator',
+      reason: 'Executes forensic diagnostic triage across all 11 disciplines to pinpoint root causes.'
     }
   ];
 
@@ -533,7 +560,10 @@ function handleAdd(skillQuery) {
     process.exit(1);
   }
 
-  const targetDir = path.join(process.cwd(), '.agent', 'skills', match.name);
+  const cleanName = match.name.replace(/^seo[-\s]+/i, '');
+  const slug = `seo-${cleanName.toLowerCase().replace(/[\s+]+/g, '-').replace(/[^\w-]/g, '')}`;
+
+  const targetDir = path.join(process.cwd(), '.agent', 'skills', slug);
   fs.mkdirSync(targetDir, { recursive: true });
   const content = fs.readFileSync(match.path, 'utf8');
   fs.writeFileSync(path.join(targetDir, 'SKILL.md'), content, 'utf8');
@@ -541,24 +571,32 @@ function handleAdd(skillQuery) {
   // Also create matching Cursor rule
   const cursorDir = path.join(process.cwd(), '.cursor', 'rules');
   fs.mkdirSync(cursorDir, { recursive: true });
-  const slug = match.name.toLowerCase().replace(/[\s+]+/g, '-').replace(/[^\w-]/g, '');
   let desc = `SEO operational skill for ${match.name}`;
-  const descMatch = content.match(/description:\s*"([^"]+)"/) || content.match(/description:\s*'([^']+)'/);
-  if (descMatch) desc = descMatch[1];
+  const descMatch = content.match(/description:\s*"([^"]+)"/) || content.match(/description:\s*'([^']+)'/) || content.match(/description:\s*([^\n]+)/);
+  if (descMatch) desc = descMatch[1].trim();
+
+  const triggerMatch = content.match(/##\s*B\.\s*Trigger Conditions([\s\S]*?)(?=\n##\s*[A-Z]\.|\Z)/i);
+  if (triggerMatch) {
+    let trigText = triggerMatch[1].replace(/Invoke this skill when:?/i, '').replace(/Upstream dependencies:[\s\S]*/i, '').replace(/\r?\n/g, ' ').replace(/\s+/g, ' ').trim();
+    if (trigText.length > 250) trigText = trigText.slice(0, 250) + '...';
+    if (trigText) desc = `${desc} Trigger when: ${trigText}`;
+  }
+  const safeDesc = desc.replace(/"/g, "'");
+
   const cursorRule = `---
-description: "${desc}"
+description: "${safeDesc}"
 globs: "**/*"
 alwaysApply: false
 ---
 
 # ${match.name} Rules
-Follow operational procedures in .agent/skills/${match.name}/SKILL.md
+Follow operational procedures in .agent/skills/${slug}/SKILL.md
 `;
-  fs.writeFileSync(path.join(cursorDir, `seo-${slug}.mdc`), cursorRule, 'utf8');
+  fs.writeFileSync(path.join(cursorDir, `${slug}.mdc`), cursorRule, 'utf8');
 
   console.log(`\x1b[32m[PASS] Added skill: ${match.slug}\x1b[0m`);
-  console.log(`- Agent skill: .agent/skills/${match.name}/SKILL.md`);
-  console.log(`- Cursor rule: .cursor/rules/seo-${slug}.mdc\n`);
+  console.log(`- Agent skill: .agent/skills/${slug}/SKILL.md`);
+  console.log(`- Cursor rule: .cursor/rules/${slug}.mdc\n`);
 }
 
 function handleSearch(query) {

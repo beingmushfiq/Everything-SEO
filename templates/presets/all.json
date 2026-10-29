@@ -1,7 +1,7 @@
 {
   "name": "Complete Everything SEO Library",
   "slug": "all",
-  "description": "Complete operational fleet of all 55 SEO capability manuals across all 11 disciplines.",
+  "description": "Complete operational fleet of all 56 SEO capability manuals across all 11 disciplines.",
   "target_frameworks": [
     "All Web Frameworks"
   ],
@@ -50,6 +50,7 @@
     "SEO/SEO Tools/Keywords Everywhere",
     "SEO/SEO Tools/Screaming Frog",
     "SEO/SEO Tools/SEMrush",
+    "SEO/SEO Tools/SEO Orchestrator",
     "SEO/SEO Wins/150+ SEO Hacks",
     "SEO/SEO Wins/AI SEO Hacks",
     "SEO/SEO Wins/Backlinks Hacks",

@@ -69,3 +69,4 @@ npx @devcenterpoint/everything-seo add canonical
 ---
 
 *Maintained with pride by **[Mushfiqur Rahman Aayan](https://github.com/beingmushfiq)** & **[DevCenterPoint](https://devcenterpoint.com)** under the **[MIT License](../LICENSE)**.*
+

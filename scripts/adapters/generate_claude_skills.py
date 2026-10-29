@@ -6,6 +6,7 @@ Maintained by DevCenterPoint (https://devcenterpoint.com)
 
 import sys
 import os
+import re
 import shutil
 import argparse
 from pathlib import Path
@@ -27,7 +28,8 @@ def copy_or_link_skills(target_dir: Path, use_symlinks: bool = False):
     for skill_file in sorted(SEO_DIR.glob("*/*/SKILL.md")):
         category = skill_file.parent.parent.name
         skill_name = skill_file.parent.name
-        slug = f"seo-{skill_name.lower().replace(' ', '-').replace('+', '')}"
+        clean_name = re.sub(r'^seo[-\s]+', '', skill_name.strip(), flags=re.IGNORECASE)
+        slug = f"seo-{clean_name.lower().replace(' ', '-').replace('+', '')}"
         
         dest_folder = target_dir / slug
         dest_folder.mkdir(parents=True, exist_ok=True)

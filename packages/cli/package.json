@@ -22,7 +22,7 @@
   "homepage": "https://github.com/beingmushfiq/Everything-SEO#readme",
   "repository": {
     "type": "git",
-    "url": "https://github.com/beingmushfiq/Everything-SEO.git"
+    "url": "git+https://github.com/beingmushfiq/Everything-SEO.git"
   },
   "engines": {
     "node": ">=18.0.0"

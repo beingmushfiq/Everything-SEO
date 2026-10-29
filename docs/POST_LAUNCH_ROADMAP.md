@@ -2,9 +2,9 @@
 
 > **Brand & Maintainer:** [DevCenterPoint](https://devcenterpoint.com)  
 > **Repository:** [`beingmushfiq/Everything-SEO`](https://github.com/beingmushfiq/Everything-SEO)  
-> **Release:** `v1.0.0`
+> **Release:** `v1.0.0` (Active Operations)
 
-This roadmap defines the prioritized 30-day post-launch engineering and community backlog following the public release of **Everything SEO**.
+This roadmap defines the prioritized 30-day post-launch engineering, interoperability, and community backlog following the public release of **Everything SEO**.
 
 ---
 
@@ -13,10 +13,13 @@ This roadmap defines the prioritized 30-day post-launch engineering and communit
 | Priority | Task Name | Operational Objective | Effort | Impact | Target Window |
 | :---: | :--- | :--- | :---: | :---: | :---: |
 | **P0** | **Community Issue Triage & Bug Fixes** | Respond to early community bug reports, link issues, or ambiguous instructions within defined SLAs. | Low | High | Days 15–20 |
+| **P0** | **Polyglot Agent Adapters** | Build transpilation scripts (`scripts/adapters/`) for Cursor `.mdc`, Claude Code, Antigravity, and Copilot. | Medium | Very High | Days 15–22 |
 | **P0** | **Baseline Telemetry Tracking** | Record native GitHub Insights (views, clones, referrers) in `docs/LAUNCH_METRICS_BASELINE.md`. | Low | High | Days 15–22 |
-| **P1** | **FAQ & Troubleshooting Expansion** | Update `FAQ.md` and skill troubleshooting sections based on real user and agent feedback. | Medium | High | Days 20–25 |
-| **P1** | **MCP Server Prototype (`@devcenterpoint/mcp-server-seo`)** | Build reference Model Context Protocol server exposing skill schemas directly to AI agents. | High | Very High | Days 25–35 |
-| **P2** | **Automated JSON-LD Schema Validator CLI** | Develop an offline command-line validator for Schema.org JSON-LD scripts (`scripts/validate_schema.py`). | Medium | Medium | Days 30–40 |
+| **P1** | **Universal CLI Scaffolder (`everything-seo`)** | Implement npm (`@devcenterpoint/everything-seo`) and PyPI (`everything-seo-cli`) CLI with `init`, `add`, and `preset` support. | High | Very High | Days 20–28 |
+| **P1** | **Universal Agent Integration Guide** | Publish definitive cross-agent installation and workflow guide (`docs/UNIVERSAL_AGENT_INTEGRATION_GUIDE.md`). | Low | High | Days 20–25 |
+| **P1** | **MCP Server Prototype (`@devcenterpoint/mcp-server-seo`)** | Build reference Model Context Protocol server exposing skill schemas, partial section retrieval, and validation tools. | High | Very High | Days 25–35 |
+| **P2** | **Project Presets Manifests** | Package turnkey presets for Next.js/Jamstack, E-commerce, B2B SaaS, and Publishers. | Medium | High | Days 30–38 |
+| **P2** | **Automated JSON-LD Schema Validator CLI** | Develop an offline command-line validator for Schema.org JSON-LD scripts (`scripts/validate_schema.py`). | Medium | Medium | Days 32–40 |
 | **P2** | **Community Case Study Registry** | Create submission template and folder (`examples/community/`) for peer-reviewed production audits. | Low | Medium | Days 35–45 |
 
 ---
@@ -40,4 +43,3 @@ Contributors looking for starter issues are encouraged to:
 1. Review issues labeled `good first issue` or `help wanted`.
 2. Propose new operational skills using our [Skill Request Template](../.github/ISSUE_TEMPLATE/skill_request.yml).
 3. Ensure all PRs pass `python scripts/validate_skills.py` and `python scripts/check_links.py` before submitting.
-

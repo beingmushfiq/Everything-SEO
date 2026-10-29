@@ -1,0 +1,32 @@
+{
+  "name": "Content Publisher & Digital Media",
+  "slug": "publisher",
+  "description": "High-velocity content refreshing, entity coverage, topical authority clusters, internal linking graph optimization, and Google News/Discover readiness.",
+  "target_frameworks": [
+    "WordPress",
+    "Ghost",
+    "Astro",
+    "Hugo",
+    "Strapi"
+  ],
+  "skills": [
+    "SEO/Content Optimization/Content Refresh",
+    "SEO/Content Optimization/Entity Coverage",
+    "SEO/Content Optimization/NLP Optimization",
+    "SEO/Content Optimization/Readability",
+    "SEO/On-page SEO/Internal Linking",
+    "SEO/On-page SEO/Headings Optimization",
+    "SEO/Analytics/Search Console"
+  ],
+  "recommended_globs": [
+    "posts/**/*.md",
+    "articles/**/*.mdx",
+    "content/news/**",
+    "themes/**/*.php"
+  ],
+  "templates": [
+    "templates/content_brief_template.md",
+    "templates/content_refresh_triage_sheet.md",
+    "templates/internal_linking_audit_matrix.md"
+  ]
+}

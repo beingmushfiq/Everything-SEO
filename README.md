@@ -26,7 +26,55 @@ This repository is **not** an SEO SaaS application, marketing dashboard, or frag
 - **55 Leaf Operational Skills**: Every topic contains a machine-readable `SKILL.md`.
 - **Agent Skills v1.0 Standard**: Uniform **17-section ontology (Sections A through Q)** with valid YAML frontmatter.
 - **Strict 4-Tier Epistemic Hierarchy**: Rooted in official IETF RFCs (RFC 3986, RFC 9309, RFC 9110), W3C standards, Schema.org schemas, and Google Search Central / Bing Webmaster documentation.
+- **Universal Agent Interoperability**: Turnkey integration with **Cursor IDE**, **Claude Code**, **Google Antigravity**, **GitHub Copilot**, and **Model Context Protocol (MCP)**.
 - **100% Offline CI & Zero Paid Tool Lock-In**: Runs completely offline without API keys; provides free CLI, curl, and Python alternatives for every workflow.
+
+---
+
+## 🤖 Universal Agent & Developer Quickstart
+
+Whether you are using Cursor, Claude Code, Antigravity, or developing custom web applications, Everything SEO connects into your workflow in seconds.
+
+### 1. Global System Installation (Install Once, Available to All Agents)
+Install skills globally so your AI coding agents discover them automatically across all projects:
+
+```bash
+# Option A: Zero-install via npx (Node.js)
+npx @devcenterpoint/everything-seo install --global
+
+# Option B: Python package via pip or uv
+pip install everything-seo-cli && everything-seo install --global
+
+# Option C: Direct shell one-liner (macOS / Linux)
+curl -fsSL https://raw.githubusercontent.com/beingmushfiq/Everything-SEO/main/scripts/install.sh | bash
+
+# Option D: Direct PowerShell one-liner (Windows)
+irm https://raw.githubusercontent.com/beingmushfiq/Everything-SEO/main/scripts/install.ps1 | iex
+```
+
+### 2. In-Project Installation & Progressive Adoption (The "Shadcn" Pattern)
+Add only the specific SEO skills your application requires directly into your project repository. No token bloat, fully customizable, and version-controlled with your code:
+
+```bash
+# Initialize SEO capabilities in your active project workspace
+everything-seo init
+
+# Initialize with a curated domain preset
+everything-seo init --preset nextjs       # Technical Crawling + SSR Schema + Core Web Vitals
+everything-seo init --preset ecommerce    # Product Schema + Faceted Nav + Category Optimization
+everything-seo init --preset saas         # Competitor Pages + AI Citation + B2B Lead Gen
+everything-seo init --preset publisher    # Google News + Entity Coverage + NLP Optimization
+
+# Progressively add individual skills as requirements expand
+everything-seo add technical-seo/indexing
+everything-seo add on-page-seo/schema-markup
+everything-seo add ai-seo/ai-search-visibility
+
+# Scaffold a custom, compliant SEO skill for your company's proprietary rules
+everything-seo scaffold --name custom-internal-routing --category "Technical SEO"
+```
+
+For complete IDE setups, configuration files, and MCP server instructions, consult the **[Universal Agent Integration Guide](docs/UNIVERSAL_AGENT_INTEGRATION_GUIDE.md)**.
 
 ---
 
@@ -55,10 +103,10 @@ All 55 operational skills reside within the [`SEO/`](SEO/README.md) directory ac
 ┃ ┗ 📂 Growth (5 Skills)                -> Organic Traffic, Lead Gen, Conversion (CRO), Revenue, Scaling
 ┃
 ┣ 📂 assets/                            <- Brand Mark, Logo, Architecture & Flowchart Vector Assets
-┣ 📂 docs/                              <- Launch Strategy, Standards, Demonstrations & Progress Ledgers
+┣ 📂 docs/                              <- Launch Strategy, Standards, Demonstrations & Integration Guides
 ┣ 📂 examples/                          <- 3 Complete End-to-End Worked Case Studies
-┣ 📂 templates/                         <- 10 Reusable Deliverable Templates
-┣ 📂 scripts/                           <- Offline Skill Validators & Link Checkers
+┣ 📂 templates/                         <- 10 Reusable Deliverable Templates & Presets
+┣ 📂 scripts/                           <- Offline Skill Validators, Link Checkers & Agent Adapters
 ┗ 📂 tests/                             <- Automated Test Suites (unittest & pytest)
 ```
 
@@ -83,7 +131,7 @@ Every skill in the library executes through a deterministic five-phase sequence:
 
 1. **Senior SEO Strategists & Technical Leads**: Who require auditable, repeatable diagnostic protocols, triage decision trees, and enterprise-grade deliverables for client audits and in-house growth.
 2. **Software Developers & DevOps Engineers**: Who need concrete RFC compliance rules (RFC 3986, RFC 9309, RFC 9110), Nginx/Apache configuration blocks, JSON-LD structured data schemas, and Core Web Vitals remediation steps.
-3. **Autonomous AI Agents (Antigravity, Claude Code, Cursor, LLM runtimes)**: Compatible agents can read any `SKILL.md` directly into prompt context, execute the 5-phase procedural workflow, and produce structured deliverables adhering to pre-flight quality checklists.
+3. **Autonomous AI Agents (Cursor, Antigravity, Claude Code, Copilot, Windsurf)**: Compatible agents can read any `SKILL.md` directly into prompt context, execute the 5-phase procedural workflow, and produce structured deliverables adhering to pre-flight quality checklists.
 
 ---
 
@@ -164,6 +212,10 @@ python -m unittest discover -s tests -p "test_*.py" -v
 
 ## 📚 Community, Governance & Links
 
+- **Universal Integration & Guides**:
+  - [Universal Agent Integration Guide](docs/UNIVERSAL_AGENT_INTEGRATION_GUIDE.md)
+  - [Strategic Roadmap](ROADMAP.md)
+  - [Post-Launch Operational Roadmap](docs/POST_LAUNCH_ROADMAP.md)
 - **Repository Guidelines & Standards**:
   - [Contributing Guidelines](CONTRIBUTING.md)
   - [Skill Writing Standard](docs/SKILL_WRITING_STANDARD.md)
@@ -174,7 +226,6 @@ python -m unittest discover -s tests -p "test_*.py" -v
   - [v1.0.0 Release Notes](docs/RELEASE_NOTES_v1.0.0.md)
   - [MIT License](LICENSE)
   - [Changelog](CHANGELOG.md)
-  - [Strategic Roadmap](ROADMAP.md)
   - [Citation File Format (CITATION.cff)](CITATION.cff)
   - [Phase 1 & 2 Progress Ledger](docs/PROGRESS.md)
 - **Reusable Assets & Demonstrations**:

@@ -7,6 +7,42 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [1.1.0] - 2026-10-29
+
+### Added
+- **Universal Agent Interoperability & Transpilation Engine**:
+  - Polyglot adapters in `scripts/adapters/`:
+    - `generate_cursor_rules.py`: Transpiles canonical skills into Cursor IDE `.cursor/rules/*.mdc` rules with intelligent file globs and frontmatter.
+    - `generate_claude_skills.py`: Deploys skills to `~/.claude/skills/` and appends verification commands to `CLAUDE.md`.
+    - `generate_antigravity_skills.py`: Deploys skills into Google Antigravity environments with sidecar integration.
+    - `generate_copilot_rules.py`: Generates repository-level directives for GitHub Copilot (`.github/copilot-instructions.md`) and Windsurf (`.windsurfrules`).
+- **Universal Everything SEO CLI (`@devcenterpoint/everything-seo`)**:
+  - Zero-dependency Node.js CLI in `packages/cli/bin/everything-seo.js` with commands:
+    - `install --global`: Automated detection and installation across host AI agent harnesses.
+    - `init [--preset <name>]`: In-project scaffolding following the "Shadcn" progressive adoption pattern.
+    - `add <skill>`: Selective skill vendorization into active projects.
+    - `search <query>`: Instant fuzzy keyword search across all 55 skills.
+    - `list`: Categorized listing of skills and presets.
+    - `audit [dir]`: Offline project baseline check for robots.txt, sitemaps, and metadata.
+    - `mcp`: Launches the Model Context Protocol stdio server.
+- **Model Context Protocol (MCP) Server (`@devcenterpoint/mcp-server-seo`)**:
+  - Zero-dependency MCP 2024-11-05 compliant server in `packages/mcp-server/index.js` supporting both stdio and SSE.
+  - Implements `search_seo_skills`, `get_seo_skill_section` (token-saving section extractor), `validate_jsonld_schema`, and `audit_robots_txt`.
+  - Exposes `seo://skills/` and `seo://templates/` resources.
+- **Curated Domain Presets (`templates/presets/`)**:
+  - `nextjs.json`: Next.js & Jamstack technical crawling, SSR schema, and Core Web Vitals.
+  - `ecommerce.json`: Product schema, faceted URLs, category crawl budget, and image optimization.
+  - `saas.json`: B2B SaaS AI search visibility, entity coverage, content gap, and lead generation.
+  - `publisher.json`: Content refresh, entity coverage, NLP optimization, and Google News readiness.
+- **Universal Documentation & Installers**:
+  - `docs/UNIVERSAL_AGENT_INTEGRATION_GUIDE.md`: Comprehensive cross-platform guide for Cursor, Claude Code, Antigravity, Copilot, Windsurf, and MCP.
+  - `scripts/install.sh`: Zero-dependency shell installer for macOS/Linux.
+  - `scripts/install.ps1`: Zero-dependency PowerShell installer for Windows.
+- **Automated Adapter & Preset Tests**:
+  - `tests/test_adapters.py`: Unit tests verifying preset integrity, Cursor rule generation, Copilot rule generation, and CLI commands.
+
+---
+
 ## [1.0.0] - 2026-10-29
 
 ### Added

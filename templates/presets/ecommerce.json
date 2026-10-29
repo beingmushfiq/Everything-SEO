@@ -1,0 +1,34 @@
+{
+  "name": "E-Commerce & Retail Catalog",
+  "slug": "ecommerce",
+  "description": "Faceted navigation control, rich product schemas, category crawl budget management, image optimization, and digital PR for online retail stores.",
+  "target_frameworks": [
+    "Shopify",
+    "WooCommerce",
+    "Magento",
+    "BigCommerce",
+    "Headless Commerce"
+  ],
+  "skills": [
+    "SEO/Technical SEO/Crawling",
+    "SEO/Technical SEO/Indexing",
+    "SEO/On-page SEO/Schema Markup",
+    "SEO/On-page SEO/Image SEO",
+    "SEO/On-page SEO/URL Optimization",
+    "SEO/Link Building/Digital PR",
+    "SEO/Growth/Conversion Optimization"
+  ],
+  "recommended_globs": [
+    "templates/**/*.liquid",
+    "snippets/**/*.liquid",
+    "app/products/**/page.tsx",
+    "app/collections/**/page.tsx",
+    "components/product/**",
+    "public/robots.txt"
+  ],
+  "templates": [
+    "templates/technical_seo_audit_checklist.md",
+    "templates/schema_markup_specification.md",
+    "templates/client_reporting_dashboard.md"
+  ]
+}

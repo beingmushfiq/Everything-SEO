@@ -1,0 +1,36 @@
+{
+  "name": "Next.js & Jamstack Web Applications",
+  "slug": "nextjs",
+  "description": "Essential technical SEO, structured data, server-side rendering, and Core Web Vitals skills for modern React, Next.js, and Jamstack applications.",
+  "target_frameworks": [
+    "Next.js",
+    "Astro",
+    "Remix",
+    "Nuxt",
+    "SvelteKit"
+  ],
+  "skills": [
+    "SEO/Technical SEO/Crawling",
+    "SEO/Technical SEO/Indexing",
+    "SEO/Technical SEO/XML Sitemaps",
+    "SEO/Technical SEO/Page Speed",
+    "SEO/Technical SEO/RobotsTXT",
+    "SEO/On-page SEO/Schema Markup",
+    "SEO/On-page SEO/CTR Optimization"
+  ],
+  "recommended_globs": [
+    "app/**/page.tsx",
+    "app/**/layout.tsx",
+    "pages/**/*.tsx",
+    "pages/**/*.jsx",
+    "public/robots.txt",
+    "public/sitemap*.xml",
+    "next.config.*",
+    "astro.config.*"
+  ],
+  "templates": [
+    "templates/technical_seo_audit_checklist.md",
+    "templates/core_web_vitals_matrix.md",
+    "templates/schema_markup_specification.md"
+  ]
+}

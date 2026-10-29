@@ -1,0 +1,33 @@
+{
+  "name": "B2B SaaS & High-Growth Tech",
+  "slug": "saas",
+  "description": "Programmatic competitor alternatives, AI engine visibility (GEO), entity salience, high-intent lead generation, and conversion architecture for tech platforms.",
+  "target_frameworks": [
+    "Next.js",
+    "Tailwind",
+    "Gatsby",
+    "Webflow",
+    "WordPress"
+  ],
+  "skills": [
+    "SEO/AI SEO/AI Search Visibility",
+    "SEO/AI SEO/Entity Optimization",
+    "SEO/AI SEO/AI Citations",
+    "SEO/Content Optimization/Gap Analysis",
+    "SEO/Content Optimization/Entity Coverage",
+    "SEO/Growth/Lead Generation",
+    "SEO/On-page SEO/Schema Markup"
+  ],
+  "recommended_globs": [
+    "app/compare/**",
+    "app/features/**",
+    "pages/solutions/**",
+    "content/blog/**/*.mdx",
+    "content/comparisons/**/*.md"
+  ],
+  "templates": [
+    "templates/content_gap_analysis_matrix.md",
+    "templates/ai_citation_action_plan.md",
+    "templates/organic_growth_model.md"
+  ]
+}

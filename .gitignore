@@ -73,3 +73,7 @@ docs/internal/
 *.bak*
 .everything-seo.json
 .everything-seo.lock
+.agent/
+.cursor/
+packages/cli/data/
+packages/mcp-server/data/

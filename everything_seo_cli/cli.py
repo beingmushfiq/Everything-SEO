@@ -23,7 +23,7 @@ SEO_DIR = ROOT_DIR / "SEO"
 PRESETS_DIR = ROOT_DIR / "templates" / "presets"
 
 BANNER = """===================================================
-Everything SEO CLI (Python) v1.2.0 — DevCenterPoint
+Everything SEO CLI (Python) v1.2.1 — DevCenterPoint
 Universal Skill Manager for AI Agents & Developers
 ===================================================
 """
@@ -69,30 +69,56 @@ def cmd_init(preset_name=None):
     agent_skills.mkdir(parents=True, exist_ok=True)
     cursor_rules.mkdir(parents=True, exist_ok=True)
 
-    if preset_name:
-        preset_file = PRESETS_DIR / f"{preset_name.lower()}.json"
-        if not preset_file.exists():
-            print(f"[ERROR] Preset '{preset_name}' not found.")
-            sys.exit(1)
-        with open(preset_file, "r", encoding="utf-8") as f:
-            data = json.load(f)
-        print(f"[PRESET] Applying {data['name']}...")
-        for skill_rel in data["skills"]:
-            src = ROOT_DIR / skill_rel / "SKILL.md"
-            skill_name = Path(skill_rel).name
-            dest = agent_skills / skill_name / "SKILL.md"
-            dest.parent.mkdir(parents=True, exist_ok=True)
-            if src.exists():
-                dest.write_text(src.read_text(encoding="utf-8"), encoding="utf-8")
-                print(f" + Installed: .agent/skills/{skill_name}/SKILL.md")
+    active_preset = preset_name or "starter"
+    preset_file = PRESETS_DIR / f"{active_preset.lower()}.json"
+    if not preset_file.exists():
+        print(f"[ERROR] Preset '{active_preset}' not found. Available: starter, nextjs, ecommerce, saas, publisher")
+        sys.exit(1)
+
+    with open(preset_file, "r", encoding="utf-8") as f:
+        data = json.load(f)
+    print(f"[PRESET] Applying {data['name']} ({active_preset})...")
+    installed_skills = []
+
+    for skill_rel in data["skills"]:
+        # Resolve source
+        src = ROOT_DIR / skill_rel / "SKILL.md"
+        if not src.exists():
+            clean_rel = skill_rel.replace("SEO/", "").replace("SEO\\", "")
+            src = SEO_DIR / clean_rel / "SKILL.md"
+
+        skill_name = Path(skill_rel).name
+        dest = agent_skills / skill_name / "SKILL.md"
+        dest.parent.mkdir(parents=True, exist_ok=True)
+
+        if src.exists():
+            content = src.read_text(encoding="utf-8")
+            dest.write_text(content, encoding="utf-8")
+            print(f" + Installed skill: .agent/skills/{skill_name}/SKILL.md")
+
+            # Generate Cursor rule
+            slug = skill_name.lower().replace(" ", "-").replace("+", "")
+            cursor_rule_content = f"""---
+description: "SEO operational skill for {skill_name}"
+globs: "**/*"
+alwaysApply: false
+---
+
+# {skill_name} Rules
+Follow operational procedures in .agent/skills/{skill_name}/SKILL.md
+"""
+            (cursor_rules / f"seo-{slug}.mdc").write_text(cursor_rule_content, encoding="utf-8")
+            print(f" + Configured rule: .cursor/rules/seo-{slug}.mdc")
+            installed_skills.append(skill_name)
 
     manifest = cwd / ".everything-seo.json"
     manifest.write_text(json.dumps({
-        "version": "1.2.0",
-        "preset": preset_name or "custom",
+        "version": "1.2.1",
+        "preset": active_preset,
+        "installed_skills": installed_skills,
         "maintainer": "DevCenterPoint"
     }, indent=2), encoding="utf-8")
-    print("\n[PASS] Project initialized.")
+    print(f"\n[PASS] Project initialized with {len(installed_skills)} skills.")
 
 def cmd_search(query):
     print_banner()

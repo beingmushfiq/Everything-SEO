@@ -10,20 +10,30 @@ const path = require('path');
 const readline = require('readline');
 
 const ROOT_DIR = path.resolve(__dirname, '..', '..');
-const SEO_DIR = path.join(ROOT_DIR, 'SEO');
-const PRESETS_DIR = path.join(ROOT_DIR, 'templates', 'presets');
-const TEMPLATES_DIR = path.join(ROOT_DIR, 'templates');
+
+function getSeoDir() {
+  const bundled = path.join(__dirname, 'data', 'SEO');
+  if (fs.existsSync(bundled)) return bundled;
+  const fromRoot = path.join(ROOT_DIR, 'SEO');
+  if (fs.existsSync(fromRoot)) return fromRoot;
+  return bundled;
+}
+
+const SEO_DIR = getSeoDir();
+const PRESETS_DIR = path.join(__dirname, 'data', 'presets');
+const TEMPLATES_DIR = path.join(__dirname, 'data', 'templates');
 
 // Helper: load all skill metadata
 function getAllSkills() {
+  const seoDir = getSeoDir();
   const skills = [];
-  if (!fs.existsSync(SEO_DIR)) return skills;
+  if (!fs.existsSync(seoDir)) return skills;
 
-  const disciplines = fs.readdirSync(SEO_DIR, { withFileTypes: true })
+  const disciplines = fs.readdirSync(seoDir, { withFileTypes: true })
     .filter(d => d.isDirectory() && !d.name.startsWith('.'));
 
   for (const disc of disciplines) {
-    const discPath = path.join(SEO_DIR, disc.name);
+    const discPath = path.join(seoDir, disc.name);
     const subdirs = fs.readdirSync(discPath, { withFileTypes: true })
       .filter(d => d.isDirectory() && !d.name.startsWith('.'));
     for (const sub of subdirs) {
@@ -297,7 +307,7 @@ rl.on('line', (line) => {
       },
       serverInfo: {
         name: '@devcenterpoint/mcp-server-seo',
-        version: '1.2.0'
+        version: '1.2.1'
       }
     });
   } else if (method === 'notifications/initialized') {

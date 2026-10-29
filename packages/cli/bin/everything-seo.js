@@ -10,10 +10,45 @@ const path = require('path');
 const { execSync, spawn } = require('child_process');
 const os = require('os');
 
-const VERSION = '1.2.0';
+const VERSION = '1.2.1';
 const ROOT_DIR = path.resolve(__dirname, '..', '..', '..');
-const SEO_DIR = path.join(ROOT_DIR, 'SEO');
-const PRESETS_DIR = path.join(ROOT_DIR, 'templates', 'presets');
+
+function getSeoDir() {
+  const candidates = [
+    path.join(__dirname, '..', 'data', 'SEO'),
+    path.join(ROOT_DIR, 'SEO'),
+    path.join(process.cwd(), 'SEO')
+  ];
+  for (const c of candidates) {
+    if (fs.existsSync(c)) return c;
+  }
+  return path.join(__dirname, '..', 'data', 'SEO');
+}
+
+function getPresetsDir() {
+  const candidates = [
+    path.join(__dirname, '..', 'data', 'presets'),
+    path.join(__dirname, '..', 'data', 'templates', 'presets'),
+    path.join(ROOT_DIR, 'templates', 'presets'),
+    path.join(process.cwd(), 'templates', 'presets')
+  ];
+  for (const c of candidates) {
+    if (fs.existsSync(c)) return c;
+  }
+  return path.join(__dirname, '..', 'data', 'presets');
+}
+
+function getAuthoringTemplatePath() {
+  const candidates = [
+    path.join(__dirname, '..', 'data', 'templates', 'skill_authoring_template.md'),
+    path.join(ROOT_DIR, 'templates', 'skill_authoring_template.md'),
+    path.join(process.cwd(), 'templates', 'skill_authoring_template.md')
+  ];
+  for (const c of candidates) {
+    if (fs.existsSync(c)) return c;
+  }
+  return null;
+}
 
 function printBanner() {
   console.log(`\x1b[36m===================================================\x1b[0m`);
@@ -27,7 +62,7 @@ function printHelp() {
   console.log(`Usage: everything-seo <command> [options]\n`);
   console.log(`Commands:`);
   console.log(`  install --global             Install skills globally for Antigravity, Claude Code, Cursor`);
-  console.log(`  init [--preset <name>]       Initialize SEO capabilities in current workspace`);
+  console.log(`  init [--preset <name>]       Initialize SEO capabilities in current workspace (defaults to starter)`);
   console.log(`  add <discipline/skill>       Progressively add a specific skill to current project`);
   console.log(`  scaffold --name <name>       Scaffold a new 17-section compliant custom project skill`);
   console.log(`  list                         List available skills and project presets`);
@@ -36,18 +71,19 @@ function printHelp() {
   console.log(`  mcp [--stdio]                Launch the Model Context Protocol (MCP) server`);
   console.log(`  version, -v                  Show version`);
   console.log(`  help, -h                     Show this help message\n`);
-  console.log(`Presets available: nextjs, ecommerce, saas, publisher\n`);
+  console.log(`Presets available: starter (default), nextjs, ecommerce, saas, publisher\n`);
   console.log(`Docs: https://github.com/beingmushfiq/Everything-SEO\n`);
 }
 
 function findSkillDirectories() {
-  if (!fs.existsSync(SEO_DIR)) return [];
+  const seoDir = getSeoDir();
+  if (!fs.existsSync(seoDir)) return [];
   const skills = [];
-  const disciplines = fs.readdirSync(SEO_DIR, { withFileTypes: true })
+  const disciplines = fs.readdirSync(seoDir, { withFileTypes: true })
     .filter(d => d.isDirectory() && !d.name.startsWith('.'));
 
   for (const disc of disciplines) {
-    const discPath = path.join(SEO_DIR, disc.name);
+    const discPath = path.join(seoDir, disc.name);
     const subdirs = fs.readdirSync(discPath, { withFileTypes: true })
       .filter(d => d.isDirectory() && !d.name.startsWith('.'));
     for (const sub of subdirs) {
@@ -65,6 +101,23 @@ function findSkillDirectories() {
   return skills;
 }
 
+function resolveSkillSource(skillRel) {
+  const cleanRel = skillRel.replace(/^SEO[\\/]/, '');
+  const seoDir = getSeoDir();
+  const direct = path.join(seoDir, cleanRel, 'SKILL.md');
+  if (fs.existsSync(direct)) return direct;
+
+  const fromRoot = path.join(ROOT_DIR, skillRel, 'SKILL.md');
+  if (fs.existsSync(fromRoot)) return fromRoot;
+
+  const skillName = path.basename(skillRel);
+  const allSkills = findSkillDirectories();
+  const match = allSkills.find(s => s.name.toLowerCase() === skillName.toLowerCase());
+  if (match) return match.path;
+
+  return null;
+}
+
 function handleInstallGlobal() {
   printBanner();
   console.log(`[*] Initiating Global System Installation for AI Agent Harnesses...`);
@@ -73,36 +126,32 @@ function handleInstallGlobal() {
   const antigravitySkills = path.join(home, '.gemini', 'antigravity', 'skills');
   const claudeSkills = path.join(home, '.claude', 'skills');
 
-  let installedCount = 0;
+  const allSkills = findSkillDirectories();
+  if (allSkills.length === 0) {
+    console.error(`\x1b[31m[ERROR] No skills found to deploy.\x1b[0m`);
+    return;
+  }
+
+  function deployTo(targetDir, harnessName) {
+    fs.mkdirSync(targetDir, { recursive: true });
+    let count = 0;
+    for (const s of allSkills) {
+      const slug = `seo-${s.name.toLowerCase().replace(/[\s+]+/g, '-').replace(/[^\w-]/g, '')}`;
+      const destDir = path.join(targetDir, slug);
+      fs.mkdirSync(destDir, { recursive: true });
+      fs.copyFileSync(s.path, path.join(destDir, 'SKILL.md'));
+      count++;
+    }
+    console.log(` \x1b[32m✔\x1b[0m Deployed ${count} skills to ${harnessName} (${targetDir})`);
+  }
 
   // 1. Google Antigravity
-  if (fs.existsSync(path.join(home, '.gemini'))) {
-    console.log(`[DETECT] Google Antigravity found at ~/.gemini`);
-    fs.mkdirSync(antigravitySkills, { recursive: true });
-    try {
-      execSync(`python "${path.join(ROOT_DIR, 'scripts', 'adapters', 'generate_antigravity_skills.py')}" --output "${antigravitySkills}"`, { stdio: 'inherit' });
-      installedCount++;
-    } catch (e) {
-      console.warn(`[WARN] Could not run python antigravity adapter: ${e.message}`);
-    }
-  }
+  deployTo(antigravitySkills, 'Google Antigravity');
 
   // 2. Claude Code
-  if (fs.existsSync(path.join(home, '.claude'))) {
-    console.log(`[DETECT] Claude Code CLI found at ~/.claude`);
-    fs.mkdirSync(claudeSkills, { recursive: true });
-    try {
-      execSync(`python "${path.join(ROOT_DIR, 'scripts', 'adapters', 'generate_claude_skills.py')}" --output "${claudeSkills}"`, { stdio: 'inherit' });
-      installedCount++;
-    } catch (e) {
-      console.warn(`[WARN] Could not run python claude adapter: ${e.message}`);
-    }
-  }
+  deployTo(claudeSkills, 'Claude Code');
 
-  console.log(`\n\x1b[32m[PASS] Global agent installation complete.\x1b[0m`);
-  console.log(`Target directories configured:`);
-  console.log(` - Antigravity: ${antigravitySkills}`);
-  console.log(` - Claude Code: ${claudeSkills}\n`);
+  console.log(`\n\x1b[32m[PASS] Global agent installation complete (${allSkills.length} skills deployed).\x1b[0m\n`);
 }
 
 function handleInit(presetName) {
@@ -116,26 +165,52 @@ function handleInit(presetName) {
   fs.mkdirSync(agentSkillsDir, { recursive: true });
   fs.mkdirSync(cursorRulesDir, { recursive: true });
 
-  if (presetName) {
-    const presetFile = path.join(PRESETS_DIR, `${presetName.toLowerCase()}.json`);
-    if (!fs.existsSync(presetFile)) {
-      console.error(`\x1b[31m[ERROR] Preset "${presetName}" not found. Available presets: nextjs, ecommerce, saas, publisher\x1b[0m`);
-      process.exit(1);
-    }
+  const activePreset = presetName || 'starter';
+  const presetsDir = getPresetsDir();
+  const presetFile = path.join(presetsDir, `${activePreset.toLowerCase()}.json`);
 
-    const preset = JSON.parse(fs.readFileSync(presetFile, 'utf8'));
-    console.log(`\x1b[34m[PRESET]\x1b[0m Applying preset: \x1b[1m${preset.name}\x1b[0m`);
-    console.log(`Description: ${preset.description}\n`);
+  if (!fs.existsSync(presetFile)) {
+    console.error(`\x1b[31m[ERROR] Preset "${activePreset}" not found.\x1b[0m`);
+    console.log(`Available presets: starter, nextjs, ecommerce, saas, publisher`);
+    process.exit(1);
+  }
 
-    for (const skillRel of preset.skills) {
-      const src = path.join(ROOT_DIR, skillRel, 'SKILL.md');
-      const skillName = path.basename(skillRel);
-      const dest = path.join(agentSkillsDir, skillName, 'SKILL.md');
-      fs.mkdirSync(path.dirname(dest), { recursive: true });
-      if (fs.existsSync(src)) {
-        fs.copyFileSync(src, dest);
-        console.log(` + Installed skill: .agent/skills/${skillName}/SKILL.md`);
-      }
+  const preset = JSON.parse(fs.readFileSync(presetFile, 'utf8'));
+  console.log(`\x1b[34m[PRESET]\x1b[0m Applying preset: \x1b[1m${preset.name}\x1b[0m (${activePreset})`);
+  console.log(`Description: ${preset.description}\n`);
+
+  let installedCount = 0;
+  for (const skillRel of preset.skills) {
+    const src = resolveSkillSource(skillRel);
+    const skillName = path.basename(skillRel);
+    const destSkillDir = path.join(agentSkillsDir, skillName);
+    const dest = path.join(destSkillDir, 'SKILL.md');
+    fs.mkdirSync(destSkillDir, { recursive: true });
+
+    if (src && fs.existsSync(src)) {
+      const content = fs.readFileSync(src, 'utf8');
+      fs.writeFileSync(dest, content, 'utf8');
+      console.log(` \x1b[32m+\x1b[0m Installed skill: .agent/skills/${skillName}/SKILL.md`);
+
+      // Generate matching Cursor rule
+      const slug = skillName.toLowerCase().replace(/[\s+]+/g, '-').replace(/[^\w-]/g, '');
+      let desc = `SEO operational skill for ${skillName}`;
+      const descMatch = content.match(/description:\s*"([^"]+)"/) || content.match(/description:\s*'([^']+)'/);
+      if (descMatch) desc = descMatch[1];
+      const cursorRule = `---
+description: "${desc}"
+globs: "**/*"
+alwaysApply: false
+---
+
+# ${skillName} Rules
+Follow operational procedures in .agent/skills/${skillName}/SKILL.md
+`;
+      fs.writeFileSync(path.join(cursorRulesDir, `seo-${slug}.mdc`), cursorRule, 'utf8');
+      console.log(` \x1b[36m+\x1b[0m Configured rule: .cursor/rules/seo-${slug}.mdc`);
+      installedCount++;
+    } else {
+      console.warn(` \x1b[33m!\x1b[0m Source for skill "${skillRel}" could not be resolved.`);
     }
   }
 
@@ -144,15 +219,18 @@ function handleInit(presetName) {
   const manifest = {
     version: VERSION,
     initialized_at: new Date().toISOString(),
-    preset: presetName || 'custom',
+    preset: activePreset,
+    installed_skills: preset.skills.map(s => path.basename(s)),
     maintainer: 'DevCenterPoint (https://devcenterpoint.com)'
   };
   fs.writeFileSync(manifestPath, JSON.stringify(manifest, null, 2));
 
-  console.log(`\n\x1b[32m[PASS] Project initialized successfully.\x1b[0m`);
+  console.log(`\n\x1b[32m[PASS] Project initialized successfully with ${installedCount} skills.\x1b[0m`);
   console.log(`- Agent skills directory: .agent/skills/`);
   console.log(`- Cursor rules directory: .cursor/rules/`);
   console.log(`- Project manifest: .everything-seo.json\n`);
+  console.log(`Need more skills? Add anytime using:`);
+  console.log(`  everything-seo add <skill-name>\n`);
 }
 
 function handleAdd(skillQuery) {
@@ -170,10 +248,30 @@ function handleAdd(skillQuery) {
 
   const targetDir = path.join(process.cwd(), '.agent', 'skills', match.name);
   fs.mkdirSync(targetDir, { recursive: true });
-  fs.copyFileSync(match.path, path.join(targetDir, 'SKILL.md'));
+  const content = fs.readFileSync(match.path, 'utf8');
+  fs.writeFileSync(path.join(targetDir, 'SKILL.md'), content, 'utf8');
+
+  // Also create matching Cursor rule
+  const cursorDir = path.join(process.cwd(), '.cursor', 'rules');
+  fs.mkdirSync(cursorDir, { recursive: true });
+  const slug = match.name.toLowerCase().replace(/[\s+]+/g, '-').replace(/[^\w-]/g, '');
+  let desc = `SEO operational skill for ${match.name}`;
+  const descMatch = content.match(/description:\s*"([^"]+)"/) || content.match(/description:\s*'([^']+)'/);
+  if (descMatch) desc = descMatch[1];
+  const cursorRule = `---
+description: "${desc}"
+globs: "**/*"
+alwaysApply: false
+---
+
+# ${match.name} Rules
+Follow operational procedures in .agent/skills/${match.name}/SKILL.md
+`;
+  fs.writeFileSync(path.join(cursorDir, `seo-${slug}.mdc`), cursorRule, 'utf8');
 
   console.log(`\x1b[32m[PASS] Added skill: ${match.slug}\x1b[0m`);
-  console.log(`Location: .agent/skills/${match.name}/SKILL.md`);
+  console.log(`- Agent skill: .agent/skills/${match.name}/SKILL.md`);
+  console.log(`- Cursor rule: .cursor/rules/seo-${slug}.mdc\n`);
 }
 
 function handleSearch(query) {
@@ -270,9 +368,9 @@ function handleScaffold(name, category = 'Technical SEO') {
   const targetDir = path.join(process.cwd(), '.agent', 'skills', category, name);
   fs.mkdirSync(targetDir, { recursive: true });
 
-  const authoringTemplatePath = path.join(ROOT_DIR, 'templates', 'skill_authoring_template.md');
+  const authoringTemplatePath = getAuthoringTemplatePath();
   let content = '';
-  if (fs.existsSync(authoringTemplatePath)) {
+  if (authoringTemplatePath && fs.existsSync(authoringTemplatePath)) {
     content = fs.readFileSync(authoringTemplatePath, 'utf8')
       .replace(/\[DISCIPLINE NAME\]/g, category)
       .replace(/\[SKILL NAME\]/g, name);
@@ -286,7 +384,7 @@ function handleScaffold(name, category = 'Technical SEO') {
   // Also create matching Cursor rule
   const cursorDir = path.join(process.cwd(), '.cursor', 'rules');
   fs.mkdirSync(cursorDir, { recursive: true });
-  const slug = name.toLowerCase().replace(/[\s+]+/g, '-');
+  const slug = name.toLowerCase().replace(/[\s+]+/g, '-').replace(/[^\w-]/g, '');
   const cursorRule = `---
 description: "Custom project SEO rule for ${name}"
 globs: "**/*"
@@ -381,8 +479,12 @@ function handleSync() {
 
 function handleRegistry(action = 'list') {
   printBanner();
-  const regPath = path.join(ROOT_DIR, 'registry', 'registry.json');
-  if (!fs.existsSync(regPath)) {
+  const regCandidates = [
+    path.join(__dirname, '..', 'data', 'registry', 'registry.json'),
+    path.join(ROOT_DIR, 'registry', 'registry.json')
+  ];
+  const regPath = regCandidates.find(p => fs.existsSync(p));
+  if (!regPath) {
     console.error('[ERROR] Registry catalog not found.');
     return;
   }
@@ -396,12 +498,16 @@ function handleRegistry(action = 'list') {
 }
 
 function handleMCP() {
-  const mcpServerPath = path.join(ROOT_DIR, 'packages', 'mcp-server', 'src', 'server.js');
-  if (fs.existsSync(mcpServerPath)) {
-    require(mcpServerPath);
-  } else {
-    console.log(`[INFO] Starting Model Context Protocol stdio server...`);
-    require(path.join(ROOT_DIR, 'packages', 'mcp-server', 'index.js'));
+  const localMcpPath = path.join(__dirname, '..', '..', 'mcp-server', 'index.js');
+  if (fs.existsSync(localMcpPath)) {
+    require(localMcpPath);
+    return;
+  }
+  try {
+    require('@devcenterpoint/mcp-server-seo');
+  } catch (e) {
+    console.error(`[ERROR] Could not start MCP server: ${e.message}`);
+    process.exit(1);
   }
 }
 

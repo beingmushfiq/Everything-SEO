@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "everything-seo-cli"
-version = "1.2.0"
+version = "1.2.1"
 description = "Universal CLI and progressive skill manager for Everything SEO by DevCenterPoint"
 readme = "README.md"
 requires-python = ">=3.9"

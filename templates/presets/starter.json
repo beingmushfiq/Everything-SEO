@@ -1,0 +1,22 @@
+{
+  "name": "Essential SEO Starter Pack",
+  "slug": "starter",
+  "description": "Core baseline SEO capabilities for any web project: Technical Indexing, Schema Markup, RobotsTXT, Page Speed, and AI Search Visibility.",
+  "target_frameworks": [
+    "All Web Frameworks"
+  ],
+  "skills": [
+    "SEO/Technical SEO/Indexing",
+    "SEO/Technical SEO/RobotsTXT",
+    "SEO/Technical SEO/Page Speed",
+    "SEO/On-page SEO/Schema Markup",
+    "SEO/AI SEO/AI Search Visibility"
+  ],
+  "recommended_globs": [
+    "app/**/page.tsx",
+    "pages/**/*.tsx",
+    "public/robots.txt",
+    "public/sitemap*.xml",
+    "**/*.html"
+  ]
+}

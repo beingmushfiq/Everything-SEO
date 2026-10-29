@@ -28,6 +28,10 @@ dependencies = []
 [project.scripts]
 everything-seo = "everything_seo_cli.cli:main"
 
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["everything_seo_cli*"]
+
 [project.urls]
 Homepage = "https://github.com/beingmushfiq/Everything-SEO"
 Repository = "https://github.com/beingmushfiq/Everything-SEO.git"

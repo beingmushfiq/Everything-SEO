@@ -223,6 +223,7 @@ python -m unittest discover -s tests -p "test_*.py" -v
   - [Security Policy](SECURITY.md)
   - [Support & FAQ](FAQ.md)
 - **Project Governance & Release**:
+  - [v1.2.0 Release Notes](docs/RELEASE_NOTES_v1.2.0.md)
   - [v1.0.0 Release Notes](docs/RELEASE_NOTES_v1.0.0.md)
   - [MIT License](LICENSE)
   - [Changelog](CHANGELOG.md)
